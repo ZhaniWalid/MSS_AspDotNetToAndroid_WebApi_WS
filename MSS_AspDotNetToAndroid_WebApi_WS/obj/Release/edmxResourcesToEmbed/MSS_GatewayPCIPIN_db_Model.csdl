@@ -1,0 +1,1685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GatewayPCIPINModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrganismType_Id" Type="Int32" />
+    <NavigationProperty Name="OrganizationTypes" Relationship="Self.FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id" FromRole="AspNetRoles" ToRole="OrganizationTypes" />
+    <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetUserRoles" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRoles" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Organization_Id" Type="Int32" />
+    <Property Name="IsFirstConnection" Type="Int32" Nullable="false" />
+    <Property Name="OrganismIdentity_Id" Type="Int32" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_AspNetUsers_Organization" FromRole="AspNetUsers" ToRole="Organization" />
+    <NavigationProperty Name="OrganismIdentities" Relationship="Self.FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id" FromRole="AspNetUsers" ToRole="OrganismIdentities" />
+    <NavigationProperty Name="Token" Relationship="Self.fk_id_user" FromRole="AspNetUsers" ToRole="Token" />
+    <NavigationProperty Name="AspNetUsers1" Relationship="Self.Locked" FromRole="AspNetUsers" ToRole="AspNetUsers1" />
+    <NavigationProperty Name="AspNetUsers2" Relationship="Self.Locked" FromRole="AspNetUsers1" ToRole="AspNetUsers" />
+    <NavigationProperty Name="UserSessionTokens" Relationship="GatewayPCIPINModel.FK_UserSessionTokens_AspNetUsers" FromRole="AspNetUsers" ToRole="UserSessionToken" />
+  </EntityType>
+  <EntityType Name="gw_bank">
+    <Key>
+      <PropertyRef Name="gw_bank_id" />
+    </Key>
+    <Property Name="gw_bank_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bank_host_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bank_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bank_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bank_abrev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bank_adress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bank_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bank_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="gw_host" Relationship="Self.FK_bank_host" FromRole="gw_bank" ToRole="gw_host" />
+    <NavigationProperty Name="gw_bin" Relationship="Self.FK_bin_bank" FromRole="gw_bank" ToRole="gw_bin" />
+    <NavigationProperty Name="gw_merchant" Relationship="Self.FK_merchant_bank" FromRole="gw_bank" ToRole="gw_merchant" />
+    <NavigationProperty Name="gw_plage_bin" Relationship="Self.FK_PlageBin_bank" FromRole="gw_bank" ToRole="gw_plage_bin" />
+    <NavigationProperty Name="gw_terminal_bank" Relationship="Self.FK_terminalBank_bank" FromRole="gw_bank" ToRole="gw_terminal_bank" />
+  </EntityType>
+  <EntityType Name="gw_bin">
+    <Key>
+      <PropertyRef Name="gw_bin_id" />
+    </Key>
+    <Property Name="gw_bin_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bin_bank_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bin_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_bin_label" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="gw_bin_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_bin_bank_of_request" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_bank" Relationship="Self.FK_bin_bank" FromRole="gw_bin" ToRole="gw_bank" />
+  </EntityType>
+  <EntityType Name="gw_close_day">
+    <Key>
+      <PropertyRef Name="IdCloture" />
+    </Key>
+    <Property Name="IdCloture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdMerchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdMagasin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTerminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SequenceNumber" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="BatchNumber" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="NumberOfPurchase" Type="Int32" />
+    <Property Name="TotalAmountPurchase" Type="Double" />
+    <Property Name="NumberOfRefund" Type="Int32" />
+    <Property Name="TotalAmountRefund" Type="Double" />
+    <Property Name="NumberOfPurchaseHost" Type="Int32" />
+    <Property Name="TotalAmountPurchaseHost" Type="Double" />
+    <Property Name="NumberOfRefundHost" Type="Int32" />
+    <Property Name="TotalAmountRefundHost" Type="Double" />
+    <Property Name="SentClotureTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReceivedClotureTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentDate" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentTime" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="DateSystemCloture" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="TimeSystemCloture" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="IMEI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CodeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdHost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HostRoutage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankOfRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MerchantType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_trnsct" Relationship="Self.FK_Transaction_Cloture" FromRole="gw_close_day" ToRole="gw_trnsct" />
+  </EntityType>
+  <EntityType Name="gw_default_field">
+    <Key>
+      <PropertyRef Name="gw_default_field_default_template_id" />
+      <PropertyRef Name="gw_default_field_field_id" />
+    </Key>
+    <Property Name="gw_default_field_default_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_field_field_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_field_default_value" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gw_default_field_extend_creation" Type="Int32" />
+    <NavigationProperty Name="gw_spdh_field" Relationship="Self.FK_DefaultField_SpdhField" FromRole="gw_default_field" ToRole="gw_spdh_field" />
+    <NavigationProperty Name="gw_default_template" Relationship="Self.FK_DefaultField_Template" FromRole="gw_default_field" ToRole="gw_default_template" />
+  </EntityType>
+  <EntityType Name="gw_default_field_header">
+    <Key>
+      <PropertyRef Name="gw_default_field_header_default_template_id" />
+      <PropertyRef Name="gw_default_field_header_header_id" />
+    </Key>
+    <Property Name="gw_default_field_header_default_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_field_header_header_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_field_header_default_value" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gw_default_field_header_extend_creation" Type="Int32" />
+    <NavigationProperty Name="gw_spdh_field_header" Relationship="Self.FK_DefaultFieldHeader_SpdhFieldHeader" FromRole="gw_default_field_header" ToRole="gw_spdh_field_header" />
+    <NavigationProperty Name="gw_default_template" Relationship="Self.FK_DefaultFieldHeader_Template" FromRole="gw_default_field_header" ToRole="gw_default_template" />
+  </EntityType>
+  <EntityType Name="gw_default_subfield">
+    <Key>
+      <PropertyRef Name="gw_default_subfield_default_template_id" />
+      <PropertyRef Name="gw_default_subfield_subfield_id" />
+    </Key>
+    <Property Name="gw_default_subfield_default_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_subfield_subfield_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_subfield_default_value" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gw_default_subfield_extend_creation" Type="Int32" />
+    <NavigationProperty Name="gw_spdh_subfield" Relationship="Self.FK_DefaultSubfield_SpdhSubfield" FromRole="gw_default_subfield" ToRole="gw_spdh_subfield" />
+    <NavigationProperty Name="gw_default_template" Relationship="Self.FK_DefaultSubfield_Template" FromRole="gw_default_subfield" ToRole="gw_default_template" />
+  </EntityType>
+  <EntityType Name="gw_default_template">
+    <Key>
+      <PropertyRef Name="gw_default_template_id" />
+    </Key>
+    <Property Name="gw_default_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_template_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_default_field" Relationship="Self.FK_DefaultField_Template" FromRole="gw_default_template" ToRole="gw_default_field" />
+    <NavigationProperty Name="gw_default_field_header" Relationship="Self.FK_DefaultFieldHeader_Template" FromRole="gw_default_template" ToRole="gw_default_field_header" />
+    <NavigationProperty Name="gw_default_subfield" Relationship="Self.FK_DefaultSubfield_Template" FromRole="gw_default_template" ToRole="gw_default_subfield" />
+    <NavigationProperty Name="gw_default_trnsct_type" Relationship="Self.FK_DefaultTypeTransaction_TemplateDefault" FromRole="gw_default_template" ToRole="gw_default_trnsct_type" />
+  </EntityType>
+  <EntityType Name="gw_default_trnsct_type">
+    <Key>
+      <PropertyRef Name="gw_default_trnsct_type_trnsct_type" />
+    </Key>
+    <Property Name="gw_default_trnsct_type_trnsct_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_default_trnsct_type_default_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="gw_default_template" Relationship="Self.FK_DefaultTypeTransaction_TemplateDefault" FromRole="gw_default_trnsct_type" ToRole="gw_default_template" />
+  </EntityType>
+  <EntityType Name="gw_download_data">
+    <Key>
+      <PropertyRef Name="IdDownload" />
+    </Key>
+    <Property Name="IdDownload" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SentTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReceivedTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdMerchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdMagasin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTerminalMerchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTerminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IMEI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Transactiontype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdHost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HostRoutage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankOfRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MerchantType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateSystemTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TimeSystemTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FID_V_MailDownloadKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CodeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gw_emv_data">
+    <Key>
+      <PropertyRef Name="gw_emv_data_tag" />
+    </Key>
+    <Property Name="gw_emv_data_tag" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_emv_data_label" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_hand_shake">
+    <Key>
+      <PropertyRef Name="IdHandShake" />
+    </Key>
+    <Property Name="IdHandShake" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SentTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReceivedTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdMerchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdMagasin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTerminalMerchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTerminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IMEI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdHost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HostRoutage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MerchantType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateSystemTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TimeSystemTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CodeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gw_host">
+    <Key>
+      <PropertyRef Name="gw_host_id" />
+    </Key>
+    <Property Name="gw_host_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_host_label" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_host_protocol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_port" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_ssl" Type="Int32" />
+    <Property Name="gw_host_second_adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_second_port" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_certificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_second_certificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="gw_host_time_out_behavoir" Type="Int32" />
+    <NavigationProperty Name="gw_bank" Relationship="Self.FK_bank_host" FromRole="gw_host" ToRole="gw_bank" />
+    <NavigationProperty Name="gw_host_refuse_error" Relationship="Self.FK_HostRefuseError_host" FromRole="gw_host" ToRole="gw_host_refuse_error" />
+    <NavigationProperty Name="gw_host_trnsct_type" Relationship="Self.FK_HostTypeTransaction_host" FromRole="gw_host" ToRole="gw_host_trnsct_type" />
+  </EntityType>
+  <EntityType Name="gw_host_refuse_error">
+    <Key>
+      <PropertyRef Name="gw_host_refuse_error_host_id" />
+      <PropertyRef Name="gw_host_refuse_error_field_name" />
+      <PropertyRef Name="gw_host_refuse_error_code_error" />
+      <PropertyRef Name="gw_host_refuse_error_request_response" />
+    </Key>
+    <Property Name="gw_host_refuse_error_host_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_host_refuse_error_field_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_host_refuse_error_code_error" Type="Int32" Nullable="false" />
+    <Property Name="gw_host_refuse_error_request_response" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gw_host" Relationship="Self.FK_HostRefuseError_host" FromRole="gw_host_refuse_error" ToRole="gw_host" />
+    <NavigationProperty Name="gw_spdh_error" Relationship="Self.FK_HostRefuseError_SpdhError" FromRole="gw_host_refuse_error" ToRole="gw_spdh_error" />
+  </EntityType>
+  <EntityType Name="gw_host_trnsct_type">
+    <Key>
+      <PropertyRef Name="gw_host_trnsct_type_host_id" />
+      <PropertyRef Name="gw_host_trnsct_type_trnsct_type" />
+    </Key>
+    <Property Name="gw_host_trnsct_type_host_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_host_trnsct_type_trnsct_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_host_trnsct_type_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="gw_host" Relationship="Self.FK_HostTypeTransaction_host" FromRole="gw_host_trnsct_type" ToRole="gw_host" />
+    <NavigationProperty Name="gw_template" Relationship="Self.FK_ConfigHost_Template" FromRole="gw_host_trnsct_type" ToRole="gw_template" />
+  </EntityType>
+  <EntityType Name="gw_magasin">
+    <Key>
+      <PropertyRef Name="gw_magasin_id" />
+    </Key>
+    <Property Name="gw_magasin_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_magasin_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_magasin_label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_magasin_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_magasin_close_day_hour" Type="Int32" />
+    <NavigationProperty Name="gw_terminal_merchant" Relationship="Self.FK_terminalMerchant_Magasin" FromRole="gw_magasin" ToRole="gw_terminal_merchant" />
+    <NavigationProperty Name="gw_tpe" Relationship="Self.FK_TPE_Magasin" FromRole="gw_magasin" ToRole="gw_tpe" />
+  </EntityType>
+  <EntityType Name="gw_mandatory_field">
+    <Key>
+      <PropertyRef Name="gw_mandatory_field_template_id" />
+      <PropertyRef Name="gw_mandatory_field_field_id" />
+    </Key>
+    <Property Name="gw_mandatory_field_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_mandatory_field_field_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_mandatory_field_is_mandatory" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gw_spdh_field" Relationship="Self.FK_MandatoryFields_SpdhField" FromRole="gw_mandatory_field" ToRole="gw_spdh_field" />
+    <NavigationProperty Name="gw_template" Relationship="Self.FK_MandatoryFields_Template" FromRole="gw_mandatory_field" ToRole="gw_template" />
+  </EntityType>
+  <EntityType Name="gw_mandatory_field_header">
+    <Key>
+      <PropertyRef Name="gw_mandatory_field_header_template_id" />
+      <PropertyRef Name="gw_mandatory_field_header_header_id" />
+    </Key>
+    <Property Name="gw_mandatory_field_header_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_mandatory_field_header_header_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_mandatory_field_header_is_mandatory" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gw_spdh_field_header" Relationship="Self.FK_MandatoryFieldHeader_SpdhFieldHeader" FromRole="gw_mandatory_field_header" ToRole="gw_spdh_field_header" />
+    <NavigationProperty Name="gw_template" Relationship="Self.FK_MandatoryHeader_Template" FromRole="gw_mandatory_field_header" ToRole="gw_template" />
+  </EntityType>
+  <EntityType Name="gw_mandatory_subfield">
+    <Key>
+      <PropertyRef Name="gw_mandatory_subfield_template_id" />
+      <PropertyRef Name="gw_mandatory_subfield_subfield_id" />
+    </Key>
+    <Property Name="gw_mandatory_subfield_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_mandatory_subfield_subfield_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_mandatory_subfield_is_mandatory" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gw_spdh_subfield" Relationship="Self.FK_MandatorySubField_SpdhSubfield" FromRole="gw_mandatory_subfield" ToRole="gw_spdh_subfield" />
+    <NavigationProperty Name="gw_template" Relationship="Self.FK_MandatorySubField_Template" FromRole="gw_mandatory_subfield" ToRole="gw_template" />
+  </EntityType>
+  <EntityType Name="gw_match">
+    <Key>
+      <PropertyRef Name="gw_match_fieldname" />
+    </Key>
+    <Property Name="gw_match_fieldname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_match_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gw_merchant">
+    <Key>
+      <PropertyRef Name="gw_merchant_id" />
+    </Key>
+    <Property Name="gw_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_bank_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_merchant_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_abrev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_convention" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_merchant_close_day_hour" Type="Int32" />
+    <Property Name="gw_merchant_mobility" Type="Int32" Nullable="false" />
+    <Property Name="gw_merchant_ftp_adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_merchant_ftp_port" Type="Int32" />
+    <Property Name="gw_merchant_ftp_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_merchant_ftp_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="gw_merchant_ftp_repertoire" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_bank" Relationship="Self.FK_merchant_bank" FromRole="gw_merchant" ToRole="gw_bank" />
+    <NavigationProperty Name="gw_terminal_merchant" Relationship="Self.FK_terminalMerchant_merchant" FromRole="gw_merchant" ToRole="gw_terminal_merchant" />
+    <NavigationProperty Name="gw_tpe" Relationship="Self.FK_TPE_merchant" FromRole="gw_merchant" ToRole="gw_tpe" />
+  </EntityType>
+  <EntityType Name="gw_plage_bin">
+    <Key>
+      <PropertyRef Name="gw_plage_bin_id" />
+    </Key>
+    <Property Name="gw_plage_bin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gw_plage_bin_min" Type="Int32" />
+    <Property Name="gw_plage_bin_max" Type="Int32" />
+    <Property Name="gw_plage_bin_bank_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_plage_bin_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gw_plage_bin_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_bank" Relationship="Self.FK_PlageBin_bank" FromRole="gw_plage_bin" ToRole="gw_bank" />
+  </EntityType>
+  <EntityType Name="gw_pos_version">
+    <Key>
+      <PropertyRef Name="gw_pos_version_id" />
+    </Key>
+    <Property Name="gw_pos_version_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_pos_version_version_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_pos_version_terminal_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_pos_version_date_debut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_pos_version_date_fin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_terminal_merchant" Relationship="Self.FK_gw_pos_version_gw_terminal_merchant" FromRole="gw_pos_version" ToRole="gw_terminal_merchant" />
+    <NavigationProperty Name="gw_version" Relationship="Self.FK_gw_pos_version_gw_version" FromRole="gw_pos_version" ToRole="gw_version" />
+  </EntityType>
+  <EntityType Name="gw_response_code">
+    <Key>
+      <PropertyRef Name="gw_response_code_id" />
+    </Key>
+    <Property Name="gw_response_code_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_response_code_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gw_spdh_error">
+    <Key>
+      <PropertyRef Name="gw_spdh_error_code" />
+    </Key>
+    <Property Name="gw_spdh_error_code" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_error_description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="gw_host_refuse_error" Relationship="Self.FK_HostRefuseError_SpdhError" FromRole="gw_spdh_error" ToRole="gw_host_refuse_error" />
+    <NavigationProperty Name="gw_spdh_trnsct_error" Relationship="Self.FK_SpdhTransactionError_SpdhError" FromRole="gw_spdh_error" ToRole="gw_spdh_trnsct_error" />
+  </EntityType>
+  <EntityType Name="gw_spdh_field">
+    <Key>
+      <PropertyRef Name="gw_spdh_field_id" />
+    </Key>
+    <Property Name="gw_spdh_field_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_field_fid" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_field_format" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_field_min_lengh" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_field_max_length" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_field_label" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gw_spdh_field_request_response" Type="Int32" />
+    <Property Name="gw_spdh_field_padding" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_field_padding_char" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="gw_spdh_field_extend_control" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gw_default_field" Relationship="Self.FK_DefaultField_SpdhField" FromRole="gw_spdh_field" ToRole="gw_default_field" />
+    <NavigationProperty Name="gw_mandatory_field" Relationship="Self.FK_MandatoryFields_SpdhField" FromRole="gw_spdh_field" ToRole="gw_mandatory_field" />
+  </EntityType>
+  <EntityType Name="gw_spdh_field_header">
+    <Key>
+      <PropertyRef Name="gw_spdh_field_header_id" />
+    </Key>
+    <Property Name="gw_spdh_field_header_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_field_header_position" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_field_header_length" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_field_header_format" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_field_header_padding" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_field_header_padding_char" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="gw_spdh_field_header_extend_control" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_field_header_default_value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_default_field_header" Relationship="Self.FK_DefaultFieldHeader_SpdhFieldHeader" FromRole="gw_spdh_field_header" ToRole="gw_default_field_header" />
+    <NavigationProperty Name="gw_mandatory_field_header" Relationship="Self.FK_MandatoryFieldHeader_SpdhFieldHeader" FromRole="gw_spdh_field_header" ToRole="gw_mandatory_field_header" />
+  </EntityType>
+  <EntityType Name="gw_spdh_subfield">
+    <Key>
+      <PropertyRef Name="gw_spdh_subfield_id" />
+    </Key>
+    <Property Name="gw_spdh_subfield_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_label" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_sfid" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_format" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_min_length" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_subfield_max_length" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_subfield_field_fid" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_padding" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_subfield_padding_char" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="gw_spdh_subfield_extend_control" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gw_default_subfield" Relationship="Self.FK_DefaultSubfield_SpdhSubfield" FromRole="gw_spdh_subfield" ToRole="gw_default_subfield" />
+    <NavigationProperty Name="gw_mandatory_subfield" Relationship="Self.FK_MandatorySubField_SpdhSubfield" FromRole="gw_spdh_subfield" ToRole="gw_mandatory_subfield" />
+    <NavigationProperty Name="gw_spdh_subfield_data" Relationship="Self.FK_EMV_Config_SpdhSubfield" FromRole="gw_spdh_subfield" ToRole="gw_spdh_subfield_data" />
+  </EntityType>
+  <EntityType Name="gw_spdh_subfield_data">
+    <Key>
+      <PropertyRef Name="gw_spdh_subfield_data_emv_tag" />
+      <PropertyRef Name="gw_spdh_subfield_data_subfield_id" />
+    </Key>
+    <Property Name="gw_spdh_subfield_data_emv_tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_subfield_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_emv_version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_position" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_min_length" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_max_length" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_format" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_request_response" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_extend_control" Type="Int32" />
+    <NavigationProperty Name="gw_spdh_subfield" Relationship="Self.FK_EMV_Config_SpdhSubfield" FromRole="gw_spdh_subfield_data" ToRole="gw_spdh_subfield" />
+  </EntityType>
+  <EntityType Name="gw_spdh_trnsct_error">
+    <Key>
+      <PropertyRef Name="gw_spdh_trnsct_error_trnsct_id" />
+      <PropertyRef Name="gw_spdh_trnsct_error_field_name" />
+      <PropertyRef Name="gw_spdh_trnsct_error_error_code" />
+      <PropertyRef Name="gw_spdh_trnsct_error_request_response" />
+    </Key>
+    <Property Name="gw_spdh_trnsct_error_trnsct_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_trnsct_error_field_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_spdh_trnsct_error_error_code" Type="Int32" Nullable="false" />
+    <Property Name="gw_spdh_trnsct_error_request_response" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="gw_spdh_error" Relationship="Self.FK_SpdhTransactionError_SpdhError" FromRole="gw_spdh_trnsct_error" ToRole="gw_spdh_error" />
+  </EntityType>
+  <EntityType Name="gw_status_code">
+    <Key>
+      <PropertyRef Name="gw_status_code_id" />
+      <PropertyRef Name="gw_status_code_type_trnsct" />
+    </Key>
+    <Property Name="gw_status_code_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_status_code_type_trnsct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_status_code_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gw_template">
+    <Key>
+      <PropertyRef Name="gw_template_id" />
+    </Key>
+    <Property Name="gw_template_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_template_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_host_trnsct_type" Relationship="Self.FK_ConfigHost_Template" FromRole="gw_template" ToRole="gw_host_trnsct_type" />
+    <NavigationProperty Name="gw_mandatory_field" Relationship="Self.FK_MandatoryFields_Template" FromRole="gw_template" ToRole="gw_mandatory_field" />
+    <NavigationProperty Name="gw_mandatory_field_header" Relationship="Self.FK_MandatoryHeader_Template" FromRole="gw_template" ToRole="gw_mandatory_field_header" />
+    <NavigationProperty Name="gw_mandatory_subfield" Relationship="Self.FK_MandatorySubField_Template" FromRole="gw_template" ToRole="gw_mandatory_subfield" />
+  </EntityType>
+  <EntityType Name="gw_terminal_bank">
+    <Key>
+      <PropertyRef Name="gw_terminal_bank_id" />
+    </Key>
+    <Property Name="gw_terminal_bank_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_terminal_bank_bank_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_bank_sequence_number" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="gw_terminal_bank_batch_number" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="gw_terminal_bank_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_bank_date_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_bank_status_occupancy" Type="Int32" />
+    <Property Name="gw_terminal_bank_trnsct_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_bank" Relationship="Self.FK_terminalBank_bank" FromRole="gw_terminal_bank" ToRole="gw_bank" />
+  </EntityType>
+  <EntityType Name="gw_terminal_merchant">
+    <Key>
+      <PropertyRef Name="gw_terminal_merchant_id" />
+    </Key>
+    <Property Name="gw_terminal_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_terminal_merchant_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_merchant_magasin_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_merchant_sequence_number" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="gw_terminal_merchant_batch_number" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="gw_terminal_merchant_imei" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_merchant_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_merchant_status_occupancy" Type="Int32" />
+    <Property Name="gw_terminal_merchant_date_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_merchant_binary_version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_terminal_merchant_conf_version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_magasin" Relationship="Self.FK_terminalMerchant_Magasin" FromRole="gw_terminal_merchant" ToRole="gw_magasin" />
+    <NavigationProperty Name="gw_merchant" Relationship="Self.FK_terminalMerchant_merchant" FromRole="gw_terminal_merchant" ToRole="gw_merchant" />
+    <NavigationProperty Name="gw_pos_version" Relationship="Self.FK_gw_pos_version_gw_terminal_merchant" FromRole="gw_terminal_merchant" ToRole="gw_pos_version" />
+    <NavigationProperty Name="gw_trnsct_tms" Relationship="Self.FK_gw_trnsct_tms_gw_terminal_merchant" FromRole="gw_terminal_merchant" ToRole="gw_trnsct_tms" />
+  </EntityType>
+  <EntityType Name="gw_tpe">
+    <Key>
+      <PropertyRef Name="gw_tpe_serial_code" />
+    </Key>
+    <Property Name="gw_tpe_serial_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_tpe_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_tpe_magasin_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_tpe_availability" Type="Int32" />
+    <NavigationProperty Name="gw_magasin" Relationship="Self.FK_TPE_Magasin" FromRole="gw_tpe" ToRole="gw_magasin" />
+    <NavigationProperty Name="gw_merchant" Relationship="Self.FK_TPE_merchant" FromRole="gw_tpe" ToRole="gw_merchant" />
+  </EntityType>
+  <EntityType Name="gw_trnsct">
+    <Key>
+      <PropertyRef Name="idTransaction" />
+    </Key>
+    <Property Name="idTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EtatTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EtatTransaction2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EtatCloture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdCloture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SentTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReceivedTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CancelReceivedTransaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdMerchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdMagasin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTerminalMerchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTerminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IMEI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentDate" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentTime" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentDateTimeTPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Transactiontype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionSupport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseCodeAnnulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="IdHost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HostRoutage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AnnulationHostRoutage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BinaryVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ConfVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankOfRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MerchantType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Track2EquivalentData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationPrimaryAccountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CodeStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FID_F_ApprovalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateSystemTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TimeSystemTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionAutorization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Detail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentDateAnnulation" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentTimeAnnulation" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="DateSystemTransactionAnnulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TimeSystemTransactionAnnulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="AcquirerIdentifier" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="AdditionalTerminalCapabilities" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="AmountAuthorisedBinary" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="AmountAuthorisedNumeric" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="AmountOtherBinary" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="AmountOtherNumeric" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="AmountReferenceCurrency" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationCryptogram" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationCurrencyCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationCurrencyExponent" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationDiscretionaryData" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationEffectiveDate" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationExpirationDate" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationFileLocator" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationIdentifierCard" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationIdentifierTerminal" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationInterchangeProfile" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationLabel" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationPreferredName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationPrimaryAccountNumberSequenceNumber" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationPriorityIndicator" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationReferenceCurrency" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationReferenceCurrencyExponent" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationTransactionCounter" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationUsageControl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="CardApplicationVersionNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalApplicationVersionNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorisationCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorisationResponseCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorisationResponseCryptogram" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="BankIdentifierCode" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+    <Property Name="CardRiskManagementDataObjectList1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CardRiskManagementDataObjectList2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CardStatusUpdate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="CardholderName" Type="String" MaxLength="52" FixedLength="false" Unicode="false" />
+    <Property Name="CardholderNameExtended" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="CardholderVerificationMethodList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CardholderVerificationMethodResults" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CardCertificationAuthorityPublicKeyIndex" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalCertificationAuthorityPublicKeyIndex" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="CommandTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CryptogramInformationData" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="DataAuthenticationCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="DedicatedFileName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="DirectoryDefinitionFileName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="DirectoryDiscretionaryTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DynamicDataAuthenticationDataObjectList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FileControlInformationIssuerDiscretionaryData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FileControlInformationProprietaryTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FileControlInformationTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ICCDynamicNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="IntegratedCircuitCardPINEnciphermentPublicKeyCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IntegratedCircuitCardPINEnciphermentPublicKeyExponent" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="IntegratedCircuitCardPINEnciphermentPublicKeyRemainder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IntegratedCircuitCardPublicKeyCertificate" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IntegratedCircuitCardPublicKeyExponent" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="IntegratedCircuitCardPublicKeyRemainder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InterfaceDeviceSerialNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="InternationalBankAccountNumber" Type="String" MaxLength="78" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerActionCodeDefault" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerActionCodeDenial" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerActionCodeOnline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerApplicationData" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerAuthenticationData" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerCodeTableIndex" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerCountryCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerCountryCode2" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerCountryCode3" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerIdentificationNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerPublicKeyCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerPublicKeyExponent" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerPublicKeyRemainder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerScriptCommand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerScriptIdentifier" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerScriptTemplate1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerScriptTemplate2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssuerURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LanguagePreference" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="LastOnlineApplicationTransactionCounterRegister" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="LogEntry" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="LogFormat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LowerConsecutiveOfflineLimit" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="MerchantCategoryCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="MerchantIdentifier" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="MerchantNameandLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PersonalIdentificationNumberTryCounter" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="PointofServiceEntryMode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="ProcessingOptionsDataObjectList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="READRECORDResponseMessageTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseMessageTemplateFormat1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseMessageTemplateFormat2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="ShortFileIdentifier" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="SignedDynamicApplicationData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SignedStaticApplicationData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StaticDataAuthenticationTagList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalActionCodeDefault" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalActionCodeDenial" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalActionCodeOnline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalCapabilities" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalCountryCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalFloorLimit" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalIdentification" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalRiskManagementData" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="TerminalVerificationResults" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Track1DiscretionaryData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Track2DiscretionaryData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionCertificateDataObjectList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionCertificateHashValue" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionCurrencyCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionCurrencyExponent" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionDate" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionPersonalIdentificationNumberData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionReferenceCurrencyCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionReferenceCurrencyExponent" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionSequenceCounter" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionStatusInformation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionTime" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionTypeEmv" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="UnpredictableNumber" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="UpperConsecutiveOfflineLimit" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="EncryptedPIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PEKVersionNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CardBin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="CardMask" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_close_day" Relationship="Self.FK_Transaction_Cloture" FromRole="gw_trnsct" ToRole="gw_close_day" />
+  </EntityType>
+  <EntityType Name="gw_trnsct_tms">
+    <Key>
+      <PropertyRef Name="gw_trnsct_tms_id" />
+    </Key>
+    <Property Name="gw_trnsct_tms_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_trnsct_tms_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_trnsct_tms_magasin_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_trnsct_tms_tpe_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_trnsct_tms_date" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_trnsct_tms_response" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_trnsct_tms_tpe_serial_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tms_binary_version_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tms_config_version_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gw_terminal_merchant" Relationship="Self.FK_gw_trnsct_tms_gw_terminal_merchant" FromRole="gw_trnsct_tms" ToRole="gw_terminal_merchant" />
+  </EntityType>
+  <EntityType Name="gw_user_magasin">
+    <Key>
+      <PropertyRef Name="gw_user_magasin_user_id" />
+    </Key>
+    <Property Name="gw_user_magasin_user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gw_user_magasin_magasin_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="gw_user_organism">
+    <Key>
+      <PropertyRef Name="gw_user_organism_user_id" />
+    </Key>
+    <Property Name="gw_user_organism_user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gw_user_organism_organism_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_user_organism_organism_type" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_user_terminal_merchant">
+    <Key>
+      <PropertyRef Name="gw_user_terminal_merchant_user_id" />
+    </Key>
+    <Property Name="gw_user_terminal_merchant_user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gw_user_terminal_merchant_terminal_merchant_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gw_version">
+    <Key>
+      <PropertyRef Name="gw_version_id" />
+    </Key>
+    <Property Name="gw_version_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_version_zip_file" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_version_type" Type="Int32" Nullable="false" />
+    <Property Name="gw_version_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_version_date_creation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gw_versin_status" Type="Int32" />
+    <NavigationProperty Name="gw_pos_version" Relationship="Self.FK_gw_pos_version_gw_version" FromRole="gw_version" ToRole="gw_pos_version" />
+  </EntityType>
+  <EntityType Name="Information">
+    <Key>
+      <PropertyRef Name="InformationId" />
+    </Key>
+    <Property Name="InformationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Organization" Relationship="Self.OrganizationInformation" FromRole="Information" ToRole="Organization" />
+    <NavigationProperty Name="Organization1" Relationship="Self.OrganizationInformationDefault" FromRole="Information" ToRole="Organization" />
+    <NavigationProperty Name="Organization2" Relationship="Self.OrganizationInformationDefaultDisplay" FromRole="Information" ToRole="Organization" />
+    <NavigationProperty Name="Organization3" Relationship="Self.OrganizationInformationDisplay" FromRole="Information" ToRole="Organization" />
+  </EntityType>
+  <EntityType Name="OrganismIdentities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id" FromRole="OrganismIdentities" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrganismType_Id" Type="Int32" />
+    <Property Name="Locked" Type="Int32" />
+    <Property Name="NumericCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="AlphaCode" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_AspNetUsers_Organization" FromRole="Organization" ToRole="AspNetUsers" />
+    <NavigationProperty Name="OrganizationTypes" Relationship="Self.FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id" FromRole="Organization" ToRole="OrganizationTypes" />
+    <NavigationProperty Name="Information" Relationship="Self.OrganizationInformation" FromRole="Organization" ToRole="Information" />
+    <NavigationProperty Name="Information1" Relationship="Self.OrganizationInformationDefault" FromRole="Organization" ToRole="Information" />
+    <NavigationProperty Name="Information2" Relationship="Self.OrganizationInformationDefaultDisplay" FromRole="Organization" ToRole="Information" />
+    <NavigationProperty Name="Information3" Relationship="Self.OrganizationInformationDisplay" FromRole="Organization" ToRole="Information" />
+  </EntityType>
+  <EntityType Name="OrganizationTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id" FromRole="OrganizationTypes" ToRole="AspNetRoles" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id" FromRole="OrganizationTypes" ToRole="Organization" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="id_token" />
+    </Key>
+    <Property Name="id_token" Type="Int32" Nullable="false" />
+    <Property Name="fk_id_user" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="access_token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="token_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="expires_in" Type="Int32" Nullable="false" />
+    <Property Name="refresh_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="error" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.fk_id_user" FromRole="Token" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id">
+    <End Role="OrganizationTypes" Type="Self.OrganizationTypes" Multiplicity="0..1" />
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetRoles">
+        <PropertyRef Name="OrganismType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUsers_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id">
+    <End Role="OrganismIdentities" Type="Self.OrganismIdentities" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganismIdentities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="OrganismIdentity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_id_user">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Token" Type="Self.Token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Token">
+        <PropertyRef Name="fk_id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bank_host">
+    <End Role="gw_host" Type="Self.gw_host" Multiplicity="1" />
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_host">
+        <PropertyRef Name="gw_host_id" />
+      </Principal>
+      <Dependent Role="gw_bank">
+        <PropertyRef Name="gw_bank_host_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bin_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="1" />
+    <End Role="gw_bin" Type="Self.gw_bin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_bin">
+        <PropertyRef Name="gw_bin_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_merchant_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="0..1" />
+    <End Role="gw_merchant" Type="Self.gw_merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_merchant">
+        <PropertyRef Name="gw_merchant_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlageBin_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="0..1" />
+    <End Role="gw_plage_bin" Type="Self.gw_plage_bin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_plage_bin">
+        <PropertyRef Name="gw_plage_bin_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_terminalBank_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="0..1" />
+    <End Role="gw_terminal_bank" Type="Self.gw_terminal_bank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_terminal_bank">
+        <PropertyRef Name="gw_terminal_bank_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Cloture">
+    <End Role="gw_close_day" Type="Self.gw_close_day" Multiplicity="0..1" />
+    <End Role="gw_trnsct" Type="Self.gw_trnsct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_close_day">
+        <PropertyRef Name="IdCloture" />
+      </Principal>
+      <Dependent Role="gw_trnsct">
+        <PropertyRef Name="IdCloture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultField_SpdhField">
+    <End Role="gw_spdh_field" Type="Self.gw_spdh_field" Multiplicity="1" />
+    <End Role="gw_default_field" Type="Self.gw_default_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field">
+        <PropertyRef Name="gw_spdh_field_id" />
+      </Principal>
+      <Dependent Role="gw_default_field">
+        <PropertyRef Name="gw_default_field_field_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultField_Template">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_field" Type="Self.gw_default_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_field">
+        <PropertyRef Name="gw_default_field_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultFieldHeader_SpdhFieldHeader">
+    <End Role="gw_spdh_field_header" Type="Self.gw_spdh_field_header" Multiplicity="1" />
+    <End Role="gw_default_field_header" Type="Self.gw_default_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field_header">
+        <PropertyRef Name="gw_spdh_field_header_id" />
+      </Principal>
+      <Dependent Role="gw_default_field_header">
+        <PropertyRef Name="gw_default_field_header_header_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultFieldHeader_Template">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_field_header" Type="Self.gw_default_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_field_header">
+        <PropertyRef Name="gw_default_field_header_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultSubfield_SpdhSubfield">
+    <End Role="gw_spdh_subfield" Type="Self.gw_spdh_subfield" Multiplicity="1" />
+    <End Role="gw_default_subfield" Type="Self.gw_default_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_subfield">
+        <PropertyRef Name="gw_spdh_subfield_id" />
+      </Principal>
+      <Dependent Role="gw_default_subfield">
+        <PropertyRef Name="gw_default_subfield_subfield_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultSubfield_Template">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_subfield" Type="Self.gw_default_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_subfield">
+        <PropertyRef Name="gw_default_subfield_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultTypeTransaction_TemplateDefault">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_trnsct_type" Type="Self.gw_default_trnsct_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_trnsct_type">
+        <PropertyRef Name="gw_default_trnsct_type_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HostRefuseError_host">
+    <End Role="gw_host" Type="Self.gw_host" Multiplicity="1" />
+    <End Role="gw_host_refuse_error" Type="Self.gw_host_refuse_error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_host">
+        <PropertyRef Name="gw_host_id" />
+      </Principal>
+      <Dependent Role="gw_host_refuse_error">
+        <PropertyRef Name="gw_host_refuse_error_host_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HostTypeTransaction_host">
+    <End Role="gw_host" Type="Self.gw_host" Multiplicity="1" />
+    <End Role="gw_host_trnsct_type" Type="Self.gw_host_trnsct_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_host">
+        <PropertyRef Name="gw_host_id" />
+      </Principal>
+      <Dependent Role="gw_host_trnsct_type">
+        <PropertyRef Name="gw_host_trnsct_type_host_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HostRefuseError_SpdhError">
+    <End Role="gw_spdh_error" Type="Self.gw_spdh_error" Multiplicity="1" />
+    <End Role="gw_host_refuse_error" Type="Self.gw_host_refuse_error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_error">
+        <PropertyRef Name="gw_spdh_error_code" />
+      </Principal>
+      <Dependent Role="gw_host_refuse_error">
+        <PropertyRef Name="gw_host_refuse_error_code_error" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigHost_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_host_trnsct_type" Type="Self.gw_host_trnsct_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_host_trnsct_type">
+        <PropertyRef Name="gw_host_trnsct_type_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_terminalMerchant_Magasin">
+    <End Role="gw_magasin" Type="Self.gw_magasin" Multiplicity="0..1" />
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_magasin">
+        <PropertyRef Name="gw_magasin_id" />
+      </Principal>
+      <Dependent Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_magasin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TPE_Magasin">
+    <End Role="gw_magasin" Type="Self.gw_magasin" Multiplicity="0..1" />
+    <End Role="gw_tpe" Type="Self.gw_tpe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_magasin">
+        <PropertyRef Name="gw_magasin_id" />
+      </Principal>
+      <Dependent Role="gw_tpe">
+        <PropertyRef Name="gw_tpe_magasin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryFields_SpdhField">
+    <End Role="gw_spdh_field" Type="Self.gw_spdh_field" Multiplicity="1" />
+    <End Role="gw_mandatory_field" Type="Self.gw_mandatory_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field">
+        <PropertyRef Name="gw_spdh_field_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field">
+        <PropertyRef Name="gw_mandatory_field_field_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryFields_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_mandatory_field" Type="Self.gw_mandatory_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field">
+        <PropertyRef Name="gw_mandatory_field_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryFieldHeader_SpdhFieldHeader">
+    <End Role="gw_spdh_field_header" Type="Self.gw_spdh_field_header" Multiplicity="1" />
+    <End Role="gw_mandatory_field_header" Type="Self.gw_mandatory_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field_header">
+        <PropertyRef Name="gw_spdh_field_header_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field_header">
+        <PropertyRef Name="gw_mandatory_field_header_header_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryHeader_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_mandatory_field_header" Type="Self.gw_mandatory_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field_header">
+        <PropertyRef Name="gw_mandatory_field_header_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatorySubField_SpdhSubfield">
+    <End Role="gw_spdh_subfield" Type="Self.gw_spdh_subfield" Multiplicity="1" />
+    <End Role="gw_mandatory_subfield" Type="Self.gw_mandatory_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_subfield">
+        <PropertyRef Name="gw_spdh_subfield_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_subfield">
+        <PropertyRef Name="gw_mandatory_subfield_subfield_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatorySubField_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_mandatory_subfield" Type="Self.gw_mandatory_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_subfield">
+        <PropertyRef Name="gw_mandatory_subfield_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_terminalMerchant_merchant">
+    <End Role="gw_merchant" Type="Self.gw_merchant" Multiplicity="0..1" />
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_merchant">
+        <PropertyRef Name="gw_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_merchant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TPE_merchant">
+    <End Role="gw_merchant" Type="Self.gw_merchant" Multiplicity="0..1" />
+    <End Role="gw_tpe" Type="Self.gw_tpe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_merchant">
+        <PropertyRef Name="gw_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_tpe">
+        <PropertyRef Name="gw_tpe_merchant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gw_pos_version_gw_terminal_merchant">
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="1" />
+    <End Role="gw_pos_version" Type="Self.gw_pos_version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_pos_version">
+        <PropertyRef Name="gw_pos_version_terminal_merchant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gw_pos_version_gw_version">
+    <End Role="gw_version" Type="Self.gw_version" Multiplicity="1" />
+    <End Role="gw_pos_version" Type="Self.gw_pos_version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_version">
+        <PropertyRef Name="gw_version_id" />
+      </Principal>
+      <Dependent Role="gw_pos_version">
+        <PropertyRef Name="gw_pos_version_version_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpdhTransactionError_SpdhError">
+    <End Role="gw_spdh_error" Type="Self.gw_spdh_error" Multiplicity="1" />
+    <End Role="gw_spdh_trnsct_error" Type="Self.gw_spdh_trnsct_error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_error">
+        <PropertyRef Name="gw_spdh_error_code" />
+      </Principal>
+      <Dependent Role="gw_spdh_trnsct_error">
+        <PropertyRef Name="gw_spdh_trnsct_error_error_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMV_Config_SpdhSubfield">
+    <End Role="gw_spdh_subfield" Type="Self.gw_spdh_subfield" Multiplicity="1" />
+    <End Role="gw_spdh_subfield_data" Type="Self.gw_spdh_subfield_data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_subfield">
+        <PropertyRef Name="gw_spdh_subfield_id" />
+      </Principal>
+      <Dependent Role="gw_spdh_subfield_data">
+        <PropertyRef Name="gw_spdh_subfield_data_subfield_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gw_trnsct_tms_gw_terminal_merchant">
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="1" />
+    <End Role="gw_trnsct_tms" Type="Self.gw_trnsct_tms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_trnsct_tms">
+        <PropertyRef Name="gw_trnsct_tms_tpe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id">
+    <End Role="OrganizationTypes" Type="Self.OrganizationTypes" Multiplicity="0..1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="OrganismType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Locked">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <End Role="AspNetUsers1" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <Association Name="OrganizationInformation">
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+  </Association>
+  <Association Name="OrganizationInformationDefault">
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+  </Association>
+  <Association Name="OrganizationInformationDefaultDisplay">
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+  </Association>
+  <Association Name="OrganizationInformationDisplay">
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="GatewayPCIPINEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="gw_bank" EntityType="Self.gw_bank" />
+    <EntitySet Name="gw_bin" EntityType="Self.gw_bin" />
+    <EntitySet Name="gw_close_day" EntityType="Self.gw_close_day" />
+    <EntitySet Name="gw_default_field" EntityType="Self.gw_default_field" />
+    <EntitySet Name="gw_default_field_header" EntityType="Self.gw_default_field_header" />
+    <EntitySet Name="gw_default_subfield" EntityType="Self.gw_default_subfield" />
+    <EntitySet Name="gw_default_template" EntityType="Self.gw_default_template" />
+    <EntitySet Name="gw_default_trnsct_type" EntityType="Self.gw_default_trnsct_type" />
+    <EntitySet Name="gw_download_data" EntityType="Self.gw_download_data" />
+    <EntitySet Name="gw_emv_data" EntityType="Self.gw_emv_data" />
+    <EntitySet Name="gw_hand_shake" EntityType="Self.gw_hand_shake" />
+    <EntitySet Name="gw_host" EntityType="Self.gw_host" />
+    <EntitySet Name="gw_host_refuse_error" EntityType="Self.gw_host_refuse_error" />
+    <EntitySet Name="gw_host_trnsct_type" EntityType="Self.gw_host_trnsct_type" />
+    <EntitySet Name="gw_magasin" EntityType="Self.gw_magasin" />
+    <EntitySet Name="gw_mandatory_field" EntityType="Self.gw_mandatory_field" />
+    <EntitySet Name="gw_mandatory_field_header" EntityType="Self.gw_mandatory_field_header" />
+    <EntitySet Name="gw_mandatory_subfield" EntityType="Self.gw_mandatory_subfield" />
+    <EntitySet Name="gw_match" EntityType="Self.gw_match" />
+    <EntitySet Name="gw_merchant" EntityType="Self.gw_merchant" />
+    <EntitySet Name="gw_plage_bin" EntityType="Self.gw_plage_bin" />
+    <EntitySet Name="gw_pos_version" EntityType="Self.gw_pos_version" />
+    <EntitySet Name="gw_response_code" EntityType="Self.gw_response_code" />
+    <EntitySet Name="gw_spdh_error" EntityType="Self.gw_spdh_error" />
+    <EntitySet Name="gw_spdh_field" EntityType="Self.gw_spdh_field" />
+    <EntitySet Name="gw_spdh_field_header" EntityType="Self.gw_spdh_field_header" />
+    <EntitySet Name="gw_spdh_subfield" EntityType="Self.gw_spdh_subfield" />
+    <EntitySet Name="gw_spdh_subfield_data" EntityType="Self.gw_spdh_subfield_data" />
+    <EntitySet Name="gw_spdh_trnsct_error" EntityType="Self.gw_spdh_trnsct_error" />
+    <EntitySet Name="gw_status_code" EntityType="Self.gw_status_code" />
+    <EntitySet Name="gw_template" EntityType="Self.gw_template" />
+    <EntitySet Name="gw_terminal_bank" EntityType="Self.gw_terminal_bank" />
+    <EntitySet Name="gw_terminal_merchant" EntityType="Self.gw_terminal_merchant" />
+    <EntitySet Name="gw_tpe" EntityType="Self.gw_tpe" />
+    <EntitySet Name="gw_trnsct" EntityType="Self.gw_trnsct" />
+    <EntitySet Name="gw_trnsct_tms" EntityType="Self.gw_trnsct_tms" />
+    <EntitySet Name="gw_user_magasin" EntityType="Self.gw_user_magasin" />
+    <EntitySet Name="gw_user_organism" EntityType="Self.gw_user_organism" />
+    <EntitySet Name="gw_user_terminal_merchant" EntityType="Self.gw_user_terminal_merchant" />
+    <EntitySet Name="gw_version" EntityType="Self.gw_version" />
+    <EntitySet Name="Information" EntityType="Self.Information" />
+    <EntitySet Name="OrganismIdentities" EntityType="Self.OrganismIdentities" />
+    <EntitySet Name="Organization" EntityType="Self.Organization" />
+    <EntitySet Name="OrganizationTypes" EntityType="Self.OrganizationTypes" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Token" EntityType="Self.Token" />
+    <AssociationSet Name="FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id" Association="Self.FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id">
+      <End Role="OrganizationTypes" EntitySet="OrganizationTypes" />
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_Organization" Association="Self.FK_AspNetUsers_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id" Association="Self.FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id">
+      <End Role="OrganismIdentities" EntitySet="OrganismIdentities" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="fk_id_user" Association="Self.fk_id_user">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Token" EntitySet="Token" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bank_host" Association="Self.FK_bank_host">
+      <End Role="gw_host" EntitySet="gw_host" />
+      <End Role="gw_bank" EntitySet="gw_bank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bin_bank" Association="Self.FK_bin_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_bin" EntitySet="gw_bin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_merchant_bank" Association="Self.FK_merchant_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_merchant" EntitySet="gw_merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlageBin_bank" Association="Self.FK_PlageBin_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_plage_bin" EntitySet="gw_plage_bin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_terminalBank_bank" Association="Self.FK_terminalBank_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_terminal_bank" EntitySet="gw_terminal_bank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Cloture" Association="Self.FK_Transaction_Cloture">
+      <End Role="gw_close_day" EntitySet="gw_close_day" />
+      <End Role="gw_trnsct" EntitySet="gw_trnsct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultField_SpdhField" Association="Self.FK_DefaultField_SpdhField">
+      <End Role="gw_spdh_field" EntitySet="gw_spdh_field" />
+      <End Role="gw_default_field" EntitySet="gw_default_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultField_Template" Association="Self.FK_DefaultField_Template">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_field" EntitySet="gw_default_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultFieldHeader_SpdhFieldHeader" Association="Self.FK_DefaultFieldHeader_SpdhFieldHeader">
+      <End Role="gw_spdh_field_header" EntitySet="gw_spdh_field_header" />
+      <End Role="gw_default_field_header" EntitySet="gw_default_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultFieldHeader_Template" Association="Self.FK_DefaultFieldHeader_Template">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_field_header" EntitySet="gw_default_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultSubfield_SpdhSubfield" Association="Self.FK_DefaultSubfield_SpdhSubfield">
+      <End Role="gw_spdh_subfield" EntitySet="gw_spdh_subfield" />
+      <End Role="gw_default_subfield" EntitySet="gw_default_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultSubfield_Template" Association="Self.FK_DefaultSubfield_Template">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_subfield" EntitySet="gw_default_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultTypeTransaction_TemplateDefault" Association="Self.FK_DefaultTypeTransaction_TemplateDefault">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_trnsct_type" EntitySet="gw_default_trnsct_type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HostRefuseError_host" Association="Self.FK_HostRefuseError_host">
+      <End Role="gw_host" EntitySet="gw_host" />
+      <End Role="gw_host_refuse_error" EntitySet="gw_host_refuse_error" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HostTypeTransaction_host" Association="Self.FK_HostTypeTransaction_host">
+      <End Role="gw_host" EntitySet="gw_host" />
+      <End Role="gw_host_trnsct_type" EntitySet="gw_host_trnsct_type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HostRefuseError_SpdhError" Association="Self.FK_HostRefuseError_SpdhError">
+      <End Role="gw_spdh_error" EntitySet="gw_spdh_error" />
+      <End Role="gw_host_refuse_error" EntitySet="gw_host_refuse_error" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigHost_Template" Association="Self.FK_ConfigHost_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_host_trnsct_type" EntitySet="gw_host_trnsct_type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_terminalMerchant_Magasin" Association="Self.FK_terminalMerchant_Magasin">
+      <End Role="gw_magasin" EntitySet="gw_magasin" />
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TPE_Magasin" Association="Self.FK_TPE_Magasin">
+      <End Role="gw_magasin" EntitySet="gw_magasin" />
+      <End Role="gw_tpe" EntitySet="gw_tpe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryFields_SpdhField" Association="Self.FK_MandatoryFields_SpdhField">
+      <End Role="gw_spdh_field" EntitySet="gw_spdh_field" />
+      <End Role="gw_mandatory_field" EntitySet="gw_mandatory_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryFields_Template" Association="Self.FK_MandatoryFields_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_mandatory_field" EntitySet="gw_mandatory_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryFieldHeader_SpdhFieldHeader" Association="Self.FK_MandatoryFieldHeader_SpdhFieldHeader">
+      <End Role="gw_spdh_field_header" EntitySet="gw_spdh_field_header" />
+      <End Role="gw_mandatory_field_header" EntitySet="gw_mandatory_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryHeader_Template" Association="Self.FK_MandatoryHeader_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_mandatory_field_header" EntitySet="gw_mandatory_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatorySubField_SpdhSubfield" Association="Self.FK_MandatorySubField_SpdhSubfield">
+      <End Role="gw_spdh_subfield" EntitySet="gw_spdh_subfield" />
+      <End Role="gw_mandatory_subfield" EntitySet="gw_mandatory_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatorySubField_Template" Association="Self.FK_MandatorySubField_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_mandatory_subfield" EntitySet="gw_mandatory_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_terminalMerchant_merchant" Association="Self.FK_terminalMerchant_merchant">
+      <End Role="gw_merchant" EntitySet="gw_merchant" />
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TPE_merchant" Association="Self.FK_TPE_merchant">
+      <End Role="gw_merchant" EntitySet="gw_merchant" />
+      <End Role="gw_tpe" EntitySet="gw_tpe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gw_pos_version_gw_terminal_merchant" Association="Self.FK_gw_pos_version_gw_terminal_merchant">
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+      <End Role="gw_pos_version" EntitySet="gw_pos_version" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gw_pos_version_gw_version" Association="Self.FK_gw_pos_version_gw_version">
+      <End Role="gw_version" EntitySet="gw_version" />
+      <End Role="gw_pos_version" EntitySet="gw_pos_version" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpdhTransactionError_SpdhError" Association="Self.FK_SpdhTransactionError_SpdhError">
+      <End Role="gw_spdh_error" EntitySet="gw_spdh_error" />
+      <End Role="gw_spdh_trnsct_error" EntitySet="gw_spdh_trnsct_error" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMV_Config_SpdhSubfield" Association="Self.FK_EMV_Config_SpdhSubfield">
+      <End Role="gw_spdh_subfield" EntitySet="gw_spdh_subfield" />
+      <End Role="gw_spdh_subfield_data" EntitySet="gw_spdh_subfield_data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gw_trnsct_tms_gw_terminal_merchant" Association="Self.FK_gw_trnsct_tms_gw_terminal_merchant">
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+      <End Role="gw_trnsct_tms" EntitySet="gw_trnsct_tms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id" Association="Self.FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id">
+      <End Role="OrganizationTypes" EntitySet="OrganizationTypes" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="Locked" Association="Self.Locked">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUsers1" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationInformation" Association="Self.OrganizationInformation">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationInformationDefault" Association="Self.OrganizationInformationDefault">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationInformationDefaultDisplay" Association="Self.OrganizationInformationDefaultDisplay">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="OrganizationInformationDisplay" Association="Self.OrganizationInformationDisplay">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GatewayPCIPINModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GatewayPCIPINModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="UserSessionTokens" EntityType="GatewayPCIPINModel.UserSessionToken" />
+    <AssociationSet Name="FK_UserSessionTokens_AspNetUsers" Association="GatewayPCIPINModel.FK_UserSessionTokens_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="UserSessionToken" EntitySet="UserSessionTokens" />
+    </AssociationSet>
+    <EntitySet Name="gw_trnsct_tmk" EntityType="GatewayPCIPINModel.gw_trnsct_tmk" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="UserSessionToken">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="OwnerAspNetUser_fk_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="AuthToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpirationDateTime" Type="DateTime" Precision="3" />
+    <Property Name="is_LoggedIn_LoggedOut" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="GatewayPCIPINModel.FK_UserSessionTokens_AspNetUsers" FromRole="UserSessionToken" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_UserSessionTokens_AspNetUsers">
+    <End Type="GatewayPCIPINModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="GatewayPCIPINModel.UserSessionToken" Role="UserSessionToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserSessionToken">
+        <PropertyRef Name="OwnerAspNetUser_fk_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="gw_trnsct_tmk">
+    <Key>
+      <PropertyRef Name="gw_trnsct_tmk_id" />
+    </Key>
+    <Property Name="gw_trnsct_tmk_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_id_merchant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_id_magasin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_id_terminal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_serial_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_current_date" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_current_time" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_TPE_trnsct_TMK_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_id_tmk_trnsct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_result_code" Type="Int32" />
+    <Property Name="gw_trnsct_tmk_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gw_trnsct_tmk_confirmation_result_code" Type="Int32" />
+  </EntityType>
+</Schema>

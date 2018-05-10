@@ -1,0 +1,1748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GatewayPCIPINModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="OrganismType_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="Login" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Organization_Id" Type="int" />
+    <Property Name="IsFirstConnection" Type="int" Nullable="false" />
+    <Property Name="OrganismIdentity_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_bank">
+    <Key>
+      <PropertyRef Name="gw_bank_id" />
+    </Key>
+    <Property Name="gw_bank_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bank_host_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bank_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_bank_status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bank_abrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bank_adress" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="gw_bank_mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bank_phone" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_bin">
+    <Key>
+      <PropertyRef Name="gw_bin_id" />
+    </Key>
+    <Property Name="gw_bin_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bin_bank_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bin_type" Type="varchar" MaxLength="50" />
+    <Property Name="gw_bin_label" Type="varchar(max)" />
+    <Property Name="gw_bin_status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_bin_bank_of_request" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_close_day">
+    <Key>
+      <PropertyRef Name="IdCloture" />
+    </Key>
+    <Property Name="IdCloture" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdMerchant" Type="varchar" MaxLength="50" />
+    <Property Name="IdMagasin" Type="varchar" MaxLength="50" />
+    <Property Name="IdTerminal" Type="varchar" MaxLength="50" />
+    <Property Name="SequenceNumber" Type="char" MaxLength="3" />
+    <Property Name="BatchNumber" Type="char" MaxLength="3" />
+    <Property Name="NumberOfPurchase" Type="int" />
+    <Property Name="TotalAmountPurchase" Type="float" />
+    <Property Name="NumberOfRefund" Type="int" />
+    <Property Name="TotalAmountRefund" Type="float" />
+    <Property Name="NumberOfPurchaseHost" Type="int" />
+    <Property Name="TotalAmountPurchaseHost" Type="float" />
+    <Property Name="NumberOfRefundHost" Type="int" />
+    <Property Name="TotalAmountRefundHost" Type="float" />
+    <Property Name="SentClotureTransaction" Type="varchar(max)" />
+    <Property Name="ReceivedClotureTransaction" Type="varchar(max)" />
+    <Property Name="CurrentDate" Type="varchar" MaxLength="6" />
+    <Property Name="CurrentTime" Type="varchar" MaxLength="6" />
+    <Property Name="ResponseCode" Type="varchar" MaxLength="3" />
+    <Property Name="DateSystemCloture" Type="varchar" MaxLength="6" />
+    <Property Name="TimeSystemCloture" Type="varchar" MaxLength="6" />
+    <Property Name="IMEI" Type="varchar" MaxLength="50" />
+    <Property Name="CodeStatus" Type="varchar" MaxLength="50" />
+    <Property Name="IdHost" Type="varchar" MaxLength="50" />
+    <Property Name="HostRoutage" Type="varchar" MaxLength="50" />
+    <Property Name="BankOfRequest" Type="varchar" MaxLength="50" />
+    <Property Name="MerchantType" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_default_field">
+    <Key>
+      <PropertyRef Name="gw_default_field_default_template_id" />
+      <PropertyRef Name="gw_default_field_field_id" />
+    </Key>
+    <Property Name="gw_default_field_default_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_default_field_field_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_default_field_default_value" Type="varchar" MaxLength="100" />
+    <Property Name="gw_default_field_extend_creation" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_default_field_header">
+    <Key>
+      <PropertyRef Name="gw_default_field_header_default_template_id" />
+      <PropertyRef Name="gw_default_field_header_header_id" />
+    </Key>
+    <Property Name="gw_default_field_header_default_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_default_field_header_header_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_default_field_header_default_value" Type="varchar" MaxLength="100" />
+    <Property Name="gw_default_field_header_extend_creation" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_default_subfield">
+    <Key>
+      <PropertyRef Name="gw_default_subfield_default_template_id" />
+      <PropertyRef Name="gw_default_subfield_subfield_id" />
+    </Key>
+    <Property Name="gw_default_subfield_default_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_default_subfield_subfield_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_default_subfield_default_value" Type="varchar" MaxLength="100" />
+    <Property Name="gw_default_subfield_extend_creation" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_default_template">
+    <Key>
+      <PropertyRef Name="gw_default_template_id" />
+    </Key>
+    <Property Name="gw_default_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_default_template_description" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_default_trnsct_type">
+    <Key>
+      <PropertyRef Name="gw_default_trnsct_type_trnsct_type" />
+    </Key>
+    <Property Name="gw_default_trnsct_type_trnsct_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_default_trnsct_type_default_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_download_data">
+    <Key>
+      <PropertyRef Name="IdDownload" />
+    </Key>
+    <Property Name="IdDownload" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SentTransaction" Type="varchar(max)" />
+    <Property Name="ReceivedTransaction" Type="varchar(max)" />
+    <Property Name="IdMerchant" Type="varchar" MaxLength="50" />
+    <Property Name="IdMagasin" Type="varchar" MaxLength="50" />
+    <Property Name="IdTerminalMerchant" Type="varchar" MaxLength="50" />
+    <Property Name="IdTerminal" Type="varchar" MaxLength="50" />
+    <Property Name="IMEI" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentDate" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentTime" Type="varchar" MaxLength="50" />
+    <Property Name="Transactiontype" Type="varchar" MaxLength="50" />
+    <Property Name="ResponseCode" Type="varchar" MaxLength="50" />
+    <Property Name="IdHost" Type="varchar" MaxLength="50" />
+    <Property Name="HostRoutage" Type="varchar" MaxLength="50" />
+    <Property Name="BankOfRequest" Type="varchar" MaxLength="50" />
+    <Property Name="MerchantType" Type="varchar" MaxLength="50" />
+    <Property Name="DateSystemTransaction" Type="varchar" MaxLength="50" />
+    <Property Name="TimeSystemTransaction" Type="varchar" MaxLength="50" />
+    <Property Name="FID_V_MailDownloadKey" Type="varchar(max)" />
+    <Property Name="CodeStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_emv_data">
+    <Key>
+      <PropertyRef Name="gw_emv_data_tag" />
+    </Key>
+    <Property Name="gw_emv_data_tag" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="gw_emv_data_label" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_hand_shake">
+    <Key>
+      <PropertyRef Name="IdHandShake" />
+    </Key>
+    <Property Name="IdHandShake" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SentTransaction" Type="varchar(max)" />
+    <Property Name="ReceivedTransaction" Type="varchar(max)" />
+    <Property Name="IdMerchant" Type="varchar" MaxLength="50" />
+    <Property Name="IdMagasin" Type="varchar" MaxLength="50" />
+    <Property Name="IdTerminalMerchant" Type="varchar" MaxLength="50" />
+    <Property Name="IdTerminal" Type="varchar" MaxLength="50" />
+    <Property Name="IMEI" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentDate" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentTime" Type="varchar" MaxLength="50" />
+    <Property Name="ResponseCode" Type="varchar" MaxLength="50" />
+    <Property Name="IdHost" Type="varchar" MaxLength="50" />
+    <Property Name="HostRoutage" Type="varchar" MaxLength="50" />
+    <Property Name="MerchantType" Type="varchar" MaxLength="50" />
+    <Property Name="DateSystemTransaction" Type="varchar" MaxLength="50" />
+    <Property Name="TimeSystemTransaction" Type="varchar" MaxLength="50" />
+    <Property Name="CodeStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_host">
+    <Key>
+      <PropertyRef Name="gw_host_id" />
+    </Key>
+    <Property Name="gw_host_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_host_label" Type="varchar" MaxLength="100" />
+    <Property Name="gw_host_status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_host_protocol" Type="varchar" MaxLength="50" />
+    <Property Name="gw_host_adress" Type="varchar" MaxLength="50" />
+    <Property Name="gw_host_port" Type="varchar" MaxLength="50" />
+    <Property Name="gw_host_ssl" Type="int" />
+    <Property Name="gw_host_second_adress" Type="varchar" MaxLength="50" />
+    <Property Name="gw_host_second_port" Type="varchar" MaxLength="50" />
+    <Property Name="gw_host_certificate" Type="varchar(max)" />
+    <Property Name="gw_host_second_certificate" Type="varchar(max)" />
+    <Property Name="gw_host_time_out_behavoir" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_host_refuse_error">
+    <Key>
+      <PropertyRef Name="gw_host_refuse_error_host_id" />
+      <PropertyRef Name="gw_host_refuse_error_field_name" />
+      <PropertyRef Name="gw_host_refuse_error_code_error" />
+      <PropertyRef Name="gw_host_refuse_error_request_response" />
+    </Key>
+    <Property Name="gw_host_refuse_error_host_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_host_refuse_error_field_name" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="gw_host_refuse_error_code_error" Type="int" Nullable="false" />
+    <Property Name="gw_host_refuse_error_request_response" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_host_trnsct_type">
+    <Key>
+      <PropertyRef Name="gw_host_trnsct_type_host_id" />
+      <PropertyRef Name="gw_host_trnsct_type_trnsct_type" />
+    </Key>
+    <Property Name="gw_host_trnsct_type_host_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_host_trnsct_type_trnsct_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_host_trnsct_type_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_magasin">
+    <Key>
+      <PropertyRef Name="gw_magasin_id" />
+    </Key>
+    <Property Name="gw_magasin_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_magasin_merchant_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_magasin_label" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_magasin_status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_magasin_close_day_hour" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_mandatory_field">
+    <Key>
+      <PropertyRef Name="gw_mandatory_field_template_id" />
+      <PropertyRef Name="gw_mandatory_field_field_id" />
+    </Key>
+    <Property Name="gw_mandatory_field_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_mandatory_field_field_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_mandatory_field_is_mandatory" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_mandatory_field_header">
+    <Key>
+      <PropertyRef Name="gw_mandatory_field_header_template_id" />
+      <PropertyRef Name="gw_mandatory_field_header_header_id" />
+    </Key>
+    <Property Name="gw_mandatory_field_header_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_mandatory_field_header_header_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_mandatory_field_header_is_mandatory" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_mandatory_subfield">
+    <Key>
+      <PropertyRef Name="gw_mandatory_subfield_template_id" />
+      <PropertyRef Name="gw_mandatory_subfield_subfield_id" />
+    </Key>
+    <Property Name="gw_mandatory_subfield_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_mandatory_subfield_subfield_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_mandatory_subfield_is_mandatory" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_match">
+    <Key>
+      <PropertyRef Name="gw_match_fieldname" />
+    </Key>
+    <Property Name="gw_match_fieldname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_match_description" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="gw_merchant">
+    <Key>
+      <PropertyRef Name="gw_merchant_id" />
+    </Key>
+    <Property Name="gw_merchant_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_merchant_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_merchant_bank_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_merchant_status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_merchant_abrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_merchant_adress" Type="varchar(max)" Nullable="false" />
+    <Property Name="gw_merchant_mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_merchant_phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_merchant_convention" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_merchant_close_day_hour" Type="int" />
+    <Property Name="gw_merchant_mobility" Type="int" Nullable="false" />
+    <Property Name="gw_merchant_ftp_adress" Type="varchar" MaxLength="50" />
+    <Property Name="gw_merchant_ftp_port" Type="int" />
+    <Property Name="gw_merchant_ftp_user_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_merchant_ftp_password" Type="varchar(max)" />
+    <Property Name="gw_merchant_ftp_repertoire" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="gw_plage_bin">
+    <Key>
+      <PropertyRef Name="gw_plage_bin_id" />
+    </Key>
+    <Property Name="gw_plage_bin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gw_plage_bin_min" Type="int" />
+    <Property Name="gw_plage_bin_max" Type="int" />
+    <Property Name="gw_plage_bin_bank_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_plage_bin_description" Type="varchar" MaxLength="100" />
+    <Property Name="gw_plage_bin_status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_pos_version">
+    <Key>
+      <PropertyRef Name="gw_pos_version_id" />
+    </Key>
+    <Property Name="gw_pos_version_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_pos_version_version_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_pos_version_terminal_merchant_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_pos_version_date_debut" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_pos_version_date_fin" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_response_code">
+    <Key>
+      <PropertyRef Name="gw_response_code_id" />
+    </Key>
+    <Property Name="gw_response_code_id" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="gw_response_code_description" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="gw_spdh_error">
+    <Key>
+      <PropertyRef Name="gw_spdh_error_code" />
+    </Key>
+    <Property Name="gw_spdh_error_code" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_error_description" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_spdh_field">
+    <Key>
+      <PropertyRef Name="gw_spdh_field_id" />
+    </Key>
+    <Property Name="gw_spdh_field_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_spdh_field_fid" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="gw_spdh_field_format" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="gw_spdh_field_min_lengh" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_field_max_length" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_field_label" Type="varchar" MaxLength="100" />
+    <Property Name="gw_spdh_field_request_response" Type="int" />
+    <Property Name="gw_spdh_field_padding" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_field_padding_char" Type="char" MaxLength="1" />
+    <Property Name="gw_spdh_field_extend_control" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_spdh_field_header">
+    <Key>
+      <PropertyRef Name="gw_spdh_field_header_id" />
+    </Key>
+    <Property Name="gw_spdh_field_header_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_spdh_field_header_position" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_field_header_length" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_field_header_format" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="gw_spdh_field_header_padding" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_field_header_padding_char" Type="char" MaxLength="1" />
+    <Property Name="gw_spdh_field_header_extend_control" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_field_header_default_value" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_spdh_subfield">
+    <Key>
+      <PropertyRef Name="gw_spdh_subfield_id" />
+    </Key>
+    <Property Name="gw_spdh_subfield_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_spdh_subfield_label" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_spdh_subfield_sfid" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="gw_spdh_subfield_format" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="gw_spdh_subfield_min_length" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_subfield_max_length" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_subfield_field_fid" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="gw_spdh_subfield_padding" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_subfield_padding_char" Type="char" MaxLength="1" />
+    <Property Name="gw_spdh_subfield_extend_control" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_spdh_subfield_data">
+    <Key>
+      <PropertyRef Name="gw_spdh_subfield_data_emv_tag" />
+      <PropertyRef Name="gw_spdh_subfield_data_subfield_id" />
+    </Key>
+    <Property Name="gw_spdh_subfield_data_emv_tag" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_subfield_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_emv_version" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_position" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_min_length" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_max_length" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_format" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_request_response" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_subfield_data_extend_control" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_spdh_trnsct_error">
+    <Key>
+      <PropertyRef Name="gw_spdh_trnsct_error_trnsct_id" />
+      <PropertyRef Name="gw_spdh_trnsct_error_field_name" />
+      <PropertyRef Name="gw_spdh_trnsct_error_error_code" />
+      <PropertyRef Name="gw_spdh_trnsct_error_request_response" />
+    </Key>
+    <Property Name="gw_spdh_trnsct_error_trnsct_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_spdh_trnsct_error_field_name" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="gw_spdh_trnsct_error_error_code" Type="int" Nullable="false" />
+    <Property Name="gw_spdh_trnsct_error_request_response" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_status_code">
+    <Key>
+      <PropertyRef Name="gw_status_code_id" />
+      <PropertyRef Name="gw_status_code_type_trnsct" />
+    </Key>
+    <Property Name="gw_status_code_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_status_code_type_trnsct" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_status_code_description" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="gw_template">
+    <Key>
+      <PropertyRef Name="gw_template_id" />
+    </Key>
+    <Property Name="gw_template_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_template_description" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_terminal_bank">
+    <Key>
+      <PropertyRef Name="gw_terminal_bank_id" />
+    </Key>
+    <Property Name="gw_terminal_bank_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_terminal_bank_bank_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_bank_sequence_number" Type="char" MaxLength="3" />
+    <Property Name="gw_terminal_bank_batch_number" Type="char" MaxLength="3" />
+    <Property Name="gw_terminal_bank_status" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_bank_date_status" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_bank_status_occupancy" Type="int" />
+    <Property Name="gw_terminal_bank_trnsct_id" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_terminal_merchant">
+    <Key>
+      <PropertyRef Name="gw_terminal_merchant_id" />
+    </Key>
+    <Property Name="gw_terminal_merchant_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_terminal_merchant_merchant_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_merchant_magasin_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_merchant_sequence_number" Type="char" MaxLength="3" />
+    <Property Name="gw_terminal_merchant_batch_number" Type="char" MaxLength="3" />
+    <Property Name="gw_terminal_merchant_imei" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_merchant_status" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_merchant_status_occupancy" Type="int" />
+    <Property Name="gw_terminal_merchant_date_status" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_merchant_binary_version" Type="varchar" MaxLength="50" />
+    <Property Name="gw_terminal_merchant_conf_version" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_tpe">
+    <Key>
+      <PropertyRef Name="gw_tpe_serial_code" />
+    </Key>
+    <Property Name="gw_tpe_serial_code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_tpe_merchant_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_tpe_magasin_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_tpe_availability" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_trnsct">
+    <Key>
+      <PropertyRef Name="idTransaction" />
+    </Key>
+    <Property Name="idTransaction" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EtatTransaction" Type="varchar" MaxLength="50" />
+    <Property Name="EtatTransaction2" Type="varchar" MaxLength="50" />
+    <Property Name="EtatCloture" Type="varchar" MaxLength="50" />
+    <Property Name="IdCloture" Type="varchar" MaxLength="50" />
+    <Property Name="SentTransaction" Type="varchar(max)" />
+    <Property Name="ReceivedTransaction" Type="varchar(max)" />
+    <Property Name="CancelReceivedTransaction" Type="varchar(max)" />
+    <Property Name="IdMerchant" Type="varchar" MaxLength="50" />
+    <Property Name="IdMagasin" Type="varchar" MaxLength="50" />
+    <Property Name="IdTerminalMerchant" Type="varchar" MaxLength="50" />
+    <Property Name="IdTerminal" Type="varchar" MaxLength="50" />
+    <Property Name="IMEI" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentDate" Type="varchar" MaxLength="6" />
+    <Property Name="CurrentTime" Type="varchar" MaxLength="6" />
+    <Property Name="CurrentDateTimeTPE" Type="varchar" MaxLength="50" />
+    <Property Name="Transactiontype" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionSupport" Type="varchar" MaxLength="50" />
+    <Property Name="ResponseCode" Type="varchar" MaxLength="50" />
+    <Property Name="ResponseCodeAnnulation" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceNumber" Type="varchar" MaxLength="10" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="IdHost" Type="varchar" MaxLength="50" />
+    <Property Name="HostRoutage" Type="varchar" MaxLength="50" />
+    <Property Name="AnnulationHostRoutage" Type="varchar" MaxLength="50" />
+    <Property Name="BinaryVersion" Type="varchar" MaxLength="50" />
+    <Property Name="ConfVersion" Type="varchar" MaxLength="50" />
+    <Property Name="BankOfRequest" Type="varchar" MaxLength="50" />
+    <Property Name="MerchantType" Type="varchar" MaxLength="50" />
+    <Property Name="Track2EquivalentData" Type="varchar(max)" />
+    <Property Name="ApplicationPrimaryAccountNumber" Type="varchar(max)" />
+    <Property Name="CodeStatus" Type="varchar" MaxLength="50" />
+    <Property Name="FID_F_ApprovalCode" Type="varchar" MaxLength="50" />
+    <Property Name="DateSystemTransaction" Type="varchar" MaxLength="50" />
+    <Property Name="TimeSystemTransaction" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionAutorization" Type="varchar" MaxLength="50" />
+    <Property Name="Detail" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentDateAnnulation" Type="varchar" MaxLength="6" />
+    <Property Name="CurrentTimeAnnulation" Type="varchar" MaxLength="6" />
+    <Property Name="DateSystemTransactionAnnulation" Type="varchar" MaxLength="50" />
+    <Property Name="TimeSystemTransactionAnnulation" Type="varchar" MaxLength="50" />
+    <Property Name="AccountType" Type="varchar" MaxLength="2" />
+    <Property Name="AcquirerIdentifier" Type="varchar" MaxLength="12" />
+    <Property Name="AdditionalTerminalCapabilities" Type="varchar" MaxLength="10" />
+    <Property Name="AmountAuthorisedBinary" Type="varchar" MaxLength="8" />
+    <Property Name="AmountAuthorisedNumeric" Type="varchar" MaxLength="12" />
+    <Property Name="AmountOtherBinary" Type="varchar" MaxLength="8" />
+    <Property Name="AmountOtherNumeric" Type="varchar" MaxLength="12" />
+    <Property Name="AmountReferenceCurrency" Type="varchar" MaxLength="8" />
+    <Property Name="ApplicationCryptogram" Type="varchar" MaxLength="16" />
+    <Property Name="ApplicationCurrencyCode" Type="varchar" MaxLength="4" />
+    <Property Name="ApplicationCurrencyExponent" Type="varchar" MaxLength="2" />
+    <Property Name="ApplicationDiscretionaryData" Type="varchar" MaxLength="64" />
+    <Property Name="ApplicationEffectiveDate" Type="varchar" MaxLength="6" />
+    <Property Name="ApplicationExpirationDate" Type="varchar" MaxLength="6" />
+    <Property Name="ApplicationFileLocator" Type="varchar(max)" />
+    <Property Name="ApplicationIdentifierCard" Type="varchar" MaxLength="32" />
+    <Property Name="ApplicationIdentifierTerminal" Type="varchar" MaxLength="32" />
+    <Property Name="ApplicationInterchangeProfile" Type="varchar" MaxLength="4" />
+    <Property Name="ApplicationLabel" Type="varchar" MaxLength="32" />
+    <Property Name="ApplicationPreferredName" Type="varchar" MaxLength="32" />
+    <Property Name="ApplicationPrimaryAccountNumberSequenceNumber" Type="varchar" MaxLength="2" />
+    <Property Name="ApplicationPriorityIndicator" Type="varchar" MaxLength="2" />
+    <Property Name="ApplicationReferenceCurrency" Type="varchar" MaxLength="16" />
+    <Property Name="ApplicationReferenceCurrencyExponent" Type="varchar" MaxLength="8" />
+    <Property Name="ApplicationTemplate" Type="varchar(max)" />
+    <Property Name="ApplicationTransactionCounter" Type="varchar" MaxLength="4" />
+    <Property Name="ApplicationUsageControl" Type="varchar" MaxLength="4" />
+    <Property Name="CardApplicationVersionNumber" Type="varchar" MaxLength="4" />
+    <Property Name="TerminalApplicationVersionNumber" Type="varchar" MaxLength="4" />
+    <Property Name="AuthorisationCode" Type="varchar" MaxLength="12" />
+    <Property Name="AuthorisationResponseCode" Type="varchar" MaxLength="4" />
+    <Property Name="AuthorisationResponseCryptogram" Type="varchar" MaxLength="16" />
+    <Property Name="BankIdentifierCode" Type="varchar" MaxLength="22" />
+    <Property Name="CardRiskManagementDataObjectList1" Type="varchar(max)" />
+    <Property Name="CardRiskManagementDataObjectList2" Type="varchar(max)" />
+    <Property Name="CardStatusUpdate" Type="varchar" MaxLength="8" />
+    <Property Name="CardholderName" Type="varchar" MaxLength="52" />
+    <Property Name="CardholderNameExtended" Type="varchar" MaxLength="90" />
+    <Property Name="CardholderVerificationMethodList" Type="varchar(max)" />
+    <Property Name="CardholderVerificationMethodResults" Type="varchar(max)" />
+    <Property Name="CardCertificationAuthorityPublicKeyIndex" Type="varchar" MaxLength="2" />
+    <Property Name="TerminalCertificationAuthorityPublicKeyIndex" Type="varchar" MaxLength="2" />
+    <Property Name="CommandTemplate" Type="varchar(max)" />
+    <Property Name="CryptogramInformationData" Type="varchar" MaxLength="2" />
+    <Property Name="DataAuthenticationCode" Type="varchar" MaxLength="4" />
+    <Property Name="DedicatedFileName" Type="varchar" MaxLength="32" />
+    <Property Name="DirectoryDefinitionFileName" Type="varchar" MaxLength="32" />
+    <Property Name="DirectoryDiscretionaryTemplate" Type="varchar(max)" />
+    <Property Name="DynamicDataAuthenticationDataObjectList" Type="varchar(max)" />
+    <Property Name="FileControlInformationIssuerDiscretionaryData" Type="varchar(max)" />
+    <Property Name="FileControlInformationProprietaryTemplate" Type="varchar(max)" />
+    <Property Name="FileControlInformationTemplate" Type="varchar(max)" />
+    <Property Name="ICCDynamicNumber" Type="varchar" MaxLength="16" />
+    <Property Name="IntegratedCircuitCardPINEnciphermentPublicKeyCertificate" Type="varchar(max)" />
+    <Property Name="IntegratedCircuitCardPINEnciphermentPublicKeyExponent" Type="varchar" MaxLength="6" />
+    <Property Name="IntegratedCircuitCardPINEnciphermentPublicKeyRemainder" Type="varchar(max)" />
+    <Property Name="IntegratedCircuitCardPublicKeyCertificate" Type="varbinary(max)" />
+    <Property Name="IntegratedCircuitCardPublicKeyExponent" Type="varchar" MaxLength="6" />
+    <Property Name="IntegratedCircuitCardPublicKeyRemainder" Type="varchar(max)" />
+    <Property Name="InterfaceDeviceSerialNumber" Type="varchar" MaxLength="16" />
+    <Property Name="InternationalBankAccountNumber" Type="varchar" MaxLength="78" />
+    <Property Name="IssuerActionCodeDefault" Type="varchar" MaxLength="10" />
+    <Property Name="IssuerActionCodeDenial" Type="varchar" MaxLength="10" />
+    <Property Name="IssuerActionCodeOnline" Type="varchar" MaxLength="10" />
+    <Property Name="IssuerApplicationData" Type="varchar" MaxLength="64" />
+    <Property Name="IssuerAuthenticationData" Type="varchar" MaxLength="32" />
+    <Property Name="IssuerCodeTableIndex" Type="varchar" MaxLength="2" />
+    <Property Name="IssuerCountryCode" Type="varchar" MaxLength="4" />
+    <Property Name="IssuerCountryCode2" Type="varchar" MaxLength="4" />
+    <Property Name="IssuerCountryCode3" Type="varchar" MaxLength="6" />
+    <Property Name="IssuerIdentificationNumber" Type="varchar" MaxLength="6" />
+    <Property Name="IssuerPublicKeyCertificate" Type="varchar(max)" />
+    <Property Name="IssuerPublicKeyExponent" Type="varchar" MaxLength="6" />
+    <Property Name="IssuerPublicKeyRemainder" Type="varchar(max)" />
+    <Property Name="IssuerScriptCommand" Type="varchar(max)" />
+    <Property Name="IssuerScriptIdentifier" Type="varchar" MaxLength="8" />
+    <Property Name="IssuerScriptTemplate1" Type="varchar(max)" />
+    <Property Name="IssuerScriptTemplate2" Type="varchar(max)" />
+    <Property Name="IssuerURL" Type="varchar(max)" />
+    <Property Name="LanguagePreference" Type="varchar" MaxLength="16" />
+    <Property Name="LastOnlineApplicationTransactionCounterRegister" Type="varchar" MaxLength="4" />
+    <Property Name="LogEntry" Type="varchar" MaxLength="4" />
+    <Property Name="LogFormat" Type="varchar(max)" />
+    <Property Name="LowerConsecutiveOfflineLimit" Type="varchar" MaxLength="2" />
+    <Property Name="MerchantCategoryCode" Type="varchar" MaxLength="4" />
+    <Property Name="MerchantIdentifier" Type="varchar" MaxLength="30" />
+    <Property Name="MerchantNameandLocation" Type="varchar(max)" />
+    <Property Name="PersonalIdentificationNumberTryCounter" Type="varchar" MaxLength="2" />
+    <Property Name="PointofServiceEntryMode" Type="varchar" MaxLength="2" />
+    <Property Name="ProcessingOptionsDataObjectList" Type="varchar(max)" />
+    <Property Name="READRECORDResponseMessageTemplate" Type="varchar(max)" />
+    <Property Name="ResponseMessageTemplateFormat1" Type="varchar(max)" />
+    <Property Name="ResponseMessageTemplateFormat2" Type="varchar(max)" />
+    <Property Name="ServiceCode" Type="varchar" MaxLength="4" />
+    <Property Name="ShortFileIdentifier" Type="varchar" MaxLength="2" />
+    <Property Name="SignedDynamicApplicationData" Type="varchar(max)" />
+    <Property Name="SignedStaticApplicationData" Type="varchar(max)" />
+    <Property Name="StaticDataAuthenticationTagList" Type="varchar(max)" />
+    <Property Name="TerminalActionCodeDefault" Type="varchar" MaxLength="10" />
+    <Property Name="TerminalActionCodeDenial" Type="varchar" MaxLength="10" />
+    <Property Name="TerminalActionCodeOnline" Type="varchar" MaxLength="10" />
+    <Property Name="TerminalCapabilities" Type="varchar" MaxLength="6" />
+    <Property Name="TerminalCountryCode" Type="varchar" MaxLength="4" />
+    <Property Name="TerminalFloorLimit" Type="varchar" MaxLength="8" />
+    <Property Name="TerminalIdentification" Type="varchar" MaxLength="16" />
+    <Property Name="TerminalRiskManagementData" Type="varchar" MaxLength="16" />
+    <Property Name="TerminalType" Type="varchar" MaxLength="2" />
+    <Property Name="TerminalVerificationResults" Type="varchar" MaxLength="10" />
+    <Property Name="Track1DiscretionaryData" Type="varchar(max)" />
+    <Property Name="Track2DiscretionaryData" Type="varchar(max)" />
+    <Property Name="TransactionCertificateDataObjectList" Type="varchar(max)" />
+    <Property Name="TransactionCertificateHashValue" Type="varchar" MaxLength="40" />
+    <Property Name="TransactionCurrencyCode" Type="varchar" MaxLength="4" />
+    <Property Name="TransactionCurrencyExponent" Type="varchar" MaxLength="2" />
+    <Property Name="TransactionDate" Type="varchar" MaxLength="6" />
+    <Property Name="TransactionPersonalIdentificationNumberData" Type="varchar(max)" />
+    <Property Name="TransactionReferenceCurrencyCode" Type="varchar" MaxLength="4" />
+    <Property Name="TransactionReferenceCurrencyExponent" Type="varchar" MaxLength="2" />
+    <Property Name="TransactionSequenceCounter" Type="varchar" MaxLength="8" />
+    <Property Name="TransactionStatusInformation" Type="varchar" MaxLength="4" />
+    <Property Name="TransactionTime" Type="varchar" MaxLength="6" />
+    <Property Name="TransactionTypeEmv" Type="varchar" MaxLength="2" />
+    <Property Name="UnpredictableNumber" Type="varchar" MaxLength="8" />
+    <Property Name="UpperConsecutiveOfflineLimit" Type="varchar" MaxLength="2" />
+    <Property Name="EncryptedPIN" Type="varchar(max)" />
+    <Property Name="PEKVersionNumber" Type="varchar(max)" />
+    <Property Name="CardBin" Type="varchar" MaxLength="6" />
+    <Property Name="CardMask" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_trnsct_tmk">
+    <Key>
+      <PropertyRef Name="gw_trnsct_tmk_id" />
+    </Key>
+    <Property Name="gw_trnsct_tmk_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_id_merchant" Type="varchar" MaxLength="50" />
+    <Property Name="gw_id_magasin" Type="varchar" MaxLength="50" />
+    <Property Name="gw_trnsct_tmk_id_terminal" Type="varchar" MaxLength="20" />
+    <Property Name="gw_trnsct_tmk_serial_number" Type="varchar" MaxLength="20" />
+    <Property Name="gw_trnsct_tmk_current_date" Type="varchar" MaxLength="6" />
+    <Property Name="gw_trnsct_tmk_current_time" Type="varchar" MaxLength="6" />
+    <Property Name="gw_trnsct_tmk_TPE_trnsct_TMK_Id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_trnsct_tmk_id_tmk_trnsct" Type="varchar" MaxLength="50" />
+    <Property Name="gw_trnsct_tmk_result_code" Type="int" />
+    <Property Name="gw_trnsct_tmk_status" Type="varchar" MaxLength="100" />
+    <Property Name="gw_trnsct_tmk_confirmation_result_code" Type="int" />
+  </EntityType>
+  <EntityType Name="gw_trnsct_tms">
+    <Key>
+      <PropertyRef Name="gw_trnsct_tms_id" />
+    </Key>
+    <Property Name="gw_trnsct_tms_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_trnsct_tms_merchant_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_trnsct_tms_magasin_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_trnsct_tms_tpe_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_trnsct_tms_date" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="gw_trnsct_tms_response" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_trnsct_tms_tpe_serial_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_trnsct_tms_binary_version_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_trnsct_tms_config_version_id" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_user_magasin">
+    <Key>
+      <PropertyRef Name="gw_user_magasin_user_id" />
+    </Key>
+    <Property Name="gw_user_magasin_user_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="gw_user_magasin_magasin_id" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="gw_user_organism">
+    <Key>
+      <PropertyRef Name="gw_user_organism_user_id" />
+    </Key>
+    <Property Name="gw_user_organism_user_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="gw_user_organism_organism_id" Type="varchar" MaxLength="50" />
+    <Property Name="gw_user_organism_organism_type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gw_user_terminal_merchant">
+    <Key>
+      <PropertyRef Name="gw_user_terminal_merchant_user_id" />
+    </Key>
+    <Property Name="gw_user_terminal_merchant_user_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="gw_user_terminal_merchant_terminal_merchant_id" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="gw_version">
+    <Key>
+      <PropertyRef Name="gw_version_id" />
+    </Key>
+    <Property Name="gw_version_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_version_zip_file" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_version_type" Type="int" Nullable="false" />
+    <Property Name="gw_version_description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_version_date_creation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gw_versin_status" Type="int" />
+  </EntityType>
+  <EntityType Name="Information">
+    <Key>
+      <PropertyRef Name="InformationId" />
+    </Key>
+    <Property Name="InformationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Locked">
+    <Key>
+      <PropertyRef Name="LockedId" />
+      <PropertyRef Name="LockingId" />
+    </Key>
+    <Property Name="LockedId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="LockingId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganismIdentities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar(max)" />
+    <Property Name="OrganismType_Id" Type="int" />
+    <Property Name="Locked" Type="int" />
+    <Property Name="NumericCode" Type="nchar" MaxLength="2" />
+    <Property Name="AlphaCode" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OrganizationInformation">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+      <PropertyRef Name="InformationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="InformationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationInformationDefault">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+      <PropertyRef Name="InformationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="InformationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationInformationDefaultDisplay">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+      <PropertyRef Name="InformationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="InformationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationInformationDisplay">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+      <PropertyRef Name="InformationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="InformationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="id_token" />
+    </Key>
+    <Property Name="id_token" Type="int" Nullable="false" />
+    <Property Name="fk_id_user" Type="nvarchar" MaxLength="128" />
+    <Property Name="access_token" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="token_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="expires_in" Type="int" Nullable="false" />
+    <Property Name="refresh_token" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="error" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSessionTokens">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="OwnerAspNetUser_fk_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="AuthToken" Type="nvarchar(max)" />
+    <Property Name="ExpirationDateTime" Type="datetime" />
+    <Property Name="is_LoggedIn_LoggedOut" Type="int" />
+  </EntityType>
+  <Association Name="FK_AspNetUsers_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bank_host">
+    <End Role="gw_host" Type="Self.gw_host" Multiplicity="1" />
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_host">
+        <PropertyRef Name="gw_host_id" />
+      </Principal>
+      <Dependent Role="gw_bank">
+        <PropertyRef Name="gw_bank_host_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bin_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="1" />
+    <End Role="gw_bin" Type="Self.gw_bin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_bin">
+        <PropertyRef Name="gw_bin_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConfigHost_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_host_trnsct_type" Type="Self.gw_host_trnsct_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_host_trnsct_type">
+        <PropertyRef Name="gw_host_trnsct_type_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id">
+    <End Role="OrganizationTypes" Type="Self.OrganizationTypes" Multiplicity="0..1" />
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetRoles">
+        <PropertyRef Name="OrganismType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id">
+    <End Role="OrganismIdentities" Type="Self.OrganismIdentities" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganismIdentities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="OrganismIdentity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id">
+    <End Role="OrganizationTypes" Type="Self.OrganizationTypes" Multiplicity="0..1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="OrganismType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultField_SpdhField">
+    <End Role="gw_spdh_field" Type="Self.gw_spdh_field" Multiplicity="1" />
+    <End Role="gw_default_field" Type="Self.gw_default_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field">
+        <PropertyRef Name="gw_spdh_field_id" />
+      </Principal>
+      <Dependent Role="gw_default_field">
+        <PropertyRef Name="gw_default_field_field_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultField_Template">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_field" Type="Self.gw_default_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_field">
+        <PropertyRef Name="gw_default_field_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultFieldHeader_SpdhFieldHeader">
+    <End Role="gw_spdh_field_header" Type="Self.gw_spdh_field_header" Multiplicity="1" />
+    <End Role="gw_default_field_header" Type="Self.gw_default_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field_header">
+        <PropertyRef Name="gw_spdh_field_header_id" />
+      </Principal>
+      <Dependent Role="gw_default_field_header">
+        <PropertyRef Name="gw_default_field_header_header_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultFieldHeader_Template">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_field_header" Type="Self.gw_default_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_field_header">
+        <PropertyRef Name="gw_default_field_header_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultSubfield_SpdhSubfield">
+    <End Role="gw_spdh_subfield" Type="Self.gw_spdh_subfield" Multiplicity="1" />
+    <End Role="gw_default_subfield" Type="Self.gw_default_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_subfield">
+        <PropertyRef Name="gw_spdh_subfield_id" />
+      </Principal>
+      <Dependent Role="gw_default_subfield">
+        <PropertyRef Name="gw_default_subfield_subfield_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultSubfield_Template">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_subfield" Type="Self.gw_default_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_subfield">
+        <PropertyRef Name="gw_default_subfield_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DefaultTypeTransaction_TemplateDefault">
+    <End Role="gw_default_template" Type="Self.gw_default_template" Multiplicity="1" />
+    <End Role="gw_default_trnsct_type" Type="Self.gw_default_trnsct_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_default_template">
+        <PropertyRef Name="gw_default_template_id" />
+      </Principal>
+      <Dependent Role="gw_default_trnsct_type">
+        <PropertyRef Name="gw_default_trnsct_type_default_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMV_Config_SpdhSubfield">
+    <End Role="gw_spdh_subfield" Type="Self.gw_spdh_subfield" Multiplicity="1" />
+    <End Role="gw_spdh_subfield_data" Type="Self.gw_spdh_subfield_data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_subfield">
+        <PropertyRef Name="gw_spdh_subfield_id" />
+      </Principal>
+      <Dependent Role="gw_spdh_subfield_data">
+        <PropertyRef Name="gw_spdh_subfield_data_subfield_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gw_pos_version_gw_terminal_merchant">
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="1" />
+    <End Role="gw_pos_version" Type="Self.gw_pos_version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_pos_version">
+        <PropertyRef Name="gw_pos_version_terminal_merchant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gw_pos_version_gw_version">
+    <End Role="gw_version" Type="Self.gw_version" Multiplicity="1" />
+    <End Role="gw_pos_version" Type="Self.gw_pos_version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_version">
+        <PropertyRef Name="gw_version_id" />
+      </Principal>
+      <Dependent Role="gw_pos_version">
+        <PropertyRef Name="gw_pos_version_version_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gw_trnsct_tms_gw_terminal_merchant">
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="1" />
+    <End Role="gw_trnsct_tms" Type="Self.gw_trnsct_tms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_trnsct_tms">
+        <PropertyRef Name="gw_trnsct_tms_tpe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HostRefuseError_host">
+    <End Role="gw_host" Type="Self.gw_host" Multiplicity="1" />
+    <End Role="gw_host_refuse_error" Type="Self.gw_host_refuse_error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_host">
+        <PropertyRef Name="gw_host_id" />
+      </Principal>
+      <Dependent Role="gw_host_refuse_error">
+        <PropertyRef Name="gw_host_refuse_error_host_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HostRefuseError_SpdhError">
+    <End Role="gw_spdh_error" Type="Self.gw_spdh_error" Multiplicity="1" />
+    <End Role="gw_host_refuse_error" Type="Self.gw_host_refuse_error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_error">
+        <PropertyRef Name="gw_spdh_error_code" />
+      </Principal>
+      <Dependent Role="gw_host_refuse_error">
+        <PropertyRef Name="gw_host_refuse_error_code_error" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HostTypeTransaction_host">
+    <End Role="gw_host" Type="Self.gw_host" Multiplicity="1" />
+    <End Role="gw_host_trnsct_type" Type="Self.gw_host_trnsct_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_host">
+        <PropertyRef Name="gw_host_id" />
+      </Principal>
+      <Dependent Role="gw_host_trnsct_type">
+        <PropertyRef Name="gw_host_trnsct_type_host_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_id_user">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Token" Type="Self.Token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Token">
+        <PropertyRef Name="fk_id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locked_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Locked" Type="Self.Locked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locked">
+        <PropertyRef Name="LockedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locked_AspNetUsers1">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Locked" Type="Self.Locked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locked">
+        <PropertyRef Name="LockingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryFieldHeader_SpdhFieldHeader">
+    <End Role="gw_spdh_field_header" Type="Self.gw_spdh_field_header" Multiplicity="1" />
+    <End Role="gw_mandatory_field_header" Type="Self.gw_mandatory_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field_header">
+        <PropertyRef Name="gw_spdh_field_header_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field_header">
+        <PropertyRef Name="gw_mandatory_field_header_header_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryFields_SpdhField">
+    <End Role="gw_spdh_field" Type="Self.gw_spdh_field" Multiplicity="1" />
+    <End Role="gw_mandatory_field" Type="Self.gw_mandatory_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_field">
+        <PropertyRef Name="gw_spdh_field_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field">
+        <PropertyRef Name="gw_mandatory_field_field_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryFields_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_mandatory_field" Type="Self.gw_mandatory_field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field">
+        <PropertyRef Name="gw_mandatory_field_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatoryHeader_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_mandatory_field_header" Type="Self.gw_mandatory_field_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_field_header">
+        <PropertyRef Name="gw_mandatory_field_header_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatorySubField_SpdhSubfield">
+    <End Role="gw_spdh_subfield" Type="Self.gw_spdh_subfield" Multiplicity="1" />
+    <End Role="gw_mandatory_subfield" Type="Self.gw_mandatory_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_subfield">
+        <PropertyRef Name="gw_spdh_subfield_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_subfield">
+        <PropertyRef Name="gw_mandatory_subfield_subfield_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandatorySubField_Template">
+    <End Role="gw_template" Type="Self.gw_template" Multiplicity="1" />
+    <End Role="gw_mandatory_subfield" Type="Self.gw_mandatory_subfield" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_template">
+        <PropertyRef Name="gw_template_id" />
+      </Principal>
+      <Dependent Role="gw_mandatory_subfield">
+        <PropertyRef Name="gw_mandatory_subfield_template_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_merchant_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="0..1" />
+    <End Role="gw_merchant" Type="Self.gw_merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_merchant">
+        <PropertyRef Name="gw_merchant_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Information">
+    <End Role="Information" Type="Self.Information" Multiplicity="1" />
+    <End Role="OrganizationInformation" Type="Self.OrganizationInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Information">
+        <PropertyRef Name="InformationId" />
+      </Principal>
+      <Dependent Role="OrganizationInformation">
+        <PropertyRef Name="InformationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Information_Default">
+    <End Role="Information" Type="Self.Information" Multiplicity="1" />
+    <End Role="OrganizationInformationDefault" Type="Self.OrganizationInformationDefault" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Information">
+        <PropertyRef Name="InformationId" />
+      </Principal>
+      <Dependent Role="OrganizationInformationDefault">
+        <PropertyRef Name="InformationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Information_Default_Display">
+    <End Role="Information" Type="Self.Information" Multiplicity="1" />
+    <End Role="OrganizationInformationDefaultDisplay" Type="Self.OrganizationInformationDefaultDisplay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Information">
+        <PropertyRef Name="InformationId" />
+      </Principal>
+      <Dependent Role="OrganizationInformationDefaultDisplay">
+        <PropertyRef Name="InformationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Information_Display">
+    <End Role="Information" Type="Self.Information" Multiplicity="1" />
+    <End Role="OrganizationInformationDisplay" Type="Self.OrganizationInformationDisplay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Information">
+        <PropertyRef Name="InformationId" />
+      </Principal>
+      <Dependent Role="OrganizationInformationDisplay">
+        <PropertyRef Name="InformationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="OrganizationInformation" Type="Self.OrganizationInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrganizationInformation">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Organization_Default">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="OrganizationInformationDefault" Type="Self.OrganizationInformationDefault" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrganizationInformationDefault">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Organization_Default_Display">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="OrganizationInformationDefaultDisplay" Type="Self.OrganizationInformationDefaultDisplay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrganizationInformationDefaultDisplay">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationInformation_Organization_Display">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="OrganizationInformationDisplay" Type="Self.OrganizationInformationDisplay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrganizationInformationDisplay">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlageBin_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="0..1" />
+    <End Role="gw_plage_bin" Type="Self.gw_plage_bin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_plage_bin">
+        <PropertyRef Name="gw_plage_bin_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpdhTransactionError_SpdhError">
+    <End Role="gw_spdh_error" Type="Self.gw_spdh_error" Multiplicity="1" />
+    <End Role="gw_spdh_trnsct_error" Type="Self.gw_spdh_trnsct_error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_spdh_error">
+        <PropertyRef Name="gw_spdh_error_code" />
+      </Principal>
+      <Dependent Role="gw_spdh_trnsct_error">
+        <PropertyRef Name="gw_spdh_trnsct_error_error_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_terminalBank_bank">
+    <End Role="gw_bank" Type="Self.gw_bank" Multiplicity="0..1" />
+    <End Role="gw_terminal_bank" Type="Self.gw_terminal_bank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_bank">
+        <PropertyRef Name="gw_bank_id" />
+      </Principal>
+      <Dependent Role="gw_terminal_bank">
+        <PropertyRef Name="gw_terminal_bank_bank_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_terminalMerchant_Magasin">
+    <End Role="gw_magasin" Type="Self.gw_magasin" Multiplicity="0..1" />
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_magasin">
+        <PropertyRef Name="gw_magasin_id" />
+      </Principal>
+      <Dependent Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_magasin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_terminalMerchant_merchant">
+    <End Role="gw_merchant" Type="Self.gw_merchant" Multiplicity="0..1" />
+    <End Role="gw_terminal_merchant" Type="Self.gw_terminal_merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_merchant">
+        <PropertyRef Name="gw_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_terminal_merchant">
+        <PropertyRef Name="gw_terminal_merchant_merchant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TPE_Magasin">
+    <End Role="gw_magasin" Type="Self.gw_magasin" Multiplicity="0..1" />
+    <End Role="gw_tpe" Type="Self.gw_tpe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_magasin">
+        <PropertyRef Name="gw_magasin_id" />
+      </Principal>
+      <Dependent Role="gw_tpe">
+        <PropertyRef Name="gw_tpe_magasin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TPE_merchant">
+    <End Role="gw_merchant" Type="Self.gw_merchant" Multiplicity="0..1" />
+    <End Role="gw_tpe" Type="Self.gw_tpe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_merchant">
+        <PropertyRef Name="gw_merchant_id" />
+      </Principal>
+      <Dependent Role="gw_tpe">
+        <PropertyRef Name="gw_tpe_merchant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Cloture">
+    <End Role="gw_close_day" Type="Self.gw_close_day" Multiplicity="0..1" />
+    <End Role="gw_trnsct" Type="Self.gw_trnsct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gw_close_day">
+        <PropertyRef Name="IdCloture" />
+      </Principal>
+      <Dependent Role="gw_trnsct">
+        <PropertyRef Name="IdCloture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSessionTokens_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserSessionTokens" Type="Self.UserSessionTokens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserSessionTokens">
+        <PropertyRef Name="OwnerAspNetUser_fk_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="GatewayPCIPINModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_bank" EntityType="Self.gw_bank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_bin" EntityType="Self.gw_bin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_close_day" EntityType="Self.gw_close_day" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_default_field" EntityType="Self.gw_default_field" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_default_field_header" EntityType="Self.gw_default_field_header" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_default_subfield" EntityType="Self.gw_default_subfield" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_default_template" EntityType="Self.gw_default_template" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_default_trnsct_type" EntityType="Self.gw_default_trnsct_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_download_data" EntityType="Self.gw_download_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_emv_data" EntityType="Self.gw_emv_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_hand_shake" EntityType="Self.gw_hand_shake" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_host" EntityType="Self.gw_host" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_host_refuse_error" EntityType="Self.gw_host_refuse_error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_host_trnsct_type" EntityType="Self.gw_host_trnsct_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_magasin" EntityType="Self.gw_magasin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_mandatory_field" EntityType="Self.gw_mandatory_field" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_mandatory_field_header" EntityType="Self.gw_mandatory_field_header" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_mandatory_subfield" EntityType="Self.gw_mandatory_subfield" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_match" EntityType="Self.gw_match" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_merchant" EntityType="Self.gw_merchant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_plage_bin" EntityType="Self.gw_plage_bin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_pos_version" EntityType="Self.gw_pos_version" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_response_code" EntityType="Self.gw_response_code" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_spdh_error" EntityType="Self.gw_spdh_error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_spdh_field" EntityType="Self.gw_spdh_field" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_spdh_field_header" EntityType="Self.gw_spdh_field_header" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_spdh_subfield" EntityType="Self.gw_spdh_subfield" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_spdh_subfield_data" EntityType="Self.gw_spdh_subfield_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_spdh_trnsct_error" EntityType="Self.gw_spdh_trnsct_error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_status_code" EntityType="Self.gw_status_code" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_template" EntityType="Self.gw_template" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_terminal_bank" EntityType="Self.gw_terminal_bank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_terminal_merchant" EntityType="Self.gw_terminal_merchant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_tpe" EntityType="Self.gw_tpe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_trnsct" EntityType="Self.gw_trnsct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_trnsct_tmk" EntityType="Self.gw_trnsct_tmk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_trnsct_tms" EntityType="Self.gw_trnsct_tms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_user_magasin" EntityType="Self.gw_user_magasin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_user_organism" EntityType="Self.gw_user_organism" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_user_terminal_merchant" EntityType="Self.gw_user_terminal_merchant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gw_version" EntityType="Self.gw_version" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locked" EntityType="Self.Locked" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganismIdentities" EntityType="Self.OrganismIdentities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationInformation" EntityType="Self.OrganizationInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationInformationDefault" EntityType="Self.OrganizationInformationDefault" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationInformationDefaultDisplay" EntityType="Self.OrganizationInformationDefaultDisplay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationInformationDisplay" EntityType="Self.OrganizationInformationDisplay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationTypes" EntityType="Self.OrganizationTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSessionTokens" EntityType="Self.UserSessionTokens" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUsers_Organization" Association="Self.FK_AspNetUsers_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bank_host" Association="Self.FK_bank_host">
+      <End Role="gw_host" EntitySet="gw_host" />
+      <End Role="gw_bank" EntitySet="gw_bank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bin_bank" Association="Self.FK_bin_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_bin" EntitySet="gw_bin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConfigHost_Template" Association="Self.FK_ConfigHost_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_host_trnsct_type" EntitySet="gw_host_trnsct_type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id" Association="Self.FK_dbo_AspNetRoles_dbo_OrganismTypes_OrganismType_Id">
+      <End Role="OrganizationTypes" EntitySet="OrganizationTypes" />
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id" Association="Self.FK_dbo_AspNetUsers_dbo_OrganismIdentities_OrganismIdentity_Id">
+      <End Role="OrganismIdentities" EntitySet="OrganismIdentities" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id" Association="Self.FK_dbo_Organism_dbo_OrganismTypes_OrganismType_Id">
+      <End Role="OrganizationTypes" EntitySet="OrganizationTypes" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultField_SpdhField" Association="Self.FK_DefaultField_SpdhField">
+      <End Role="gw_spdh_field" EntitySet="gw_spdh_field" />
+      <End Role="gw_default_field" EntitySet="gw_default_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultField_Template" Association="Self.FK_DefaultField_Template">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_field" EntitySet="gw_default_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultFieldHeader_SpdhFieldHeader" Association="Self.FK_DefaultFieldHeader_SpdhFieldHeader">
+      <End Role="gw_spdh_field_header" EntitySet="gw_spdh_field_header" />
+      <End Role="gw_default_field_header" EntitySet="gw_default_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultFieldHeader_Template" Association="Self.FK_DefaultFieldHeader_Template">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_field_header" EntitySet="gw_default_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultSubfield_SpdhSubfield" Association="Self.FK_DefaultSubfield_SpdhSubfield">
+      <End Role="gw_spdh_subfield" EntitySet="gw_spdh_subfield" />
+      <End Role="gw_default_subfield" EntitySet="gw_default_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultSubfield_Template" Association="Self.FK_DefaultSubfield_Template">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_subfield" EntitySet="gw_default_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DefaultTypeTransaction_TemplateDefault" Association="Self.FK_DefaultTypeTransaction_TemplateDefault">
+      <End Role="gw_default_template" EntitySet="gw_default_template" />
+      <End Role="gw_default_trnsct_type" EntitySet="gw_default_trnsct_type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMV_Config_SpdhSubfield" Association="Self.FK_EMV_Config_SpdhSubfield">
+      <End Role="gw_spdh_subfield" EntitySet="gw_spdh_subfield" />
+      <End Role="gw_spdh_subfield_data" EntitySet="gw_spdh_subfield_data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gw_pos_version_gw_terminal_merchant" Association="Self.FK_gw_pos_version_gw_terminal_merchant">
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+      <End Role="gw_pos_version" EntitySet="gw_pos_version" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gw_pos_version_gw_version" Association="Self.FK_gw_pos_version_gw_version">
+      <End Role="gw_version" EntitySet="gw_version" />
+      <End Role="gw_pos_version" EntitySet="gw_pos_version" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gw_trnsct_tms_gw_terminal_merchant" Association="Self.FK_gw_trnsct_tms_gw_terminal_merchant">
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+      <End Role="gw_trnsct_tms" EntitySet="gw_trnsct_tms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HostRefuseError_host" Association="Self.FK_HostRefuseError_host">
+      <End Role="gw_host" EntitySet="gw_host" />
+      <End Role="gw_host_refuse_error" EntitySet="gw_host_refuse_error" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HostRefuseError_SpdhError" Association="Self.FK_HostRefuseError_SpdhError">
+      <End Role="gw_spdh_error" EntitySet="gw_spdh_error" />
+      <End Role="gw_host_refuse_error" EntitySet="gw_host_refuse_error" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HostTypeTransaction_host" Association="Self.FK_HostTypeTransaction_host">
+      <End Role="gw_host" EntitySet="gw_host" />
+      <End Role="gw_host_trnsct_type" EntitySet="gw_host_trnsct_type" />
+    </AssociationSet>
+    <AssociationSet Name="fk_id_user" Association="Self.fk_id_user">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Token" EntitySet="Token" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locked_AspNetUsers" Association="Self.FK_Locked_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Locked" EntitySet="Locked" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locked_AspNetUsers1" Association="Self.FK_Locked_AspNetUsers1">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Locked" EntitySet="Locked" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryFieldHeader_SpdhFieldHeader" Association="Self.FK_MandatoryFieldHeader_SpdhFieldHeader">
+      <End Role="gw_spdh_field_header" EntitySet="gw_spdh_field_header" />
+      <End Role="gw_mandatory_field_header" EntitySet="gw_mandatory_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryFields_SpdhField" Association="Self.FK_MandatoryFields_SpdhField">
+      <End Role="gw_spdh_field" EntitySet="gw_spdh_field" />
+      <End Role="gw_mandatory_field" EntitySet="gw_mandatory_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryFields_Template" Association="Self.FK_MandatoryFields_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_mandatory_field" EntitySet="gw_mandatory_field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatoryHeader_Template" Association="Self.FK_MandatoryHeader_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_mandatory_field_header" EntitySet="gw_mandatory_field_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatorySubField_SpdhSubfield" Association="Self.FK_MandatorySubField_SpdhSubfield">
+      <End Role="gw_spdh_subfield" EntitySet="gw_spdh_subfield" />
+      <End Role="gw_mandatory_subfield" EntitySet="gw_mandatory_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandatorySubField_Template" Association="Self.FK_MandatorySubField_Template">
+      <End Role="gw_template" EntitySet="gw_template" />
+      <End Role="gw_mandatory_subfield" EntitySet="gw_mandatory_subfield" />
+    </AssociationSet>
+    <AssociationSet Name="FK_merchant_bank" Association="Self.FK_merchant_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_merchant" EntitySet="gw_merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Information" Association="Self.FK_OrganizationInformation_Information">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="OrganizationInformation" EntitySet="OrganizationInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Information_Default" Association="Self.FK_OrganizationInformation_Information_Default">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="OrganizationInformationDefault" EntitySet="OrganizationInformationDefault" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Information_Default_Display" Association="Self.FK_OrganizationInformation_Information_Default_Display">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="OrganizationInformationDefaultDisplay" EntitySet="OrganizationInformationDefaultDisplay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Information_Display" Association="Self.FK_OrganizationInformation_Information_Display">
+      <End Role="Information" EntitySet="Information" />
+      <End Role="OrganizationInformationDisplay" EntitySet="OrganizationInformationDisplay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Organization" Association="Self.FK_OrganizationInformation_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="OrganizationInformation" EntitySet="OrganizationInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Organization_Default" Association="Self.FK_OrganizationInformation_Organization_Default">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="OrganizationInformationDefault" EntitySet="OrganizationInformationDefault" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Organization_Default_Display" Association="Self.FK_OrganizationInformation_Organization_Default_Display">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="OrganizationInformationDefaultDisplay" EntitySet="OrganizationInformationDefaultDisplay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationInformation_Organization_Display" Association="Self.FK_OrganizationInformation_Organization_Display">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="OrganizationInformationDisplay" EntitySet="OrganizationInformationDisplay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlageBin_bank" Association="Self.FK_PlageBin_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_plage_bin" EntitySet="gw_plage_bin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpdhTransactionError_SpdhError" Association="Self.FK_SpdhTransactionError_SpdhError">
+      <End Role="gw_spdh_error" EntitySet="gw_spdh_error" />
+      <End Role="gw_spdh_trnsct_error" EntitySet="gw_spdh_trnsct_error" />
+    </AssociationSet>
+    <AssociationSet Name="FK_terminalBank_bank" Association="Self.FK_terminalBank_bank">
+      <End Role="gw_bank" EntitySet="gw_bank" />
+      <End Role="gw_terminal_bank" EntitySet="gw_terminal_bank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_terminalMerchant_Magasin" Association="Self.FK_terminalMerchant_Magasin">
+      <End Role="gw_magasin" EntitySet="gw_magasin" />
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_terminalMerchant_merchant" Association="Self.FK_terminalMerchant_merchant">
+      <End Role="gw_merchant" EntitySet="gw_merchant" />
+      <End Role="gw_terminal_merchant" EntitySet="gw_terminal_merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TPE_Magasin" Association="Self.FK_TPE_Magasin">
+      <End Role="gw_magasin" EntitySet="gw_magasin" />
+      <End Role="gw_tpe" EntitySet="gw_tpe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TPE_merchant" Association="Self.FK_TPE_merchant">
+      <End Role="gw_merchant" EntitySet="gw_merchant" />
+      <End Role="gw_tpe" EntitySet="gw_tpe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Cloture" Association="Self.FK_Transaction_Cloture">
+      <End Role="gw_close_day" EntitySet="gw_close_day" />
+      <End Role="gw_trnsct" EntitySet="gw_trnsct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSessionTokens_AspNetUsers" Association="Self.FK_UserSessionTokens_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="UserSessionTokens" EntitySet="UserSessionTokens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

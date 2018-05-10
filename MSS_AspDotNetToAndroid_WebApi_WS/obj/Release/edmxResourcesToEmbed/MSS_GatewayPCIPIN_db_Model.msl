@@ -1,0 +1,893 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GatewayPCIPINModelStoreContainer" CdmEntityContainer="GatewayPCIPINEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+          <ScalarProperty Name="OrganismType_Id" ColumnName="OrganismType_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserRoles">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.AspNetUserRoles">
+        <MappingFragment StoreEntitySet="AspNetUserRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Organization_Id" ColumnName="Organization_Id" />
+          <ScalarProperty Name="IsFirstConnection" ColumnName="IsFirstConnection" />
+          <ScalarProperty Name="OrganismIdentity_Id" ColumnName="OrganismIdentity_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_bank">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_bank">
+        <MappingFragment StoreEntitySet="gw_bank">
+          <ScalarProperty Name="gw_bank_id" ColumnName="gw_bank_id" />
+          <ScalarProperty Name="gw_bank_host_id" ColumnName="gw_bank_host_id" />
+          <ScalarProperty Name="gw_bank_name" ColumnName="gw_bank_name" />
+          <ScalarProperty Name="gw_bank_status" ColumnName="gw_bank_status" />
+          <ScalarProperty Name="gw_bank_abrev" ColumnName="gw_bank_abrev" />
+          <ScalarProperty Name="gw_bank_adress" ColumnName="gw_bank_adress" />
+          <ScalarProperty Name="gw_bank_mail" ColumnName="gw_bank_mail" />
+          <ScalarProperty Name="gw_bank_phone" ColumnName="gw_bank_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_bin">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_bin">
+        <MappingFragment StoreEntitySet="gw_bin">
+          <ScalarProperty Name="gw_bin_id" ColumnName="gw_bin_id" />
+          <ScalarProperty Name="gw_bin_bank_id" ColumnName="gw_bin_bank_id" />
+          <ScalarProperty Name="gw_bin_type" ColumnName="gw_bin_type" />
+          <ScalarProperty Name="gw_bin_label" ColumnName="gw_bin_label" />
+          <ScalarProperty Name="gw_bin_status" ColumnName="gw_bin_status" />
+          <ScalarProperty Name="gw_bin_bank_of_request" ColumnName="gw_bin_bank_of_request" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_close_day">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_close_day">
+        <MappingFragment StoreEntitySet="gw_close_day">
+          <ScalarProperty Name="IdCloture" ColumnName="IdCloture" />
+          <ScalarProperty Name="IdMerchant" ColumnName="IdMerchant" />
+          <ScalarProperty Name="IdMagasin" ColumnName="IdMagasin" />
+          <ScalarProperty Name="IdTerminal" ColumnName="IdTerminal" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+          <ScalarProperty Name="NumberOfPurchase" ColumnName="NumberOfPurchase" />
+          <ScalarProperty Name="TotalAmountPurchase" ColumnName="TotalAmountPurchase" />
+          <ScalarProperty Name="NumberOfRefund" ColumnName="NumberOfRefund" />
+          <ScalarProperty Name="TotalAmountRefund" ColumnName="TotalAmountRefund" />
+          <ScalarProperty Name="NumberOfPurchaseHost" ColumnName="NumberOfPurchaseHost" />
+          <ScalarProperty Name="TotalAmountPurchaseHost" ColumnName="TotalAmountPurchaseHost" />
+          <ScalarProperty Name="NumberOfRefundHost" ColumnName="NumberOfRefundHost" />
+          <ScalarProperty Name="TotalAmountRefundHost" ColumnName="TotalAmountRefundHost" />
+          <ScalarProperty Name="SentClotureTransaction" ColumnName="SentClotureTransaction" />
+          <ScalarProperty Name="ReceivedClotureTransaction" ColumnName="ReceivedClotureTransaction" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="CurrentTime" ColumnName="CurrentTime" />
+          <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+          <ScalarProperty Name="DateSystemCloture" ColumnName="DateSystemCloture" />
+          <ScalarProperty Name="TimeSystemCloture" ColumnName="TimeSystemCloture" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="CodeStatus" ColumnName="CodeStatus" />
+          <ScalarProperty Name="IdHost" ColumnName="IdHost" />
+          <ScalarProperty Name="HostRoutage" ColumnName="HostRoutage" />
+          <ScalarProperty Name="BankOfRequest" ColumnName="BankOfRequest" />
+          <ScalarProperty Name="MerchantType" ColumnName="MerchantType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_default_field">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_default_field">
+        <MappingFragment StoreEntitySet="gw_default_field">
+          <ScalarProperty Name="gw_default_field_default_template_id" ColumnName="gw_default_field_default_template_id" />
+          <ScalarProperty Name="gw_default_field_field_id" ColumnName="gw_default_field_field_id" />
+          <ScalarProperty Name="gw_default_field_default_value" ColumnName="gw_default_field_default_value" />
+          <ScalarProperty Name="gw_default_field_extend_creation" ColumnName="gw_default_field_extend_creation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_default_field_header">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_default_field_header">
+        <MappingFragment StoreEntitySet="gw_default_field_header">
+          <ScalarProperty Name="gw_default_field_header_default_template_id" ColumnName="gw_default_field_header_default_template_id" />
+          <ScalarProperty Name="gw_default_field_header_header_id" ColumnName="gw_default_field_header_header_id" />
+          <ScalarProperty Name="gw_default_field_header_default_value" ColumnName="gw_default_field_header_default_value" />
+          <ScalarProperty Name="gw_default_field_header_extend_creation" ColumnName="gw_default_field_header_extend_creation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_default_subfield">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_default_subfield">
+        <MappingFragment StoreEntitySet="gw_default_subfield">
+          <ScalarProperty Name="gw_default_subfield_default_template_id" ColumnName="gw_default_subfield_default_template_id" />
+          <ScalarProperty Name="gw_default_subfield_subfield_id" ColumnName="gw_default_subfield_subfield_id" />
+          <ScalarProperty Name="gw_default_subfield_default_value" ColumnName="gw_default_subfield_default_value" />
+          <ScalarProperty Name="gw_default_subfield_extend_creation" ColumnName="gw_default_subfield_extend_creation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_default_template">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_default_template">
+        <MappingFragment StoreEntitySet="gw_default_template">
+          <ScalarProperty Name="gw_default_template_id" ColumnName="gw_default_template_id" />
+          <ScalarProperty Name="gw_default_template_description" ColumnName="gw_default_template_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_default_trnsct_type">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_default_trnsct_type">
+        <MappingFragment StoreEntitySet="gw_default_trnsct_type">
+          <ScalarProperty Name="gw_default_trnsct_type_trnsct_type" ColumnName="gw_default_trnsct_type_trnsct_type" />
+          <ScalarProperty Name="gw_default_trnsct_type_default_template_id" ColumnName="gw_default_trnsct_type_default_template_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_download_data">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_download_data">
+        <MappingFragment StoreEntitySet="gw_download_data">
+          <ScalarProperty Name="IdDownload" ColumnName="IdDownload" />
+          <ScalarProperty Name="SentTransaction" ColumnName="SentTransaction" />
+          <ScalarProperty Name="ReceivedTransaction" ColumnName="ReceivedTransaction" />
+          <ScalarProperty Name="IdMerchant" ColumnName="IdMerchant" />
+          <ScalarProperty Name="IdMagasin" ColumnName="IdMagasin" />
+          <ScalarProperty Name="IdTerminalMerchant" ColumnName="IdTerminalMerchant" />
+          <ScalarProperty Name="IdTerminal" ColumnName="IdTerminal" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="CurrentTime" ColumnName="CurrentTime" />
+          <ScalarProperty Name="Transactiontype" ColumnName="Transactiontype" />
+          <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+          <ScalarProperty Name="IdHost" ColumnName="IdHost" />
+          <ScalarProperty Name="HostRoutage" ColumnName="HostRoutage" />
+          <ScalarProperty Name="BankOfRequest" ColumnName="BankOfRequest" />
+          <ScalarProperty Name="MerchantType" ColumnName="MerchantType" />
+          <ScalarProperty Name="DateSystemTransaction" ColumnName="DateSystemTransaction" />
+          <ScalarProperty Name="TimeSystemTransaction" ColumnName="TimeSystemTransaction" />
+          <ScalarProperty Name="FID_V_MailDownloadKey" ColumnName="FID_V_MailDownloadKey" />
+          <ScalarProperty Name="CodeStatus" ColumnName="CodeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_emv_data">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_emv_data">
+        <MappingFragment StoreEntitySet="gw_emv_data">
+          <ScalarProperty Name="gw_emv_data_tag" ColumnName="gw_emv_data_tag" />
+          <ScalarProperty Name="gw_emv_data_label" ColumnName="gw_emv_data_label" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_hand_shake">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_hand_shake">
+        <MappingFragment StoreEntitySet="gw_hand_shake">
+          <ScalarProperty Name="IdHandShake" ColumnName="IdHandShake" />
+          <ScalarProperty Name="SentTransaction" ColumnName="SentTransaction" />
+          <ScalarProperty Name="ReceivedTransaction" ColumnName="ReceivedTransaction" />
+          <ScalarProperty Name="IdMerchant" ColumnName="IdMerchant" />
+          <ScalarProperty Name="IdMagasin" ColumnName="IdMagasin" />
+          <ScalarProperty Name="IdTerminalMerchant" ColumnName="IdTerminalMerchant" />
+          <ScalarProperty Name="IdTerminal" ColumnName="IdTerminal" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="CurrentTime" ColumnName="CurrentTime" />
+          <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+          <ScalarProperty Name="IdHost" ColumnName="IdHost" />
+          <ScalarProperty Name="HostRoutage" ColumnName="HostRoutage" />
+          <ScalarProperty Name="MerchantType" ColumnName="MerchantType" />
+          <ScalarProperty Name="DateSystemTransaction" ColumnName="DateSystemTransaction" />
+          <ScalarProperty Name="TimeSystemTransaction" ColumnName="TimeSystemTransaction" />
+          <ScalarProperty Name="CodeStatus" ColumnName="CodeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_host">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_host">
+        <MappingFragment StoreEntitySet="gw_host">
+          <ScalarProperty Name="gw_host_id" ColumnName="gw_host_id" />
+          <ScalarProperty Name="gw_host_label" ColumnName="gw_host_label" />
+          <ScalarProperty Name="gw_host_status" ColumnName="gw_host_status" />
+          <ScalarProperty Name="gw_host_protocol" ColumnName="gw_host_protocol" />
+          <ScalarProperty Name="gw_host_adress" ColumnName="gw_host_adress" />
+          <ScalarProperty Name="gw_host_port" ColumnName="gw_host_port" />
+          <ScalarProperty Name="gw_host_ssl" ColumnName="gw_host_ssl" />
+          <ScalarProperty Name="gw_host_second_adress" ColumnName="gw_host_second_adress" />
+          <ScalarProperty Name="gw_host_second_port" ColumnName="gw_host_second_port" />
+          <ScalarProperty Name="gw_host_certificate" ColumnName="gw_host_certificate" />
+          <ScalarProperty Name="gw_host_second_certificate" ColumnName="gw_host_second_certificate" />
+          <ScalarProperty Name="gw_host_time_out_behavoir" ColumnName="gw_host_time_out_behavoir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_host_refuse_error">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_host_refuse_error">
+        <MappingFragment StoreEntitySet="gw_host_refuse_error">
+          <ScalarProperty Name="gw_host_refuse_error_host_id" ColumnName="gw_host_refuse_error_host_id" />
+          <ScalarProperty Name="gw_host_refuse_error_field_name" ColumnName="gw_host_refuse_error_field_name" />
+          <ScalarProperty Name="gw_host_refuse_error_code_error" ColumnName="gw_host_refuse_error_code_error" />
+          <ScalarProperty Name="gw_host_refuse_error_request_response" ColumnName="gw_host_refuse_error_request_response" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_host_trnsct_type">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_host_trnsct_type">
+        <MappingFragment StoreEntitySet="gw_host_trnsct_type">
+          <ScalarProperty Name="gw_host_trnsct_type_host_id" ColumnName="gw_host_trnsct_type_host_id" />
+          <ScalarProperty Name="gw_host_trnsct_type_trnsct_type" ColumnName="gw_host_trnsct_type_trnsct_type" />
+          <ScalarProperty Name="gw_host_trnsct_type_template_id" ColumnName="gw_host_trnsct_type_template_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_magasin">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_magasin">
+        <MappingFragment StoreEntitySet="gw_magasin">
+          <ScalarProperty Name="gw_magasin_id" ColumnName="gw_magasin_id" />
+          <ScalarProperty Name="gw_magasin_merchant_id" ColumnName="gw_magasin_merchant_id" />
+          <ScalarProperty Name="gw_magasin_label" ColumnName="gw_magasin_label" />
+          <ScalarProperty Name="gw_magasin_status" ColumnName="gw_magasin_status" />
+          <ScalarProperty Name="gw_magasin_close_day_hour" ColumnName="gw_magasin_close_day_hour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_mandatory_field">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_mandatory_field">
+        <MappingFragment StoreEntitySet="gw_mandatory_field">
+          <ScalarProperty Name="gw_mandatory_field_template_id" ColumnName="gw_mandatory_field_template_id" />
+          <ScalarProperty Name="gw_mandatory_field_field_id" ColumnName="gw_mandatory_field_field_id" />
+          <ScalarProperty Name="gw_mandatory_field_is_mandatory" ColumnName="gw_mandatory_field_is_mandatory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_mandatory_field_header">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_mandatory_field_header">
+        <MappingFragment StoreEntitySet="gw_mandatory_field_header">
+          <ScalarProperty Name="gw_mandatory_field_header_template_id" ColumnName="gw_mandatory_field_header_template_id" />
+          <ScalarProperty Name="gw_mandatory_field_header_header_id" ColumnName="gw_mandatory_field_header_header_id" />
+          <ScalarProperty Name="gw_mandatory_field_header_is_mandatory" ColumnName="gw_mandatory_field_header_is_mandatory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_mandatory_subfield">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_mandatory_subfield">
+        <MappingFragment StoreEntitySet="gw_mandatory_subfield">
+          <ScalarProperty Name="gw_mandatory_subfield_template_id" ColumnName="gw_mandatory_subfield_template_id" />
+          <ScalarProperty Name="gw_mandatory_subfield_subfield_id" ColumnName="gw_mandatory_subfield_subfield_id" />
+          <ScalarProperty Name="gw_mandatory_subfield_is_mandatory" ColumnName="gw_mandatory_subfield_is_mandatory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_match">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_match">
+        <MappingFragment StoreEntitySet="gw_match">
+          <ScalarProperty Name="gw_match_fieldname" ColumnName="gw_match_fieldname" />
+          <ScalarProperty Name="gw_match_description" ColumnName="gw_match_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_merchant">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_merchant">
+        <MappingFragment StoreEntitySet="gw_merchant">
+          <ScalarProperty Name="gw_merchant_id" ColumnName="gw_merchant_id" />
+          <ScalarProperty Name="gw_merchant_name" ColumnName="gw_merchant_name" />
+          <ScalarProperty Name="gw_merchant_bank_id" ColumnName="gw_merchant_bank_id" />
+          <ScalarProperty Name="gw_merchant_status" ColumnName="gw_merchant_status" />
+          <ScalarProperty Name="gw_merchant_abrev" ColumnName="gw_merchant_abrev" />
+          <ScalarProperty Name="gw_merchant_adress" ColumnName="gw_merchant_adress" />
+          <ScalarProperty Name="gw_merchant_mail" ColumnName="gw_merchant_mail" />
+          <ScalarProperty Name="gw_merchant_phone" ColumnName="gw_merchant_phone" />
+          <ScalarProperty Name="gw_merchant_convention" ColumnName="gw_merchant_convention" />
+          <ScalarProperty Name="gw_merchant_close_day_hour" ColumnName="gw_merchant_close_day_hour" />
+          <ScalarProperty Name="gw_merchant_mobility" ColumnName="gw_merchant_mobility" />
+          <ScalarProperty Name="gw_merchant_ftp_adress" ColumnName="gw_merchant_ftp_adress" />
+          <ScalarProperty Name="gw_merchant_ftp_port" ColumnName="gw_merchant_ftp_port" />
+          <ScalarProperty Name="gw_merchant_ftp_user_id" ColumnName="gw_merchant_ftp_user_id" />
+          <ScalarProperty Name="gw_merchant_ftp_password" ColumnName="gw_merchant_ftp_password" />
+          <ScalarProperty Name="gw_merchant_ftp_repertoire" ColumnName="gw_merchant_ftp_repertoire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_plage_bin">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_plage_bin">
+        <MappingFragment StoreEntitySet="gw_plage_bin">
+          <ScalarProperty Name="gw_plage_bin_id" ColumnName="gw_plage_bin_id" />
+          <ScalarProperty Name="gw_plage_bin_min" ColumnName="gw_plage_bin_min" />
+          <ScalarProperty Name="gw_plage_bin_max" ColumnName="gw_plage_bin_max" />
+          <ScalarProperty Name="gw_plage_bin_bank_id" ColumnName="gw_plage_bin_bank_id" />
+          <ScalarProperty Name="gw_plage_bin_description" ColumnName="gw_plage_bin_description" />
+          <ScalarProperty Name="gw_plage_bin_status" ColumnName="gw_plage_bin_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_pos_version">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_pos_version">
+        <MappingFragment StoreEntitySet="gw_pos_version">
+          <ScalarProperty Name="gw_pos_version_id" ColumnName="gw_pos_version_id" />
+          <ScalarProperty Name="gw_pos_version_version_id" ColumnName="gw_pos_version_version_id" />
+          <ScalarProperty Name="gw_pos_version_terminal_merchant_id" ColumnName="gw_pos_version_terminal_merchant_id" />
+          <ScalarProperty Name="gw_pos_version_date_debut" ColumnName="gw_pos_version_date_debut" />
+          <ScalarProperty Name="gw_pos_version_date_fin" ColumnName="gw_pos_version_date_fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_response_code">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_response_code">
+        <MappingFragment StoreEntitySet="gw_response_code">
+          <ScalarProperty Name="gw_response_code_id" ColumnName="gw_response_code_id" />
+          <ScalarProperty Name="gw_response_code_description" ColumnName="gw_response_code_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_spdh_error">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_spdh_error">
+        <MappingFragment StoreEntitySet="gw_spdh_error">
+          <ScalarProperty Name="gw_spdh_error_code" ColumnName="gw_spdh_error_code" />
+          <ScalarProperty Name="gw_spdh_error_description" ColumnName="gw_spdh_error_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_spdh_field">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_spdh_field">
+        <MappingFragment StoreEntitySet="gw_spdh_field">
+          <ScalarProperty Name="gw_spdh_field_id" ColumnName="gw_spdh_field_id" />
+          <ScalarProperty Name="gw_spdh_field_fid" ColumnName="gw_spdh_field_fid" />
+          <ScalarProperty Name="gw_spdh_field_format" ColumnName="gw_spdh_field_format" />
+          <ScalarProperty Name="gw_spdh_field_min_lengh" ColumnName="gw_spdh_field_min_lengh" />
+          <ScalarProperty Name="gw_spdh_field_max_length" ColumnName="gw_spdh_field_max_length" />
+          <ScalarProperty Name="gw_spdh_field_label" ColumnName="gw_spdh_field_label" />
+          <ScalarProperty Name="gw_spdh_field_request_response" ColumnName="gw_spdh_field_request_response" />
+          <ScalarProperty Name="gw_spdh_field_padding" ColumnName="gw_spdh_field_padding" />
+          <ScalarProperty Name="gw_spdh_field_padding_char" ColumnName="gw_spdh_field_padding_char" />
+          <ScalarProperty Name="gw_spdh_field_extend_control" ColumnName="gw_spdh_field_extend_control" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_spdh_field_header">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_spdh_field_header">
+        <MappingFragment StoreEntitySet="gw_spdh_field_header">
+          <ScalarProperty Name="gw_spdh_field_header_id" ColumnName="gw_spdh_field_header_id" />
+          <ScalarProperty Name="gw_spdh_field_header_position" ColumnName="gw_spdh_field_header_position" />
+          <ScalarProperty Name="gw_spdh_field_header_length" ColumnName="gw_spdh_field_header_length" />
+          <ScalarProperty Name="gw_spdh_field_header_format" ColumnName="gw_spdh_field_header_format" />
+          <ScalarProperty Name="gw_spdh_field_header_padding" ColumnName="gw_spdh_field_header_padding" />
+          <ScalarProperty Name="gw_spdh_field_header_padding_char" ColumnName="gw_spdh_field_header_padding_char" />
+          <ScalarProperty Name="gw_spdh_field_header_extend_control" ColumnName="gw_spdh_field_header_extend_control" />
+          <ScalarProperty Name="gw_spdh_field_header_default_value" ColumnName="gw_spdh_field_header_default_value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_spdh_subfield">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_spdh_subfield">
+        <MappingFragment StoreEntitySet="gw_spdh_subfield">
+          <ScalarProperty Name="gw_spdh_subfield_id" ColumnName="gw_spdh_subfield_id" />
+          <ScalarProperty Name="gw_spdh_subfield_label" ColumnName="gw_spdh_subfield_label" />
+          <ScalarProperty Name="gw_spdh_subfield_sfid" ColumnName="gw_spdh_subfield_sfid" />
+          <ScalarProperty Name="gw_spdh_subfield_format" ColumnName="gw_spdh_subfield_format" />
+          <ScalarProperty Name="gw_spdh_subfield_min_length" ColumnName="gw_spdh_subfield_min_length" />
+          <ScalarProperty Name="gw_spdh_subfield_max_length" ColumnName="gw_spdh_subfield_max_length" />
+          <ScalarProperty Name="gw_spdh_subfield_field_fid" ColumnName="gw_spdh_subfield_field_fid" />
+          <ScalarProperty Name="gw_spdh_subfield_padding" ColumnName="gw_spdh_subfield_padding" />
+          <ScalarProperty Name="gw_spdh_subfield_padding_char" ColumnName="gw_spdh_subfield_padding_char" />
+          <ScalarProperty Name="gw_spdh_subfield_extend_control" ColumnName="gw_spdh_subfield_extend_control" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_spdh_subfield_data">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_spdh_subfield_data">
+        <MappingFragment StoreEntitySet="gw_spdh_subfield_data">
+          <ScalarProperty Name="gw_spdh_subfield_data_emv_tag" ColumnName="gw_spdh_subfield_data_emv_tag" />
+          <ScalarProperty Name="gw_spdh_subfield_data_subfield_id" ColumnName="gw_spdh_subfield_data_subfield_id" />
+          <ScalarProperty Name="gw_spdh_subfield_data_emv_version" ColumnName="gw_spdh_subfield_data_emv_version" />
+          <ScalarProperty Name="gw_spdh_subfield_data_position" ColumnName="gw_spdh_subfield_data_position" />
+          <ScalarProperty Name="gw_spdh_subfield_data_min_length" ColumnName="gw_spdh_subfield_data_min_length" />
+          <ScalarProperty Name="gw_spdh_subfield_data_max_length" ColumnName="gw_spdh_subfield_data_max_length" />
+          <ScalarProperty Name="gw_spdh_subfield_data_format" ColumnName="gw_spdh_subfield_data_format" />
+          <ScalarProperty Name="gw_spdh_subfield_data_request_response" ColumnName="gw_spdh_subfield_data_request_response" />
+          <ScalarProperty Name="gw_spdh_subfield_data_extend_control" ColumnName="gw_spdh_subfield_data_extend_control" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_spdh_trnsct_error">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_spdh_trnsct_error">
+        <MappingFragment StoreEntitySet="gw_spdh_trnsct_error">
+          <ScalarProperty Name="gw_spdh_trnsct_error_trnsct_id" ColumnName="gw_spdh_trnsct_error_trnsct_id" />
+          <ScalarProperty Name="gw_spdh_trnsct_error_field_name" ColumnName="gw_spdh_trnsct_error_field_name" />
+          <ScalarProperty Name="gw_spdh_trnsct_error_error_code" ColumnName="gw_spdh_trnsct_error_error_code" />
+          <ScalarProperty Name="gw_spdh_trnsct_error_request_response" ColumnName="gw_spdh_trnsct_error_request_response" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_status_code">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_status_code">
+        <MappingFragment StoreEntitySet="gw_status_code">
+          <ScalarProperty Name="gw_status_code_id" ColumnName="gw_status_code_id" />
+          <ScalarProperty Name="gw_status_code_type_trnsct" ColumnName="gw_status_code_type_trnsct" />
+          <ScalarProperty Name="gw_status_code_description" ColumnName="gw_status_code_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_template">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_template">
+        <MappingFragment StoreEntitySet="gw_template">
+          <ScalarProperty Name="gw_template_id" ColumnName="gw_template_id" />
+          <ScalarProperty Name="gw_template_description" ColumnName="gw_template_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_terminal_bank">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_terminal_bank">
+        <MappingFragment StoreEntitySet="gw_terminal_bank">
+          <ScalarProperty Name="gw_terminal_bank_id" ColumnName="gw_terminal_bank_id" />
+          <ScalarProperty Name="gw_terminal_bank_bank_id" ColumnName="gw_terminal_bank_bank_id" />
+          <ScalarProperty Name="gw_terminal_bank_sequence_number" ColumnName="gw_terminal_bank_sequence_number" />
+          <ScalarProperty Name="gw_terminal_bank_batch_number" ColumnName="gw_terminal_bank_batch_number" />
+          <ScalarProperty Name="gw_terminal_bank_status" ColumnName="gw_terminal_bank_status" />
+          <ScalarProperty Name="gw_terminal_bank_date_status" ColumnName="gw_terminal_bank_date_status" />
+          <ScalarProperty Name="gw_terminal_bank_status_occupancy" ColumnName="gw_terminal_bank_status_occupancy" />
+          <ScalarProperty Name="gw_terminal_bank_trnsct_id" ColumnName="gw_terminal_bank_trnsct_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_terminal_merchant">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_terminal_merchant">
+        <MappingFragment StoreEntitySet="gw_terminal_merchant">
+          <ScalarProperty Name="gw_terminal_merchant_id" ColumnName="gw_terminal_merchant_id" />
+          <ScalarProperty Name="gw_terminal_merchant_merchant_id" ColumnName="gw_terminal_merchant_merchant_id" />
+          <ScalarProperty Name="gw_terminal_merchant_magasin_id" ColumnName="gw_terminal_merchant_magasin_id" />
+          <ScalarProperty Name="gw_terminal_merchant_sequence_number" ColumnName="gw_terminal_merchant_sequence_number" />
+          <ScalarProperty Name="gw_terminal_merchant_batch_number" ColumnName="gw_terminal_merchant_batch_number" />
+          <ScalarProperty Name="gw_terminal_merchant_imei" ColumnName="gw_terminal_merchant_imei" />
+          <ScalarProperty Name="gw_terminal_merchant_status" ColumnName="gw_terminal_merchant_status" />
+          <ScalarProperty Name="gw_terminal_merchant_status_occupancy" ColumnName="gw_terminal_merchant_status_occupancy" />
+          <ScalarProperty Name="gw_terminal_merchant_date_status" ColumnName="gw_terminal_merchant_date_status" />
+          <ScalarProperty Name="gw_terminal_merchant_binary_version" ColumnName="gw_terminal_merchant_binary_version" />
+          <ScalarProperty Name="gw_terminal_merchant_conf_version" ColumnName="gw_terminal_merchant_conf_version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_tpe">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_tpe">
+        <MappingFragment StoreEntitySet="gw_tpe">
+          <ScalarProperty Name="gw_tpe_serial_code" ColumnName="gw_tpe_serial_code" />
+          <ScalarProperty Name="gw_tpe_merchant_id" ColumnName="gw_tpe_merchant_id" />
+          <ScalarProperty Name="gw_tpe_magasin_id" ColumnName="gw_tpe_magasin_id" />
+          <ScalarProperty Name="gw_tpe_availability" ColumnName="gw_tpe_availability" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_trnsct">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_trnsct">
+        <MappingFragment StoreEntitySet="gw_trnsct">
+          <ScalarProperty Name="idTransaction" ColumnName="idTransaction" />
+          <ScalarProperty Name="EtatTransaction" ColumnName="EtatTransaction" />
+          <ScalarProperty Name="EtatTransaction2" ColumnName="EtatTransaction2" />
+          <ScalarProperty Name="EtatCloture" ColumnName="EtatCloture" />
+          <ScalarProperty Name="IdCloture" ColumnName="IdCloture" />
+          <ScalarProperty Name="SentTransaction" ColumnName="SentTransaction" />
+          <ScalarProperty Name="ReceivedTransaction" ColumnName="ReceivedTransaction" />
+          <ScalarProperty Name="CancelReceivedTransaction" ColumnName="CancelReceivedTransaction" />
+          <ScalarProperty Name="IdMerchant" ColumnName="IdMerchant" />
+          <ScalarProperty Name="IdMagasin" ColumnName="IdMagasin" />
+          <ScalarProperty Name="IdTerminalMerchant" ColumnName="IdTerminalMerchant" />
+          <ScalarProperty Name="IdTerminal" ColumnName="IdTerminal" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="CurrentTime" ColumnName="CurrentTime" />
+          <ScalarProperty Name="CurrentDateTimeTPE" ColumnName="CurrentDateTimeTPE" />
+          <ScalarProperty Name="Transactiontype" ColumnName="Transactiontype" />
+          <ScalarProperty Name="TransactionSupport" ColumnName="TransactionSupport" />
+          <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+          <ScalarProperty Name="ResponseCodeAnnulation" ColumnName="ResponseCodeAnnulation" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IdHost" ColumnName="IdHost" />
+          <ScalarProperty Name="HostRoutage" ColumnName="HostRoutage" />
+          <ScalarProperty Name="AnnulationHostRoutage" ColumnName="AnnulationHostRoutage" />
+          <ScalarProperty Name="BinaryVersion" ColumnName="BinaryVersion" />
+          <ScalarProperty Name="ConfVersion" ColumnName="ConfVersion" />
+          <ScalarProperty Name="BankOfRequest" ColumnName="BankOfRequest" />
+          <ScalarProperty Name="MerchantType" ColumnName="MerchantType" />
+          <ScalarProperty Name="Track2EquivalentData" ColumnName="Track2EquivalentData" />
+          <ScalarProperty Name="ApplicationPrimaryAccountNumber" ColumnName="ApplicationPrimaryAccountNumber" />
+          <ScalarProperty Name="CodeStatus" ColumnName="CodeStatus" />
+          <ScalarProperty Name="FID_F_ApprovalCode" ColumnName="FID_F_ApprovalCode" />
+          <ScalarProperty Name="DateSystemTransaction" ColumnName="DateSystemTransaction" />
+          <ScalarProperty Name="TimeSystemTransaction" ColumnName="TimeSystemTransaction" />
+          <ScalarProperty Name="TransactionAutorization" ColumnName="TransactionAutorization" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="CurrentDateAnnulation" ColumnName="CurrentDateAnnulation" />
+          <ScalarProperty Name="CurrentTimeAnnulation" ColumnName="CurrentTimeAnnulation" />
+          <ScalarProperty Name="DateSystemTransactionAnnulation" ColumnName="DateSystemTransactionAnnulation" />
+          <ScalarProperty Name="TimeSystemTransactionAnnulation" ColumnName="TimeSystemTransactionAnnulation" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="AcquirerIdentifier" ColumnName="AcquirerIdentifier" />
+          <ScalarProperty Name="AdditionalTerminalCapabilities" ColumnName="AdditionalTerminalCapabilities" />
+          <ScalarProperty Name="AmountAuthorisedBinary" ColumnName="AmountAuthorisedBinary" />
+          <ScalarProperty Name="AmountAuthorisedNumeric" ColumnName="AmountAuthorisedNumeric" />
+          <ScalarProperty Name="AmountOtherBinary" ColumnName="AmountOtherBinary" />
+          <ScalarProperty Name="AmountOtherNumeric" ColumnName="AmountOtherNumeric" />
+          <ScalarProperty Name="AmountReferenceCurrency" ColumnName="AmountReferenceCurrency" />
+          <ScalarProperty Name="ApplicationCryptogram" ColumnName="ApplicationCryptogram" />
+          <ScalarProperty Name="ApplicationCurrencyCode" ColumnName="ApplicationCurrencyCode" />
+          <ScalarProperty Name="ApplicationCurrencyExponent" ColumnName="ApplicationCurrencyExponent" />
+          <ScalarProperty Name="ApplicationDiscretionaryData" ColumnName="ApplicationDiscretionaryData" />
+          <ScalarProperty Name="ApplicationEffectiveDate" ColumnName="ApplicationEffectiveDate" />
+          <ScalarProperty Name="ApplicationExpirationDate" ColumnName="ApplicationExpirationDate" />
+          <ScalarProperty Name="ApplicationFileLocator" ColumnName="ApplicationFileLocator" />
+          <ScalarProperty Name="ApplicationIdentifierCard" ColumnName="ApplicationIdentifierCard" />
+          <ScalarProperty Name="ApplicationIdentifierTerminal" ColumnName="ApplicationIdentifierTerminal" />
+          <ScalarProperty Name="ApplicationInterchangeProfile" ColumnName="ApplicationInterchangeProfile" />
+          <ScalarProperty Name="ApplicationLabel" ColumnName="ApplicationLabel" />
+          <ScalarProperty Name="ApplicationPreferredName" ColumnName="ApplicationPreferredName" />
+          <ScalarProperty Name="ApplicationPrimaryAccountNumberSequenceNumber" ColumnName="ApplicationPrimaryAccountNumberSequenceNumber" />
+          <ScalarProperty Name="ApplicationPriorityIndicator" ColumnName="ApplicationPriorityIndicator" />
+          <ScalarProperty Name="ApplicationReferenceCurrency" ColumnName="ApplicationReferenceCurrency" />
+          <ScalarProperty Name="ApplicationReferenceCurrencyExponent" ColumnName="ApplicationReferenceCurrencyExponent" />
+          <ScalarProperty Name="ApplicationTemplate" ColumnName="ApplicationTemplate" />
+          <ScalarProperty Name="ApplicationTransactionCounter" ColumnName="ApplicationTransactionCounter" />
+          <ScalarProperty Name="ApplicationUsageControl" ColumnName="ApplicationUsageControl" />
+          <ScalarProperty Name="CardApplicationVersionNumber" ColumnName="CardApplicationVersionNumber" />
+          <ScalarProperty Name="TerminalApplicationVersionNumber" ColumnName="TerminalApplicationVersionNumber" />
+          <ScalarProperty Name="AuthorisationCode" ColumnName="AuthorisationCode" />
+          <ScalarProperty Name="AuthorisationResponseCode" ColumnName="AuthorisationResponseCode" />
+          <ScalarProperty Name="AuthorisationResponseCryptogram" ColumnName="AuthorisationResponseCryptogram" />
+          <ScalarProperty Name="BankIdentifierCode" ColumnName="BankIdentifierCode" />
+          <ScalarProperty Name="CardRiskManagementDataObjectList1" ColumnName="CardRiskManagementDataObjectList1" />
+          <ScalarProperty Name="CardRiskManagementDataObjectList2" ColumnName="CardRiskManagementDataObjectList2" />
+          <ScalarProperty Name="CardStatusUpdate" ColumnName="CardStatusUpdate" />
+          <ScalarProperty Name="CardholderName" ColumnName="CardholderName" />
+          <ScalarProperty Name="CardholderNameExtended" ColumnName="CardholderNameExtended" />
+          <ScalarProperty Name="CardholderVerificationMethodList" ColumnName="CardholderVerificationMethodList" />
+          <ScalarProperty Name="CardholderVerificationMethodResults" ColumnName="CardholderVerificationMethodResults" />
+          <ScalarProperty Name="CardCertificationAuthorityPublicKeyIndex" ColumnName="CardCertificationAuthorityPublicKeyIndex" />
+          <ScalarProperty Name="TerminalCertificationAuthorityPublicKeyIndex" ColumnName="TerminalCertificationAuthorityPublicKeyIndex" />
+          <ScalarProperty Name="CommandTemplate" ColumnName="CommandTemplate" />
+          <ScalarProperty Name="CryptogramInformationData" ColumnName="CryptogramInformationData" />
+          <ScalarProperty Name="DataAuthenticationCode" ColumnName="DataAuthenticationCode" />
+          <ScalarProperty Name="DedicatedFileName" ColumnName="DedicatedFileName" />
+          <ScalarProperty Name="DirectoryDefinitionFileName" ColumnName="DirectoryDefinitionFileName" />
+          <ScalarProperty Name="DirectoryDiscretionaryTemplate" ColumnName="DirectoryDiscretionaryTemplate" />
+          <ScalarProperty Name="DynamicDataAuthenticationDataObjectList" ColumnName="DynamicDataAuthenticationDataObjectList" />
+          <ScalarProperty Name="FileControlInformationIssuerDiscretionaryData" ColumnName="FileControlInformationIssuerDiscretionaryData" />
+          <ScalarProperty Name="FileControlInformationProprietaryTemplate" ColumnName="FileControlInformationProprietaryTemplate" />
+          <ScalarProperty Name="FileControlInformationTemplate" ColumnName="FileControlInformationTemplate" />
+          <ScalarProperty Name="ICCDynamicNumber" ColumnName="ICCDynamicNumber" />
+          <ScalarProperty Name="IntegratedCircuitCardPINEnciphermentPublicKeyCertificate" ColumnName="IntegratedCircuitCardPINEnciphermentPublicKeyCertificate" />
+          <ScalarProperty Name="IntegratedCircuitCardPINEnciphermentPublicKeyExponent" ColumnName="IntegratedCircuitCardPINEnciphermentPublicKeyExponent" />
+          <ScalarProperty Name="IntegratedCircuitCardPINEnciphermentPublicKeyRemainder" ColumnName="IntegratedCircuitCardPINEnciphermentPublicKeyRemainder" />
+          <ScalarProperty Name="IntegratedCircuitCardPublicKeyCertificate" ColumnName="IntegratedCircuitCardPublicKeyCertificate" />
+          <ScalarProperty Name="IntegratedCircuitCardPublicKeyExponent" ColumnName="IntegratedCircuitCardPublicKeyExponent" />
+          <ScalarProperty Name="IntegratedCircuitCardPublicKeyRemainder" ColumnName="IntegratedCircuitCardPublicKeyRemainder" />
+          <ScalarProperty Name="InterfaceDeviceSerialNumber" ColumnName="InterfaceDeviceSerialNumber" />
+          <ScalarProperty Name="InternationalBankAccountNumber" ColumnName="InternationalBankAccountNumber" />
+          <ScalarProperty Name="IssuerActionCodeDefault" ColumnName="IssuerActionCodeDefault" />
+          <ScalarProperty Name="IssuerActionCodeDenial" ColumnName="IssuerActionCodeDenial" />
+          <ScalarProperty Name="IssuerActionCodeOnline" ColumnName="IssuerActionCodeOnline" />
+          <ScalarProperty Name="IssuerApplicationData" ColumnName="IssuerApplicationData" />
+          <ScalarProperty Name="IssuerAuthenticationData" ColumnName="IssuerAuthenticationData" />
+          <ScalarProperty Name="IssuerCodeTableIndex" ColumnName="IssuerCodeTableIndex" />
+          <ScalarProperty Name="IssuerCountryCode" ColumnName="IssuerCountryCode" />
+          <ScalarProperty Name="IssuerCountryCode2" ColumnName="IssuerCountryCode2" />
+          <ScalarProperty Name="IssuerCountryCode3" ColumnName="IssuerCountryCode3" />
+          <ScalarProperty Name="IssuerIdentificationNumber" ColumnName="IssuerIdentificationNumber" />
+          <ScalarProperty Name="IssuerPublicKeyCertificate" ColumnName="IssuerPublicKeyCertificate" />
+          <ScalarProperty Name="IssuerPublicKeyExponent" ColumnName="IssuerPublicKeyExponent" />
+          <ScalarProperty Name="IssuerPublicKeyRemainder" ColumnName="IssuerPublicKeyRemainder" />
+          <ScalarProperty Name="IssuerScriptCommand" ColumnName="IssuerScriptCommand" />
+          <ScalarProperty Name="IssuerScriptIdentifier" ColumnName="IssuerScriptIdentifier" />
+          <ScalarProperty Name="IssuerScriptTemplate1" ColumnName="IssuerScriptTemplate1" />
+          <ScalarProperty Name="IssuerScriptTemplate2" ColumnName="IssuerScriptTemplate2" />
+          <ScalarProperty Name="IssuerURL" ColumnName="IssuerURL" />
+          <ScalarProperty Name="LanguagePreference" ColumnName="LanguagePreference" />
+          <ScalarProperty Name="LastOnlineApplicationTransactionCounterRegister" ColumnName="LastOnlineApplicationTransactionCounterRegister" />
+          <ScalarProperty Name="LogEntry" ColumnName="LogEntry" />
+          <ScalarProperty Name="LogFormat" ColumnName="LogFormat" />
+          <ScalarProperty Name="LowerConsecutiveOfflineLimit" ColumnName="LowerConsecutiveOfflineLimit" />
+          <ScalarProperty Name="MerchantCategoryCode" ColumnName="MerchantCategoryCode" />
+          <ScalarProperty Name="MerchantIdentifier" ColumnName="MerchantIdentifier" />
+          <ScalarProperty Name="MerchantNameandLocation" ColumnName="MerchantNameandLocation" />
+          <ScalarProperty Name="PersonalIdentificationNumberTryCounter" ColumnName="PersonalIdentificationNumberTryCounter" />
+          <ScalarProperty Name="PointofServiceEntryMode" ColumnName="PointofServiceEntryMode" />
+          <ScalarProperty Name="ProcessingOptionsDataObjectList" ColumnName="ProcessingOptionsDataObjectList" />
+          <ScalarProperty Name="READRECORDResponseMessageTemplate" ColumnName="READRECORDResponseMessageTemplate" />
+          <ScalarProperty Name="ResponseMessageTemplateFormat1" ColumnName="ResponseMessageTemplateFormat1" />
+          <ScalarProperty Name="ResponseMessageTemplateFormat2" ColumnName="ResponseMessageTemplateFormat2" />
+          <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
+          <ScalarProperty Name="ShortFileIdentifier" ColumnName="ShortFileIdentifier" />
+          <ScalarProperty Name="SignedDynamicApplicationData" ColumnName="SignedDynamicApplicationData" />
+          <ScalarProperty Name="SignedStaticApplicationData" ColumnName="SignedStaticApplicationData" />
+          <ScalarProperty Name="StaticDataAuthenticationTagList" ColumnName="StaticDataAuthenticationTagList" />
+          <ScalarProperty Name="TerminalActionCodeDefault" ColumnName="TerminalActionCodeDefault" />
+          <ScalarProperty Name="TerminalActionCodeDenial" ColumnName="TerminalActionCodeDenial" />
+          <ScalarProperty Name="TerminalActionCodeOnline" ColumnName="TerminalActionCodeOnline" />
+          <ScalarProperty Name="TerminalCapabilities" ColumnName="TerminalCapabilities" />
+          <ScalarProperty Name="TerminalCountryCode" ColumnName="TerminalCountryCode" />
+          <ScalarProperty Name="TerminalFloorLimit" ColumnName="TerminalFloorLimit" />
+          <ScalarProperty Name="TerminalIdentification" ColumnName="TerminalIdentification" />
+          <ScalarProperty Name="TerminalRiskManagementData" ColumnName="TerminalRiskManagementData" />
+          <ScalarProperty Name="TerminalType" ColumnName="TerminalType" />
+          <ScalarProperty Name="TerminalVerificationResults" ColumnName="TerminalVerificationResults" />
+          <ScalarProperty Name="Track1DiscretionaryData" ColumnName="Track1DiscretionaryData" />
+          <ScalarProperty Name="Track2DiscretionaryData" ColumnName="Track2DiscretionaryData" />
+          <ScalarProperty Name="TransactionCertificateDataObjectList" ColumnName="TransactionCertificateDataObjectList" />
+          <ScalarProperty Name="TransactionCertificateHashValue" ColumnName="TransactionCertificateHashValue" />
+          <ScalarProperty Name="TransactionCurrencyCode" ColumnName="TransactionCurrencyCode" />
+          <ScalarProperty Name="TransactionCurrencyExponent" ColumnName="TransactionCurrencyExponent" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionPersonalIdentificationNumberData" ColumnName="TransactionPersonalIdentificationNumberData" />
+          <ScalarProperty Name="TransactionReferenceCurrencyCode" ColumnName="TransactionReferenceCurrencyCode" />
+          <ScalarProperty Name="TransactionReferenceCurrencyExponent" ColumnName="TransactionReferenceCurrencyExponent" />
+          <ScalarProperty Name="TransactionSequenceCounter" ColumnName="TransactionSequenceCounter" />
+          <ScalarProperty Name="TransactionStatusInformation" ColumnName="TransactionStatusInformation" />
+          <ScalarProperty Name="TransactionTime" ColumnName="TransactionTime" />
+          <ScalarProperty Name="TransactionTypeEmv" ColumnName="TransactionTypeEmv" />
+          <ScalarProperty Name="UnpredictableNumber" ColumnName="UnpredictableNumber" />
+          <ScalarProperty Name="UpperConsecutiveOfflineLimit" ColumnName="UpperConsecutiveOfflineLimit" />
+          <ScalarProperty Name="EncryptedPIN" ColumnName="EncryptedPIN" />
+          <ScalarProperty Name="PEKVersionNumber" ColumnName="PEKVersionNumber" />
+          <ScalarProperty Name="CardBin" ColumnName="CardBin" />
+          <ScalarProperty Name="CardMask" ColumnName="CardMask" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_trnsct_tms">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_trnsct_tms">
+        <MappingFragment StoreEntitySet="gw_trnsct_tms">
+          <ScalarProperty Name="gw_trnsct_tms_id" ColumnName="gw_trnsct_tms_id" />
+          <ScalarProperty Name="gw_trnsct_tms_merchant_id" ColumnName="gw_trnsct_tms_merchant_id" />
+          <ScalarProperty Name="gw_trnsct_tms_magasin_id" ColumnName="gw_trnsct_tms_magasin_id" />
+          <ScalarProperty Name="gw_trnsct_tms_tpe_id" ColumnName="gw_trnsct_tms_tpe_id" />
+          <ScalarProperty Name="gw_trnsct_tms_date" ColumnName="gw_trnsct_tms_date" />
+          <ScalarProperty Name="gw_trnsct_tms_response" ColumnName="gw_trnsct_tms_response" />
+          <ScalarProperty Name="gw_trnsct_tms_tpe_serial_id" ColumnName="gw_trnsct_tms_tpe_serial_id" />
+          <ScalarProperty Name="gw_trnsct_tms_binary_version_id" ColumnName="gw_trnsct_tms_binary_version_id" />
+          <ScalarProperty Name="gw_trnsct_tms_config_version_id" ColumnName="gw_trnsct_tms_config_version_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_user_magasin">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_user_magasin">
+        <MappingFragment StoreEntitySet="gw_user_magasin">
+          <ScalarProperty Name="gw_user_magasin_user_id" ColumnName="gw_user_magasin_user_id" />
+          <ScalarProperty Name="gw_user_magasin_magasin_id" ColumnName="gw_user_magasin_magasin_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_user_organism">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_user_organism">
+        <MappingFragment StoreEntitySet="gw_user_organism">
+          <ScalarProperty Name="gw_user_organism_user_id" ColumnName="gw_user_organism_user_id" />
+          <ScalarProperty Name="gw_user_organism_organism_id" ColumnName="gw_user_organism_organism_id" />
+          <ScalarProperty Name="gw_user_organism_organism_type" ColumnName="gw_user_organism_organism_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_user_terminal_merchant">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_user_terminal_merchant">
+        <MappingFragment StoreEntitySet="gw_user_terminal_merchant">
+          <ScalarProperty Name="gw_user_terminal_merchant_user_id" ColumnName="gw_user_terminal_merchant_user_id" />
+          <ScalarProperty Name="gw_user_terminal_merchant_terminal_merchant_id" ColumnName="gw_user_terminal_merchant_terminal_merchant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_version">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_version">
+        <MappingFragment StoreEntitySet="gw_version">
+          <ScalarProperty Name="gw_version_id" ColumnName="gw_version_id" />
+          <ScalarProperty Name="gw_version_zip_file" ColumnName="gw_version_zip_file" />
+          <ScalarProperty Name="gw_version_type" ColumnName="gw_version_type" />
+          <ScalarProperty Name="gw_version_description" ColumnName="gw_version_description" />
+          <ScalarProperty Name="gw_version_date_creation" ColumnName="gw_version_date_creation" />
+          <ScalarProperty Name="gw_versin_status" ColumnName="gw_versin_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Information">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.Information">
+        <MappingFragment StoreEntitySet="Information">
+          <ScalarProperty Name="InformationId" ColumnName="InformationId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganismIdentities">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.OrganismIdentities">
+        <MappingFragment StoreEntitySet="OrganismIdentities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organization">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.Organization">
+        <MappingFragment StoreEntitySet="Organization">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="OrganismType_Id" ColumnName="OrganismType_Id" />
+          <ScalarProperty Name="Locked" ColumnName="Locked" />
+          <ScalarProperty Name="NumericCode" ColumnName="NumericCode" />
+          <ScalarProperty Name="AlphaCode" ColumnName="AlphaCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationTypes">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.OrganizationTypes">
+        <MappingFragment StoreEntitySet="OrganizationTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Token">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.Token">
+        <MappingFragment StoreEntitySet="Token">
+          <ScalarProperty Name="id_token" ColumnName="id_token" />
+          <ScalarProperty Name="fk_id_user" ColumnName="fk_id_user" />
+          <ScalarProperty Name="access_token" ColumnName="access_token" />
+          <ScalarProperty Name="token_type" ColumnName="token_type" />
+          <ScalarProperty Name="expires_in" ColumnName="expires_in" />
+          <ScalarProperty Name="refresh_token" ColumnName="refresh_token" />
+          <ScalarProperty Name="error" ColumnName="error" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Locked" TypeName="GatewayPCIPINModel.Locked" StoreEntitySet="Locked">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="LockedId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers1">
+        <ScalarProperty Name="Id" ColumnName="LockingId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OrganizationInformation" TypeName="GatewayPCIPINModel.OrganizationInformation" StoreEntitySet="OrganizationInformation">
+      <EndProperty Name="Information">
+        <ScalarProperty Name="InformationId" ColumnName="InformationId" />
+      </EndProperty>
+      <EndProperty Name="Organization">
+        <ScalarProperty Name="Id" ColumnName="OrganizationId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OrganizationInformationDefault" TypeName="GatewayPCIPINModel.OrganizationInformationDefault" StoreEntitySet="OrganizationInformationDefault">
+      <EndProperty Name="Information">
+        <ScalarProperty Name="InformationId" ColumnName="InformationId" />
+      </EndProperty>
+      <EndProperty Name="Organization">
+        <ScalarProperty Name="Id" ColumnName="OrganizationId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OrganizationInformationDefaultDisplay" TypeName="GatewayPCIPINModel.OrganizationInformationDefaultDisplay" StoreEntitySet="OrganizationInformationDefaultDisplay">
+      <EndProperty Name="Information">
+        <ScalarProperty Name="InformationId" ColumnName="InformationId" />
+      </EndProperty>
+      <EndProperty Name="Organization">
+        <ScalarProperty Name="Id" ColumnName="OrganizationId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OrganizationInformationDisplay" TypeName="GatewayPCIPINModel.OrganizationInformationDisplay" StoreEntitySet="OrganizationInformationDisplay">
+      <EndProperty Name="Information">
+        <ScalarProperty Name="InformationId" ColumnName="InformationId" />
+      </EndProperty>
+      <EndProperty Name="Organization">
+        <ScalarProperty Name="Id" ColumnName="OrganizationId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GatewayPCIPINModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GatewayPCIPINModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GatewayPCIPINModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GatewayPCIPINModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GatewayPCIPINModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GatewayPCIPINModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GatewayPCIPINModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GatewayPCIPINModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GatewayPCIPINModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="UserSessionTokens">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.UserSessionToken">
+        <MappingFragment StoreEntitySet="UserSessionTokens">
+          <ScalarProperty Name="is_LoggedIn_LoggedOut" ColumnName="is_LoggedIn_LoggedOut" />
+          <ScalarProperty Name="ExpirationDateTime" ColumnName="ExpirationDateTime" />
+          <ScalarProperty Name="AuthToken" ColumnName="AuthToken" />
+          <ScalarProperty Name="OwnerAspNetUser_fk_Id" ColumnName="OwnerAspNetUser_fk_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gw_trnsct_tmk">
+      <EntityTypeMapping TypeName="GatewayPCIPINModel.gw_trnsct_tmk">
+        <MappingFragment StoreEntitySet="gw_trnsct_tmk">
+          <ScalarProperty Name="gw_trnsct_tmk_confirmation_result_code" ColumnName="gw_trnsct_tmk_confirmation_result_code" />
+          <ScalarProperty Name="gw_trnsct_tmk_status" ColumnName="gw_trnsct_tmk_status" />
+          <ScalarProperty Name="gw_trnsct_tmk_result_code" ColumnName="gw_trnsct_tmk_result_code" />
+          <ScalarProperty Name="gw_trnsct_tmk_id_tmk_trnsct" ColumnName="gw_trnsct_tmk_id_tmk_trnsct" />
+          <ScalarProperty Name="gw_trnsct_tmk_TPE_trnsct_TMK_Id" ColumnName="gw_trnsct_tmk_TPE_trnsct_TMK_Id" />
+          <ScalarProperty Name="gw_trnsct_tmk_current_time" ColumnName="gw_trnsct_tmk_current_time" />
+          <ScalarProperty Name="gw_trnsct_tmk_current_date" ColumnName="gw_trnsct_tmk_current_date" />
+          <ScalarProperty Name="gw_trnsct_tmk_serial_number" ColumnName="gw_trnsct_tmk_serial_number" />
+          <ScalarProperty Name="gw_trnsct_tmk_id_terminal" ColumnName="gw_trnsct_tmk_id_terminal" />
+          <ScalarProperty Name="gw_id_magasin" ColumnName="gw_id_magasin" />
+          <ScalarProperty Name="gw_id_merchant" ColumnName="gw_id_merchant" />
+          <ScalarProperty Name="gw_trnsct_tmk_id" ColumnName="gw_trnsct_tmk_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
