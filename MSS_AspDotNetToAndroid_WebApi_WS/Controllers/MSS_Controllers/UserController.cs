@@ -748,6 +748,8 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
             } 
         }
 
+        /*
+         
         // GET api/User/GetExtendedFiltrableTransactions
         [System.Web.Http.HttpGet]  // added by me
         [UserSessionTokenAuthorize]  // added by me
@@ -771,6 +773,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
             }
         }
 
+        */
 
 
         /*  Début : Actions who did not work   */

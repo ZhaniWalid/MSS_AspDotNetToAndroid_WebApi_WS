@@ -41,7 +41,15 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
                                                         IdHost = trnsc.IdHost,
                                                         AmountAuthorisedNumeric = trnsc.AmountAuthorisedNumeric,
                                                         EtatTransaction = trnsc.EtatTransaction,
-                                                        BankOfRequest = trnsc.BankOfRequest
+                                                        BankOfRequest = trnsc.BankOfRequest,
+                                                        // Extended Part
+                                                        EtatCloture = trnsc.EtatCloture,
+                                                        CurrentDate = trnsc.CurrentDate, // Date
+                                                        TimeSystemTransaction = trnsc.TimeSystemTransaction, // Heure Transaction
+                                                        Transactiontype = trnsc.Transactiontype, // Transactiontype
+                                                        ResponseCode = trnsc.ResponseCode, // ResponseCode
+                                                        FID_F_ApprovalCode = trnsc.FID_F_ApprovalCode, // ApprovalCode ( Code d'autorisation)
+                                                        CardMask = trnsc.CardMask // Pan
                                                     }
                                                     )
                                                     .Distinct()
@@ -49,6 +57,8 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
             }
             return filtered_generalListTransactions;
         }
+
+        /*
 
         public List<gw_trnsct> filteredExtendedTransactionsData()
         {
@@ -76,27 +86,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
                                                     .Distinct()
                                                     .ToList();
             }
-
-           /* var filtered_extendedListTransactions =
-                (List<string>)list_AllTransctionsData
-                .Select
-                (trnsc => new
-                {
-                    trnsc.idTransaction,
-                    trnsc.EtatCloture,
-                    trnsc.CurrentDate, // Date
-                    trnsc.TimeSystemTransaction, // Heure Transaction
-                    trnsc.Transactiontype, // Transactiontype
-                    trnsc.ResponseCode, // ResponseCode
-                    trnsc.FID_F_ApprovalCode, // ApprovalCode ( Code d'autorisation)
-                    trnsc.CardMask // Pan
-                }
-               )
-               .Distinct()
-               .OrderBy(trsc => trsc.ResponseCode); */
-
             return filtered_extendedListTransactions;
-
         }
+
+        */
+        
     }
 }

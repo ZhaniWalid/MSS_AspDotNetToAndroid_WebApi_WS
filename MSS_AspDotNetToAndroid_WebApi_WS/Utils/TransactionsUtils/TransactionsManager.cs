@@ -29,6 +29,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
             string idTranscation_ToReturn = " ", IdMerchant_ToReturn = " ", IdTerminalMerchant_ToReturn = " ";
             string IdHost_ToReturn = " ", AmountAuthorisedNumeric_ToReturn = " ", EtatTransaction_ToReturn = " ";
             string BankOfRequest_ToReturn = " ";
+            // Extended part
+            string EtatCloture_ToReturn = " ", CurrentDate_ToReturn = " ", TimeSystemTransaction_ToReturn = " ";
+            string Transactiontype_ToReturn = " ", ResponseCode_ToReturn = " ", FID_F_ApprovalCode_ToReturn = " ", CardMask_ToReturn = " ";
 
 
             if (returnedTransactionsList.Count != 0 && returnedTransactionsList != null)
@@ -42,7 +45,37 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                      AmountAuthorisedNumeric_ToReturn = trnsc.AmountAuthorisedNumeric;
                      EtatTransaction_ToReturn = trnsc.EtatTransaction;
                      BankOfRequest_ToReturn = trnsc.BankOfRequest;
-              
+                    // Extended Part
+                     EtatCloture_ToReturn = trnsc.EtatCloture;
+                     CurrentDate_ToReturn = trnsc.CurrentDate;
+                     TimeSystemTransaction_ToReturn = trnsc.TimeSystemTransaction;
+                     Transactiontype_ToReturn = trnsc.Transactiontype;
+                     ResponseCode_ToReturn = trnsc.ResponseCode;
+                     FID_F_ApprovalCode_ToReturn = trnsc.FID_F_ApprovalCode;
+                     CardMask_ToReturn = trnsc.CardMask;
+
+                    string DayOf_CurrentDate_ToReturn = " ", MonthOf_CurrentDate_ToReturn = " ", YearOf_CurrentDate_ToReturn = " ";
+                    string CurrentDate_Jusitified_ToReturn = " ";
+
+                    if (CurrentDate_ToReturn != null)
+                    {
+                        var currentData_ToReturn_Length = CurrentDate_ToReturn.Length;
+                        Console.WriteLine("Current Date Length is : " + currentData_ToReturn_Length);
+                        //currentData_ToReturn_Length = 6 and index will be from i=0 -> i=5
+
+                        // ChaineCaractère.Substring(StartIndex,NombreDePats)
+                        DayOf_CurrentDate_ToReturn = CurrentDate_ToReturn.Substring(4, 2);
+                        MonthOf_CurrentDate_ToReturn = CurrentDate_ToReturn.Substring(2, 2);
+                        YearOf_CurrentDate_ToReturn = CurrentDate_ToReturn.Substring(0, 2);
+
+                        CurrentDate_Jusitified_ToReturn = "20" + YearOf_CurrentDate_ToReturn + "/" + MonthOf_CurrentDate_ToReturn + "/" + DayOf_CurrentDate_ToReturn;
+
+                    }
+                    else
+                    {
+                        CurrentDate_Jusitified_ToReturn = null;
+                    }
+
                     listGeneralTransactionsData.Add(new gw_trnsct_GeneralBindingModel
                     {
                         idTransaction = idTranscation_ToReturn,
@@ -51,7 +84,16 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                         IdHost = IdHost_ToReturn,
                         AmountAuthorisedNumeric = AmountAuthorisedNumeric_ToReturn,
                         EtatTransaction = EtatTransaction_ToReturn,
-                        BankOfRequest = BankOfRequest_ToReturn
+                        BankOfRequest = BankOfRequest_ToReturn,
+                        // Extended part
+                        EtatCloture = EtatCloture_ToReturn,
+                        CurrentDate = CurrentDate_Jusitified_ToReturn, //CurrentDate_Jusitified_ToReturn
+                        TimeSystemTransaction = TimeSystemTransaction_ToReturn,
+                        Transactiontype = Transactiontype_ToReturn,
+                        ResponseCode = ResponseCode_ToReturn,
+                        FID_F_ApprovalCode = FID_F_ApprovalCode_ToReturn,
+                        CardMask = CardMask_ToReturn
+
                     }
                    );
 
@@ -64,6 +106,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
             }
             return listGeneralTransactionsData;
         }
+
+        
+        /*
 
         public List<gw_trnsct_ExtendedBindingModel> getExtendedTransactionsData()
         {
@@ -129,5 +174,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
 
             return listExtendedTransactionsData;
         }
+
+        */
     }
 }
