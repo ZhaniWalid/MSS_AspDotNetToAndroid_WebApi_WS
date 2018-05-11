@@ -26,7 +26,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Models
         public string ResponseCode { get; set; }
         public string ResponseCodeAnnulation { get; set; }
         public string InvoiceNumber { get; set; }
-        public Nullable<double> Amount { get; set; }
+        public double? Amount { get; set; }
         public string IdHost { get; set; }
         public string HostRoutage { get; set; }
         public string AnnulationHostRoutage { get; set; }

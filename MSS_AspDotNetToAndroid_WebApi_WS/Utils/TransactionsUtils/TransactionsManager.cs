@@ -24,28 +24,41 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
         public List<gw_trnsct_GeneralBindingModel> getGeneralTransactionsData()
         {
             var returnedTransactionsList = _transactionsRepository.filteredGeneralTransactionsData();
+            var returnedListBinCards = _transactionsRepository.getAllBinCardsForPayements();
+
             var listGeneralTransactionsData = new List<gw_trnsct_GeneralBindingModel>();
 
+            // General Part
             string idTranscation_ToReturn = " ", IdMerchant_ToReturn = " ", IdTerminalMerchant_ToReturn = " ";
-            string IdHost_ToReturn = " ", AmountAuthorisedNumeric_ToReturn = " ", EtatTransaction_ToReturn = " ";
+            string IdHost_ToReturn = " ", EtatTransaction_ToReturn = " ";  //  AmountAuthorisedNumeric_ToReturn = " "
             string BankOfRequest_ToReturn = " ";
+            double? Amount_ToReturn = 0; // ? => Nullable
+
             // Extended part
             string EtatCloture_ToReturn = " ", CurrentDate_ToReturn = " ", TimeSystemTransaction_ToReturn = " ";
             string Transactiontype_ToReturn = " ", ResponseCode_ToReturn = " ", FID_F_ApprovalCode_ToReturn = " ", CardMask_ToReturn = " ";
 
+            // Another Fields for Ticket Part
+            string ApplicationIdentifierCard_ToReturn = " ", ApplicationCryptogram_ToReturn = " ", TerminalVerificationResults_ToReturn = " ";
+            string TransactionStatusInformation_ToReturn = " ",  CardBin_ToReturn= " ";
+            string CardUsedForPayement_ToReturn = " ";
 
             if (returnedTransactionsList.Count != 0 && returnedTransactionsList != null)
-            {              
+            {
+                
                 foreach (gw_trnsct trnsc in returnedTransactionsList)
                 {
+             
+                     // General Part
                      idTranscation_ToReturn = trnsc.idTransaction;
                      IdMerchant_ToReturn = trnsc.IdMerchant;
                      IdTerminalMerchant_ToReturn = trnsc.IdTerminalMerchant;
                      IdHost_ToReturn = trnsc.IdHost;
-                     AmountAuthorisedNumeric_ToReturn = trnsc.AmountAuthorisedNumeric;
+                     Amount_ToReturn = trnsc.Amount;
                      EtatTransaction_ToReturn = trnsc.EtatTransaction;
                      BankOfRequest_ToReturn = trnsc.BankOfRequest;
-                    // Extended Part
+
+                     // Extended Part
                      EtatCloture_ToReturn = trnsc.EtatCloture;
                      CurrentDate_ToReturn = trnsc.CurrentDate;
                      TimeSystemTransaction_ToReturn = trnsc.TimeSystemTransaction;
@@ -54,8 +67,22 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                      FID_F_ApprovalCode_ToReturn = trnsc.FID_F_ApprovalCode;
                      CardMask_ToReturn = trnsc.CardMask;
 
-                    string DayOf_CurrentDate_ToReturn = " ", MonthOf_CurrentDate_ToReturn = " ", YearOf_CurrentDate_ToReturn = " ";
-                    string CurrentDate_Jusitified_ToReturn = " ";
+                     // Another Fields for Ticket Part
+                     ApplicationIdentifierCard_ToReturn = trnsc.ApplicationIdentifierCard; // APPID
+                     ApplicationCryptogram_ToReturn = trnsc.ApplicationCryptogram; // Sign
+                     TerminalVerificationResults_ToReturn = trnsc.TerminalVerificationResults; // TVR
+                     TransactionStatusInformation_ToReturn = trnsc.TransactionStatusInformation; // TSI
+                     CardBin_ToReturn = trnsc.CardBin; // Carte : CardBin.gw_bin_label
+
+                    if (returnedListBinCards != null && returnedListBinCards.Count != 0)
+                    {
+                     CardUsedForPayement_ToReturn = 
+                                  _transactionsRepository
+                                  .getCardUsedForPayement(returnedListBinCards,returnedTransactionsList,CardBin_ToReturn);
+                    }
+
+                     string DayOf_CurrentDate_ToReturn = " ", MonthOf_CurrentDate_ToReturn = " ", YearOf_CurrentDate_ToReturn = " ";
+                     string CurrentDate_Jusitified_ToReturn = " ";
 
                     if (CurrentDate_ToReturn != null)
                     {
@@ -68,7 +95,8 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                         MonthOf_CurrentDate_ToReturn = CurrentDate_ToReturn.Substring(2, 2);
                         YearOf_CurrentDate_ToReturn = CurrentDate_ToReturn.Substring(0, 2);
 
-                        CurrentDate_Jusitified_ToReturn = "20" + YearOf_CurrentDate_ToReturn + "/" + MonthOf_CurrentDate_ToReturn + "/" + DayOf_CurrentDate_ToReturn;
+                        //CurrentDate_Jusitified_ToReturn = "20" + YearOf_CurrentDate_ToReturn + "/" + MonthOf_CurrentDate_ToReturn + "/" + DayOf_CurrentDate_ToReturn;
+                        CurrentDate_Jusitified_ToReturn = DayOf_CurrentDate_ToReturn + "/" + MonthOf_CurrentDate_ToReturn + "/20"+YearOf_CurrentDate_ToReturn;
 
                     }
                     else
@@ -76,15 +104,42 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                         CurrentDate_Jusitified_ToReturn = null;
                     }
 
+                    if (ApplicationIdentifierCard_ToReturn == null)
+                    {
+                        ApplicationIdentifierCard_ToReturn = "---";
+                    }
+
+                    if (ApplicationCryptogram_ToReturn == null)
+                    {
+                        ApplicationCryptogram_ToReturn = "---";
+                    }
+                  
+                    if (TerminalVerificationResults_ToReturn == null)
+                    {
+                        TerminalVerificationResults_ToReturn = "---";
+                    }
+
+                    if (TransactionStatusInformation_ToReturn == null)
+                    {
+                        TransactionStatusInformation_ToReturn = "---";
+                    }
+                    
+                    if (CardUsedForPayement_ToReturn == null)
+                    {
+                        CardUsedForPayement_ToReturn = "---";
+                    }
+                  
                     listGeneralTransactionsData.Add(new gw_trnsct_GeneralBindingModel
                     {
+                        // General Part
                         idTransaction = idTranscation_ToReturn,
                         IdMerchant = IdMerchant_ToReturn,
                         IdTerminalMerchant = IdTerminalMerchant_ToReturn,
                         IdHost = IdHost_ToReturn,
-                        AmountAuthorisedNumeric = AmountAuthorisedNumeric_ToReturn,
+                        Amount = Amount_ToReturn,
                         EtatTransaction = EtatTransaction_ToReturn,
                         BankOfRequest = BankOfRequest_ToReturn,
+
                         // Extended part
                         EtatCloture = EtatCloture_ToReturn,
                         CurrentDate = CurrentDate_Jusitified_ToReturn, //CurrentDate_Jusitified_ToReturn
@@ -92,13 +147,20 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                         Transactiontype = Transactiontype_ToReturn,
                         ResponseCode = ResponseCode_ToReturn,
                         FID_F_ApprovalCode = FID_F_ApprovalCode_ToReturn,
-                        CardMask = CardMask_ToReturn
+                        CardMask = CardMask_ToReturn,
+
+                        // Another Fields for Ticket Part
+                        ApplicationIdentifierCard = ApplicationIdentifierCard_ToReturn, // APPID
+                        ApplicationCryptogram = ApplicationCryptogram_ToReturn, // Sign
+                        TerminalVerificationResults = TerminalVerificationResults_ToReturn, // TVR
+                        TransactionStatusInformation = TransactionStatusInformation_ToReturn, // TSI
+                        CardUsedForPayement = CardUsedForPayement_ToReturn // Carte : CardBin.gw_bin_label
 
                     }
                    );
 
                     listGeneralTransactionsData
-                                               .OrderBy(trnc => trnc.AmountAuthorisedNumeric)
+                                               .OrderBy(trnc => trnc.Amount)
                                                .GroupBy(trnc => trnc.EtatTransaction)
                                                .Distinct();
 

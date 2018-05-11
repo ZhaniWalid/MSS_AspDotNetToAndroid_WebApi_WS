@@ -35,13 +35,15 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
                                                     orderby trnsc.AmountAuthorisedNumeric
                                                     select new gw_trnsct
                                                     {
+                                                        // General Part
                                                         idTransaction = trnsc.idTransaction,
                                                         IdMerchant = trnsc.IdMerchant,
                                                         IdTerminalMerchant = trnsc.IdTerminalMerchant,
                                                         IdHost = trnsc.IdHost,
-                                                        AmountAuthorisedNumeric = trnsc.AmountAuthorisedNumeric,
+                                                        Amount = trnsc.Amount,
                                                         EtatTransaction = trnsc.EtatTransaction,
                                                         BankOfRequest = trnsc.BankOfRequest,
+
                                                         // Extended Part
                                                         EtatCloture = trnsc.EtatCloture,
                                                         CurrentDate = trnsc.CurrentDate, // Date
@@ -49,13 +51,37 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
                                                         Transactiontype = trnsc.Transactiontype, // Transactiontype
                                                         ResponseCode = trnsc.ResponseCode, // ResponseCode
                                                         FID_F_ApprovalCode = trnsc.FID_F_ApprovalCode, // ApprovalCode ( Code d'autorisation)
-                                                        CardMask = trnsc.CardMask // Pan
+                                                        CardMask = trnsc.CardMask, // Pan
+
+                                                        // Another Fields for Ticket Part
+                                                        ApplicationIdentifierCard = trnsc.ApplicationIdentifierCard, // APPID
+                                                        ApplicationCryptogram = trnsc.ApplicationCryptogram, // Sign
+                                                        TerminalVerificationResults = trnsc.TerminalVerificationResults, // TVR
+                                                        TransactionStatusInformation = trnsc.TransactionStatusInformation, // TSI
+                                                        CardBin = trnsc.CardBin
                                                     }
                                                     )
                                                     .Distinct()
                                                     .ToList();          
             }
             return filtered_generalListTransactions;
+        }
+
+        public List<gw_bin> getAllBinCardsForPayements()
+        {
+            var list_BinCards = utwk.getRepository<gw_bin>().GetAll().ToList();
+            return list_BinCards;
+        }
+
+        public string getCardUsedForPayement(List<gw_bin> list_BinCards,List<gw_trnsct> list_Transactions,string cardBin)
+        {
+            var cardUsedForPayement_ToReturn = (from c1 in list_BinCards
+                                                join c2 in list_Transactions
+                                                on c1.gw_bin_id equals cardBin
+                                                select c1.gw_bin_label
+                                                ).FirstOrDefault();
+
+            return cardUsedForPayement_ToReturn;
         }
 
         /*
@@ -90,6 +116,6 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
         }
 
         */
-        
+
     }
 }
