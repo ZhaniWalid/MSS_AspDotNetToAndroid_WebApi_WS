@@ -510,46 +510,20 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
 
                 //return Ok("Invalid user token! Please login again! not found!  => " + msg);
                 return BadRequest("Invalid user token! Please login again! not found!  => " + msg);
-            }
-            else
-            {
+            } else {
+
                 var list_UsersMerchantsToReturn = aspNetUserManager.GetAspNetMerchantsUsersByAdminMerchant(currentUser);
-                string id_toReturn = "", firstName_toReturn = "", lastName_toReturn = "", userName_toReturn = "", email_toReturn = "", phoneNumber_toReturn = "";
-                var list_values = new List<string>();
-                 
-                if (list_UsersMerchantsToReturn != null && list_UsersMerchantsToReturn.Count != 0)
-                {     
-                        foreach (AspNetUser u in list_UsersMerchantsToReturn)
-                      {
-                         id_toReturn = u.Id;
-                         firstName_toReturn = u.FirstName;
-                         lastName_toReturn = u.LastName;
-                         userName_toReturn = u.UserName;
-                         email_toReturn = u.Email;                        
-                         phoneNumber_toReturn = u.PhoneNumber;
 
-                         list_values.Add(id_toReturn);
-                         list_values.Add(firstName_toReturn);
-                         list_values.Add(lastName_toReturn);
-                         list_values.Add(userName_toReturn);
-                         list_values.Add(email_toReturn);
-                         list_values.Add(phoneNumber_toReturn);  
-                    }
-
-                    return Ok(list_values);
-
-                    //return Ok(new string[] {list_values[0], list_values[1], list_values[2], list_values[3], list_values[4], list_values[5] });
-
-                    //return Ok(new string[] { id_toReturn, firstName_toReturn, lastName_toReturn, userName_toReturn, email_toReturn, phoneNumber_toReturn });
-                
-                    //return Ok(list_UsersMerchantsToReturn);
-                }
+                if (list_UsersMerchantsToReturn.Count != 0 && list_UsersMerchantsToReturn != null && currentUser != null)
+                {
+                    return Ok(list_UsersMerchantsToReturn);
+                }           
                 else
                 {
                     var msgFailed = "Only ' Admin Merchant ' can see list of Users Merchants ";
-                    return Ok(msgFailed);
-                } 
-               
+                    //return Ok(msgFailed);
+                    return BadRequest(msgFailed);
+                }                              
             }
         }
 

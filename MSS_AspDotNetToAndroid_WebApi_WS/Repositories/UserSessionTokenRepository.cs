@@ -122,7 +122,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
 
         public string getAspNetUserIdByUserName(string userName)
         {
-            var AspNetUserId = utwk.getRepository<AspNetUser>().Get(u => u.Login == userName).Id;
+            var AspNetUserId = utwk.getRepository<AspNetUser>().Get(u => u.UserName == userName).Id;
             return AspNetUserId;
         } 
     }

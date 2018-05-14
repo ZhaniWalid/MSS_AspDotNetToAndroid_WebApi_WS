@@ -2,6 +2,7 @@
 using MSS_AspDotNetToAndroid_WebApi_WS.Infrastructure;
 using MSS_AspDotNetToAndroid_WebApi_WS.Models;
 using MSS_AspDotNetToAndroid_WebApi_WS.Repositories;
+using MSS_AspDotNetToAndroid_WebApi_WS.SpecificModels.BindingModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,10 +86,57 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.AspNetUsersUtils
             _aspNetUserRepos.updateAspNetUserProfile(id,userName,email,fName,lName,phoneNumber);
         }
 
-        public List<AspNetUser> GetAspNetMerchantsUsersByAdminMerchant(AspNetUser usr)
+        public List<AspNetUserBindingModel> GetAspNetMerchantsUsersByAdminMerchant(AspNetUser usr)
         {
             var id_usr = usr.Id;
-            var list_merchantsUsers = _aspNetUserRepos.getAllAspNetUsersMerchantsByAdminMerchant(id_usr);
+            var returnedListMerchantsUsers = _aspNetUserRepos.getAllAspNetUsersMerchantsByAdminMerchant(id_usr);
+            var returnedListListOrganiztionTypes = _aspNetUserRepos.getAllOrganizationsTypes();
+
+            var list_merchantsUsers = new List<AspNetUserBindingModel>();
+
+            string FirstName_ToReturn = " ",LastName_ToReturn = " ",Email_ToReturn = " ",PhoneNumber_ToReturn = " ",UserName_ToReturn = " ";
+            int?   OrganizationId_ToReturn = 0;
+            string OrganizationTypeName_ToReturn = " ";
+
+            if (returnedListMerchantsUsers.Count != 0 && returnedListMerchantsUsers != null)
+            {
+                foreach (AspNetUser user in returnedListMerchantsUsers)
+                {
+                    FirstName_ToReturn = user.FirstName;
+                    LastName_ToReturn = user.LastName;
+                    Email_ToReturn = user.Email;
+                    PhoneNumber_ToReturn = user.PhoneNumber;
+                    UserName_ToReturn = user.UserName;
+                    OrganizationId_ToReturn = user.Organization_Id;         
+                    
+                    if (returnedListListOrganiztionTypes.Count != 0 && returnedListListOrganiztionTypes != null)
+                    {
+                        OrganizationTypeName_ToReturn =
+                                      _aspNetUserRepos
+                                      .getOrganizationTypeName(returnedListListOrganiztionTypes,returnedListMerchantsUsers,OrganizationId_ToReturn);
+                    }
+
+                    list_merchantsUsers.Add(new AspNetUserBindingModel
+                    {
+                        FirstName = FirstName_ToReturn,
+                        LastName = LastName_ToReturn,
+                        Email = Email_ToReturn,
+                        PhoneNumber = PhoneNumber_ToReturn,
+                        UserName = UserName_ToReturn,
+                        OrganizationTypeName = OrganizationTypeName_ToReturn
+                    }
+                    );
+
+                    list_merchantsUsers.OrderBy(u => u.UserName)
+                                       .GroupBy(u => u.OrganizationTypeName)
+                                       .Distinct();   
+                }
+             }
+
+            return list_merchantsUsers;
+
+            /*
+             * 
             var l = new List<AspNetUser>();
 
             if (list_merchantsUsers.Count != 0 && list_merchantsUsers != null)
@@ -106,8 +154,8 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.AspNetUsersUtils
                      }
                      ).ToList();               
             }
-
-            return l;                                
+            return l; 
+            */
         }
 
         // Début : Méthode Send Email after Password Changed developped by me 

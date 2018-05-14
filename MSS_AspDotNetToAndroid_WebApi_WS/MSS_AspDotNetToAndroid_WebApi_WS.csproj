@@ -231,6 +231,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Repositories\TransactionsRepository.cs" />
+    <Compile Include="SpecificModels\BindingModels\AspNetUserBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\gw_trnsct_ExtendedBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\gw_trnsct_GeneralBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\ProfileUserBindingModel.cs" />

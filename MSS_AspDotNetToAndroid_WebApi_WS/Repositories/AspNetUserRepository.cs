@@ -31,12 +31,42 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
 
             if (id_usr.Equals("6081779f-b829-4669-a900-f5746ed97bb5")) // '6081779f-b829-4669-a900-f5746ed97bb5' is the id of 'AdminMonoprix' (Admin Merchant)
             {
-                list_AspNetUsersMerchants = (from u in list_AspNetUser
-                                             where u.Organization_Id == 42 /*&& u.Id == id_usr*/
-                                             select u).ToList();
+                if (list_AspNetUser.Count != 0 && list_AspNetUser != null)
+                {
+                    list_AspNetUsersMerchants = (from u in list_AspNetUser
+                                                 orderby u.UserName
+                                                 where u.Organization_Id == 42 /*&& u.Id == id_usr*/
+                                                 select new AspNetUser
+                                                 {
+                                                     FirstName = u.FirstName,
+                                                     LastName = u.LastName,
+                                                     Email = u.Email,
+                                                     PhoneNumber = u.PhoneNumber,
+                                                     UserName = u.UserName,
+                                                     Organization_Id = u.Organization_Id
+                                                 }
+                                                 )
+                                                 .Distinct()
+                                                 .ToList();
+                }              
             }  
          
             return list_AspNetUsersMerchants;
+        }
+
+        public List<Organization> getAllOrganizationsTypes()
+        {
+            var listAllOrganizationsTypes = utwk.getRepository<Organization>().GetAll().ToList();
+            return listAllOrganizationsTypes;
+        }
+
+        public string getOrganizationTypeName(List<Organization> list_OrganizationTypes,List<AspNetUser> list_AspNetUsers,int? organiztionId)
+        {
+            var organizationTypeName_ToReturn = (from o in list_OrganizationTypes
+                                                 join u in list_AspNetUsers
+                                                 on o.Id equals organiztionId
+                                                 select o.Name).FirstOrDefault();
+            return organizationTypeName_ToReturn;
         }
 
         public AspNetUser getAspNetUserById(string id)

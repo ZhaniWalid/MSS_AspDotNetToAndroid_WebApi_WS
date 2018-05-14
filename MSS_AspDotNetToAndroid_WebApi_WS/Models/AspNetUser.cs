@@ -31,7 +31,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public Nullable<int> Organization_Id { get; set; }
+        public int? Organization_Id { get; set; }
         public int IsFirstConnection { get; set; }
         public Nullable<int> OrganismIdentity_Id { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
