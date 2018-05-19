@@ -160,10 +160,16 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Providers
                                      where u.Id == user_id_Identity
                                      select u.Organization_Id).Single();
 
+            var isBlocked = (from u in users_list
+                             where u.Id == user_id_Identity
+                             select u.isBlocked).Single();
+
             //var organanization_id = db.AspNetUsers.Select(u => u.Organization_Id).Where(u => user_id_Identity ).Single();
 
             context.AdditionalResponseParameters.Add("userID", context.Identity.GetUserId()); // added by me to be shown in json response
             context.AdditionalResponseParameters.Add("organizationID", organanization_id); // added by me to be shown in json response
+            context.AdditionalResponseParameters.Add("isBlocked", isBlocked); // added by me to be shown in json response
+
             //get_auth_token = context.Options.AccessTokenProvider.ToString();
 
             /*  Fin : i Added Additional Parameters to be shown after login in Json Response ( in Postman Client )  */

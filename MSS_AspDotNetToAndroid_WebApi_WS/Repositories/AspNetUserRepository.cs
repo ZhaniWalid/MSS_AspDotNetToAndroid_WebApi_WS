@@ -18,6 +18,12 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
         {
         }
 
+        public void CreateUserMerchant(AspNetUser user)
+        {
+            utwk.getRepository<AspNetUser>().Add(user);
+            utwk.Commit();
+        }
+
         public List<AspNetUser> getAllAspNetUsers()
         {
             var    list_AspNetUsers = utwk.getRepository<AspNetUser>().GetAll().ToList();
@@ -36,14 +42,21 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
                     list_AspNetUsersMerchants = (from u in list_AspNetUser
                                                  orderby u.UserName
                                                  where u.Organization_Id == 42 /*&& u.Id == id_usr*/
+                                                 &&    u.Id != "6081779f-b829-4669-a900-f5746ed97bb5" // All Users Merchants without Admin Merchant
                                                  select new AspNetUser
                                                  {
+                                                     //
+                                                     Id = u.Id,
+                                                     //
                                                      FirstName = u.FirstName,
                                                      LastName = u.LastName,
                                                      Email = u.Email,
                                                      PhoneNumber = u.PhoneNumber,
                                                      UserName = u.UserName,
-                                                     Organization_Id = u.Organization_Id
+                                                     Organization_Id = u.Organization_Id,
+                                                     //
+                                                     isBlocked = u.isBlocked
+                                                     //
                                                  }
                                                  )
                                                  .Distinct()
@@ -79,30 +92,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
         }
 
         public void updateAsptNetUser(AspNetUser user)
-        {
-            //var usr = new AspNetUser { Id = user.Id, UserName = user.UserName, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, PhoneNumber = user.PhoneNumber };
-            //dbf.DataContext.AspNetUsers.Attach(user);
-
-            /*if (   dbf.DataContext.Entry(user).Property(x => x.UserName).IsModified == true 
-                || dbf.DataContext.Entry(user).Property(x => x.Email).IsModified == true
-                || dbf.DataContext.Entry(user).Property(x => x.FirstName).IsModified == true
-                || dbf.DataContext.Entry(user).Property(x => x.LastName).IsModified == true
-                || dbf.DataContext.Entry(user).Property(x => x.PhoneNumber).IsModified == true )
-            {
-                utwk.getRepository<AspNetUser>().Update(user);
-                utwk.Commit();
-
-                return true;
-            }else
-            {
-                return false;
-            }*/
-
-            //dbf.DataContext.Entry(user).State = EntityState.Modified;
-
+        {     
             utwk.getRepository<AspNetUser>().Update(user);
             utwk.Commit();
-
         }
 
         public void updateAspNetUserProfile(string id,string userName,string email,string fName,string lName,string phoneNumber)
@@ -117,6 +109,31 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
             updateAsptNetUser(user);
         }
 
+        public void blockUserMerchant(string idUserMerchant)
+        {
+            // Bloquer User Merchant
+            var userMerchantToBlock = getAspNetUserById(idUserMerchant);
+
+            if (userMerchantToBlock.isBlocked != 1)
+            {
+                userMerchantToBlock.isBlocked = 1; // = 1 => Bloquer User Merchant
+            }
+            // Faire la Mise A Jour
+            updateAsptNetUser(userMerchantToBlock);
+            
+        }
+
+        public void unblockUserMerchant(string idUserMerchant)
+        {
+            // Débloquer User Merchant
+            var userMerchantToUnblock = getAspNetUserById(idUserMerchant);
+            if(userMerchantToUnblock.isBlocked != 0)
+            {
+                userMerchantToUnblock.isBlocked = 0; // = 0 => Débloquer User Merchant
+            }
+            // Faire la Mise A jour
+            updateAsptNetUser(userMerchantToUnblock);
+        }
         
     }
 }

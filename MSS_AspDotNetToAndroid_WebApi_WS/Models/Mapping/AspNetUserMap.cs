@@ -42,6 +42,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Models.Mapping
             this.Property(t => t.Organization_Id).HasColumnName("Organization_Id");
             this.Property(t => t.IsFirstConnection).HasColumnName("IsFirstConnection");
             this.Property(t => t.OrganismIdentity_Id).HasColumnName("OrganismIdentity_Id");
+            // added by me
+            this.Property(t => t.isBlocked).HasColumnName("isBlocked").IsOptional();
+            // fin added by me
 
             // Relationships
             this.HasMany(t => t.AspNetUsers1)

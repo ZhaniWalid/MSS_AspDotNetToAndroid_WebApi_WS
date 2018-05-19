@@ -46,5 +46,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Models
         //public virtual UserSessionToken AspNetUserSessionToken { get; set; }
         public virtual ICollection<UserSessionToken> AspNetUserSessionTokens { get; set; }
         /*fin : added by me to manage the 'Tokens on db' for the relation '1 to 1 between UserSessionToken & AspNetUser'  */
+
+        // added by me
+        public int? isBlocked { get; set; } // = 1 => Bloquer User Merchant | = 0 => Débloquer User Merchant
+        // fin added by me
     }
 }
