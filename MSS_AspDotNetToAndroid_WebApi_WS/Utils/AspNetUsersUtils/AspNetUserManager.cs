@@ -136,8 +136,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.AspNetUsersUtils
                         UserName = UserName_ToReturn,
                         OrganizationTypeName = OrganizationTypeName_ToReturn,
                         //
-                        isBlocked = isBlocked_ToReturn // = 1 => Bloquer User Merchant | = 0 => Débloquer User Merchant
+                        isBlocked = isBlocked_ToReturn, // = 1 => Bloquer User Merchant | = 0 => Débloquer User Merchant
                         //
+                        Organization_Id = OrganizationId_ToReturn // zeyda raw juste akéka 7atitha bsh nzid nthabet beha
                     }
                     );
 
@@ -175,19 +176,23 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.AspNetUsersUtils
         public void BlockUserMerchantByAdminMerchant(string idUserToBlock)
         {
             //var id_user = user.Id;
-            _aspNetUserRepos.blockUserMerchant(idUserToBlock); // = 1 => Bloquer User Merchant
+            _aspNetUserRepos.blockUserMerchantById(idUserToBlock); // = 1 => Bloquer User Merchant
         }
 
         public void UnblockUserMerchantByAdminMerchant(string idUserToUnblock)
         {
             //var id_user = user.Id;
-            _aspNetUserRepos.unblockUserMerchant(idUserToUnblock); // = 0 => Débloquer User Merchant
+            _aspNetUserRepos.unblockUserMerchantById(idUserToUnblock); // = 0 => Débloquer User Merchant
         }
 
-        public void CreateUserMerchant(AspNetUser user)
+        public void CreateUserMerchantByAdminMerchant(AspNetUser user)
         {
             _aspNetUserRepos.CreateUserMerchant(user);
+        }
 
+        public void DeleteUserMerchantByAdminMerchant(string idUserToDelete)
+        {
+            _aspNetUserRepos.DeleteUserMerchantById(idUserToDelete);
         }
 
         public string securityStamp_RandomGenerator_StringFormat(int length)

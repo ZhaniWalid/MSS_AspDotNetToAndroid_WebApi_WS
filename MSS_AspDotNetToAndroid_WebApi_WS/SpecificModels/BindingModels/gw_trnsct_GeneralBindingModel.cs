@@ -17,6 +17,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.SpecificModels.BindingModels
         public double? Amount { get; set; } // double Amount? =>  Nullable<double> Amount
         public string EtatTransaction { get; set; } 
         public string BankOfRequest { get; set; }
+        //
+        public string BankId_GateWay { get; set; }
+        public string BankName_GateWay { get; set; }
+        //
 
         // Extended Part
 

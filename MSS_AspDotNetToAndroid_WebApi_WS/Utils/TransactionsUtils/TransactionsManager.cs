@@ -25,6 +25,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
         {
             var returnedTransactionsList = _transactionsRepository.filteredGeneralTransactionsData();
             var returnedListBinCards = _transactionsRepository.getAllBinCardsForPayements();
+            var returnedListBank = _transactionsRepository.getAllBank();
 
             var listGeneralTransactionsData = new List<gw_trnsct_GeneralBindingModel>();
 
@@ -41,7 +42,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
             // Another Fields for Ticket Part
             string ApplicationIdentifierCard_ToReturn = " ", ApplicationCryptogram_ToReturn = " ", TerminalVerificationResults_ToReturn = " ";
             string TransactionStatusInformation_ToReturn = " ",  CardBin_ToReturn= " ";
-            string CardUsedForPayement_ToReturn = " ";
+            string CardUsedForPayement_ToReturn = " ", BankIdGateWay_ToReturn = " ", BankNameGateWay_ToReturn = " ";
 
             if (returnedTransactionsList.Count != 0 && returnedTransactionsList != null)
             {
@@ -76,11 +77,23 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
 
                     if (returnedListBinCards != null && returnedListBinCards.Count != 0)
                     {
-                     CardUsedForPayement_ToReturn = 
+                       CardUsedForPayement_ToReturn = 
                                   _transactionsRepository
                                   .getCardUsedForPayement(returnedListBinCards,returnedTransactionsList,CardBin_ToReturn);
+                    // 
+                       BankIdGateWay_ToReturn =
+                                  _transactionsRepository
+                                  .getBankIdGateWay(returnedListBinCards,returnedTransactionsList,CardBin_ToReturn); 
                     }
 
+                    if (returnedListBank != null && returnedListBank.Count != 0)
+                    {
+                       BankNameGateWay_ToReturn =
+                                  _transactionsRepository
+                                  .getBankNameGateWay(returnedListBank,returnedListBinCards,BankIdGateWay_ToReturn);
+                    }
+                    //
+                    
                      string DayOf_CurrentDate_ToReturn = " ", MonthOf_CurrentDate_ToReturn = " ", YearOf_CurrentDate_ToReturn = " ";
                      string CurrentDate_Jusitified_ToReturn = " ";
 
@@ -128,6 +141,19 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                     {
                         CardUsedForPayement_ToReturn = "---";
                     }
+
+                    //
+                    if (BankIdGateWay_ToReturn == null)
+                    {
+                        BankIdGateWay_ToReturn = "---";
+                    }
+
+                    if (BankNameGateWay_ToReturn == null)
+                    {
+                        BankNameGateWay_ToReturn = "---";
+                    }
+
+                    //
                   
                     listGeneralTransactionsData.Add(new gw_trnsct_GeneralBindingModel
                     {
@@ -139,6 +165,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                         Amount = Amount_ToReturn,
                         EtatTransaction = EtatTransaction_ToReturn,
                         BankOfRequest = BankOfRequest_ToReturn,
+                        //
+                        BankId_GateWay = BankIdGateWay_ToReturn,
+                        BankName_GateWay = BankNameGateWay_ToReturn,
+                        //
 
                         // Extended part
                         EtatCloture = EtatCloture_ToReturn,
@@ -161,7 +191,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
 
                     listGeneralTransactionsData
                                                .OrderBy(trnc => trnc.Amount)
-                                               .GroupBy(trnc => trnc.EtatTransaction)
+                                               .GroupBy(trnc => trnc.BankId_GateWay)
                                                .Distinct();
 
                 }
