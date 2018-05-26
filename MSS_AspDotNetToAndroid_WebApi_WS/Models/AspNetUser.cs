@@ -50,5 +50,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Models
         // added by me
         public int? isBlocked { get; set; } // = 1 => Bloquer User Merchant | = 0 => Débloquer User Merchant
         // fin added by me
+
+        // For the relation '1..*' between  'UserVerificationCode' & 'AspNetUser'
+        public ICollection<UserVerificationCode> userVerificationsCodes { get; set; }
+        //
     }
 }

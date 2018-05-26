@@ -42,6 +42,14 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
             return list_AspNetUsers;
         }
 
+        public List<string> getAllEmailUsers()
+        {
+            var list_AspNetUser = getAllAspNetUsers();
+            var list_AllEmails = list_AspNetUser.Select(u => u.Email).ToList();
+
+            return list_AllEmails;
+        }
+
         public List<AspNetUser> getAllAspNetUsersMerchantsByAdminMerchant(string id_usr)
         {
             var list_AspNetUser = getAllAspNetUsers();
@@ -101,6 +109,57 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
             //var aspNetUser = list_AspNetUser.FirstOrDefault(user => user.Id == id && user.Organization_Id == 42); // mamchetch mli7 : eli ntasti beha 3la ken les users 'marchant' du 'Organization_Id = 42'
             //var aspNetUser = utwk.getRepository<AspNetUser>().GetMany(user => user.Id == id).First();
             return aspNetUser;
+        }
+
+        public AspNetUser getAspNetUserByEmail(string email)
+        {
+            var list_AspNetUser = getAllAspNetUsers();
+            var aspNetUser = list_AspNetUser.FirstOrDefault(user => user.Email == email);
+
+            return aspNetUser;
+        }
+
+        public string getEmail(string email)
+        {
+            var list_Emails = getAllEmailUsers();
+            string isEmail = "";
+
+            for (int i = 0; i < list_Emails.Count; i++)
+            {
+                isEmail = (from e in list_Emails
+                           where e.Equals(email)
+                           select e).FirstOrDefault();
+            }
+
+            return isEmail;
+            
+        }
+
+        public bool isEmailExist(string email)
+        {
+            bool exist;
+
+            //var user = getAspNetUserByEmail(email);
+            var emailUser = getEmail(email);
+
+            if(emailUser == "" || emailUser.Equals("") || emailUser == null)
+            {
+                exist = false;
+            }
+            else
+            {
+                exist = true;
+            }
+
+            return exist;
+        }
+
+        public string getIdAspNetUserByEmail(string email)
+        {
+            var list_AspNetUser = getAllAspNetUsers();
+            var idUser = list_AspNetUser.FirstOrDefault(user => user.Email == email).Id;
+
+            return idUser;
         }
 
         public void updateAsptNetUser(AspNetUser user)

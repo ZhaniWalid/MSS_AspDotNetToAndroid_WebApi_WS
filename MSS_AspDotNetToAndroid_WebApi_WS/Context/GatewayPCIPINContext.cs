@@ -73,6 +73,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Context
         public DbSet<UserSessionToken> UserSessionTokens { get; set; }
         /*  But most likely to delete table 'Token' and work with 'UserSessionToken'*/
 
+        // début : added by me
+        public DbSet<UserVerificationCode> UserVerificationCodes { get; set; }
+        // fin : added by me
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new AspNetRoleMap());
@@ -130,7 +134,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Context
             modelBuilder.Configurations.Add(new TokenMap());
             modelBuilder.Configurations.Add(new UserSessionTokenMap());
             /*  But most likely to delete table 'TokenMap' and work with 'UserSessionTokenMap'*/
-
+            // début : added by me
+            modelBuilder.Configurations.Add(new UserVerificationCodeMap());
+            // fin : added by me
         }
     }
 }

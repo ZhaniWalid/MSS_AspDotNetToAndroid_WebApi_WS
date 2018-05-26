@@ -22,6 +22,7 @@ using MSS_AspDotNetToAndroid_WebApi_WS.SpecificModels.BindingModels;
 using MSS_AspDotNetToAndroid_WebApi_WS.SpecificModels.PatchRequestsModels_ForUpdate;
 using MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils;
 using System.Web.Mvc;
+using MSS_AspDotNetToAndroid_WebApi_WS.Utils.UserVerificationCodeUtils;
 
 namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
 {
@@ -31,9 +32,12 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
     {
         private AuthenticationRepository _repo = null;
         private ApplicationUserManager _userManager;
-
+        
         public static string id_userLoggedIn_static = "", authToken_userLoggedIn_static = "", userName_userLoggedIn_static = "";
         //public static int organization_id_static_toReturn = 0;
+
+        private string Encoded_code = " " , Decoded_code = " ";
+        private static string userIdResetPasswd = " ";
 
         public UserController()
         {
@@ -964,6 +968,218 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
                 {
                     var msgError = "Error when Delete User Merchant";
                     return BadRequest(msgError);
+                }
+            }
+        }
+
+        // Forgotten & Resetting Password on Login
+
+        // POST api/User/ForgotPassword
+        [System.Web.Http.HttpPost]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("ForgotPassword")]
+        [ValidateAntiForgeryToken]
+        public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {
+                var _aspNetUserManager = new AspNetUserManager();
+                //var Iduser = _aspNetUserManager.GetId_AspNetUserByEmail(model.Email_ForgetPwd);
+                var user = await UserManager.FindByEmailAsync(model.Email_ForgetPwd);
+                //var user = _aspNetUserManager.GetAspNetUserByEmail(model.Email_ForgetPwd);
+
+                /*
+                if (user == null)
+                {
+                    //var msgUserNotFound = "Error404_UserNotFound_ByEmailAsync";
+                    //return Ok(msgUserNotFound);
+                    return BadRequest();
+                }
+                else
+                {
+                */
+                // Send an email with this link
+
+                /* 
+                  var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                  Encoded_code = HttpUtility.UrlEncode(code);
+
+                  var callbackUrl = Url.Link("Default",new { Controller = "api/User", Action = "ResetPassword", code = Encoded_code });
+               */
+                if (user == null)
+                {
+                    var msgUserNotFound = "Error404_UserNotFound_ByEmailAsync";
+                    return Ok(msgUserNotFound);
+                    //return BadRequest(msgUserNotFound);
+                }
+                else
+                {
+                    userIdResetPasswd = user.Id;
+                    var _userVerificationCodeManager = new UserVerificationCodeManager();
+
+                    var randomVerifCode = _userVerificationCodeManager.VerificationCode_ResetPassword_RadomGenerator(10);
+                    var userVerificationCode = new UserVerificationCode
+                    {
+                        AspNetUser_fk_Id = user.Id,
+                        VerificationCode = randomVerifCode,
+                        DateTimeOfVerifCode = DateTime.Now
+                    };
+
+                    _userVerificationCodeManager.CreateVerificationCode(userVerificationCode);
+
+                    var Subject = "Reset Password Account MS Solutions";
+                    var body = "<p style='color:black;'><b> Hi Sir : " + user.UserName + "</b></p> </br>"
+                                 + "<p style='color:black;'><b> , You have requested to reset your password after you have forgetted it </b></p> </br>"
+                                 + "<p style='color:black;'><b> , We sent to you this email to your adress email : " + user.Email + "</b></p> </br>"
+                                 + "<p style='color:black;'><b> , Please reset your password by using this Verification Code : <mark>" + randomVerifCode + "</mark></b></p> </br>"
+                                 + "<p style='color:black;'><b> , Date of request resetting password is : <mark>" + DateTime.Now + "</mark></b></p> </br>"
+                                 + "<p style='color:black;'><b> , Thanks" + "</b></p> </br>"
+                                 + "<p style='color:black;'><b> , Best Reagards" + "</b></p> </br> </br>"
+                                 + "<h2 style='text-align:center;color:black;'>   MS Solutions 2018 , All Rights Reserved." + "</h2>";
+
+                    //await UserManager.SendEmailAsync(user.Id,Subject,body);
+                    _aspNetUserManager.sendEmail(user.Email, Subject, body);
+
+                    var msgSuccess = "Link_ResetPassword_HasBeenSent_ToTheUser";
+                    return Ok(msgSuccess);
+                }
+                //}
+            }
+        }
+
+
+        // POST api/User/VerificationCode
+        [System.Web.Http.HttpPost]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("VerificationCode")]
+        [ValidateAntiForgeryToken]
+        public async Task<IHttpActionResult> VerificationCode(VerificationCodeBindingModel model)
+        {
+           /* if (!ModelState.IsValid)
+            {
+              return BadRequest(ModelState);
+            }else{ */
+
+                var _aspNetUserManager = new AspNetUserManager();
+                var _userVerificationCodeManager = new UserVerificationCodeManager();
+                //var Iduser = _aspNetUserManager.GetId_AspNetUserByEmail(model.Email_ResetPwd);
+
+                var user = await UserManager.FindByIdAsync(userIdResetPasswd);
+
+                if (user == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    var VerifCode = _userVerificationCodeManager.GetLastVerificationCodeByIdUser(user.Id);
+
+                    if (model.VerificationCode.Equals(VerifCode))
+                    {
+                        var codeVerifiedSuccess = "VerificationCode_Successfully_Verified";
+                        //RedirectToRoute("ResetPassword");
+                        return Ok(codeVerifiedSuccess);
+                    }
+                    else
+                    {
+                        var codeVerifiedFailed = "VerificationCode_isNot_Valid";
+                        return Ok(codeVerifiedFailed);
+                    }
+                }
+            //}
+        }
+
+        // PATCH api/User/ResetPassword
+        [System.Web.Http.HttpPatch]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("ResetPassword")]
+        [ValidateAntiForgeryToken]
+        public IHttpActionResult ResetPassword([FromBody] ResetPasswordBindingModel model)
+        {
+           /* if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {*/
+                var _aspNetUserManager = new AspNetUserManager();
+                var _userVerificationCodeManager = new UserVerificationCodeManager();
+                //var Iduser = _aspNetUserManager.GetId_AspNetUserByEmail(model.Email_ResetPwd);
+
+                //var user = await UserManager.FindByIdAsync(userIdResetPasswd);
+                var user = _aspNetUserManager.GetCurrentUserById(userIdResetPasswd);
+
+                if (user == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    if (!model.Password_ResetPwd.Equals(model.ConfirmPassword_ResetPwd))
+                    {
+                        var msgPasswordNotEquals = "Error_Password_ConfirmPassword_dotNotMatch";
+                        return Ok(msgPasswordNotEquals);
+                    }
+                    else
+                    {
+                        var EqualedPassword = model.Password_ResetPwd;
+
+                        PasswordHasher ph = new PasswordHasher();
+                        var passwordHashed = ph.HashPassword(EqualedPassword);
+
+                        user.PasswordHash = passwordHashed;
+
+                        //Decoded_code = HttpUtility.UrlDecode(Encoded_code);
+                        //model.Code = Decoded_code;
+
+                        //var VerifCode = _userVerificationCodeManager.GetLastVerificationCodeByIdUser(user.Id);
+
+                        //  if (model.VerificationCode.Equals(VerifCode))
+                        // {
+                        //var result = await UserManager.ResetPasswordAsync(user.Id, null, EqualedPassword);
+                        _aspNetUserManager.UpdateAspNetUser(user);
+
+                        //  if (result.Succeeded)
+                        // {
+                        var Subject = "Password Account MS Solutions : Resetted Successfully";
+                        var body = "<p style='color:black;'><b> Hi Sir : " + user.UserName + "</b></p> </br>"
+                                     + "<p style='color:black;'><b> , Your password has been Resetted Successfully</b></p> </br>"
+                                     + "<p style='color:black;'><b> , Your new credentials to your email : " + model.Email_ResetPwd + " , are : </b></p> </br>"
+                                     + "<p style='color:black;'><b> , Your UserName : <mark>" + user.UserName + "</mark></b></p> </br>"
+                                     + "<p style='color:black;'><b> , New password after Resetting : <mark>" + EqualedPassword + "</mark></b></p> </br>"
+                                     + "<p style='color:black;'><b> , Date of Successful Password Reset : <mark>" + DateTime.Now + "</mark></b></p> </br>"
+                                     + "<p style='color:black;'><b> , Please Save it in secure place to not forget it" + "</b></p> </br> </br>"
+                                     + "<p style='color:black;'><b> , Thanks" + "</b></p> </br>"
+                                     + "<p style='color:black;'><b> , Best Reagards" + "</b></p> </br> </br>"
+                                     + "<h2 style='text-align:center;color:black;'>   MS Solutions 2018 , All Rights Reserved." + "</h2>";
+
+                        //await UserManager.SendEmailAsync(user.Id,Subject,body);
+                        _aspNetUserManager.sendEmail(user.Email, Subject, body);
+
+                        var msgResetPasswordSucceded = "Congratulations_ResetPassword_HaveBeen_Succeedded => View your Email !";
+                        return Ok(msgResetPasswordSucceded);
+                        //  }
+                        //  else
+                        //  {
+                        //var msgResetPasswordFailed = "Failure : Reset Password have been failed !";
+                        //return Ok(msgResetPasswordFailed);
+                        //     return (GetErrorResult(result));
+                        // }
+                        //  }else
+                        //  {
+                        //    return Ok("Invalid Verifcation Code");
+                        //  }
+                   // }
                 }
             }
         }

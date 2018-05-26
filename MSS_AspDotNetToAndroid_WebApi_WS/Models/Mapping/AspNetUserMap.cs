@@ -62,7 +62,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Models.Mapping
             this.HasOptional(t => t.OrganismIdentity)
                 .WithMany(t => t.AspNetUsers)
                 .HasForeignKey(d => d.OrganismIdentity_Id);
-
+    
         }
     }
 }

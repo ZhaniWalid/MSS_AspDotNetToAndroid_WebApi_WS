@@ -91,4 +91,44 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.SpecificModels.BindingModels
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    // Class Added by me , other class au dessus , default from Asp.Net 
+
+    public class ResetPasswordBindingModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email_ResetPwd")]
+        public string Email_ResetPwd { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password_ResetPwd")]
+        public string Password_ResetPwd { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "ConfirmPassword_ResetPwd")]
+        [Compare("Password_ResetPwd" /*, ErrorMessage = "The password and confirmation password do not match."*/ ) ]
+        public string ConfirmPassword_ResetPwd { get; set; }
+
+        //[Display(Name = "VerificationCode")]
+        //public string VerificationCode { get; set; }
+    }
+
+    public class ForgotPasswordBindingModel
+    {
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email_ForgetPwd")]
+        public string Email_ForgetPwd { get; set; }
+    }
+
+    public class VerificationCodeBindingModel
+    {
+        [Required]
+        [Display(Name = "VerificationCode")]
+        public string VerificationCode { get; set; }
+    }
+
 }
