@@ -727,6 +727,29 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
             } 
         }
 
+        // GET api/User/ReportingStatusTransactions
+        [System.Web.Http.HttpGet]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("ReportingStatusTransactions")]
+        public IHttpActionResult ReportingStatusTransactions()
+        {
+            var _transactionsManager = new TransactionsManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            var list_TransactionsStatus = _transactionsManager.getOnlyTransactionsStatus();
+
+            if (list_TransactionsStatus.Count != 0 && list_TransactionsStatus != null && currentUser != null)
+            {
+                return Ok(list_TransactionsStatus);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
 
         // PATCH api/User/BlockUserMerchantByAdminMerchant/{idUserMerchantToBlock}
         [System.Web.Http.HttpPatch]  // added by me

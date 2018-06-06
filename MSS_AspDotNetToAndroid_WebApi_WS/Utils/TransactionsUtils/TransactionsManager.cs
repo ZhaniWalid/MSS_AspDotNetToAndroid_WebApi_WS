@@ -199,7 +199,70 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
             return listGeneralTransactionsData;
         }
 
-        
+        public List<gw_TransactionStatusBindingModel> getOnlyTransactionsStatus()
+        {
+            var returnedTransactionsList = _transactionsRepository.getAllEtatTransactions();
+            var listTransactionsStatus = new List<gw_TransactionStatusBindingModel>();
+
+            //string StatusTransaction_ToReturn = "";
+            //int NbreStatusTransaction_ToReturn = 0;
+
+            if (returnedTransactionsList.Count != 0 && returnedTransactionsList != null)
+            {
+                foreach (gw_trnsct trnsc in returnedTransactionsList)
+                {
+                    //StatusTransaction_ToReturn = trnsc.EtatTransaction;
+
+               /*
+                    var NbreTrnscAutorisee = returnedTransactionsList.Count(trnc => trnc.EtatTransaction == "Transaction autorisée");
+                    var NbreTrnscNonAutorisee = returnedTransactionsList.Count(trnc => trnc.EtatTransaction == "Transaction non autorisée");
+                    var NbreTrnscNonAboutie = returnedTransactionsList.Count(trnc => trnc.EtatTransaction == "Transaction non aboutie");
+                    var NbreTrnscAnnulee = returnedTransactionsList.Count(trnc => trnc.EtatTransaction == "Transaction annulée");
+
+                    switch (StatusTransaction_ToReturn)
+                    {
+                        case "Transaction autorisée":
+                            NbreStatusTransaction_ToReturn = NbreTrnscAutorisee;
+                            break;
+                        case "Transaction non autorisée":
+                            NbreStatusTransaction_ToReturn = NbreTrnscNonAutorisee;
+                            break;
+                        case "Transaction non aboutie":
+                            NbreStatusTransaction_ToReturn = NbreTrnscNonAboutie;
+                            break;
+                        case "Transaction annulée":
+                            NbreStatusTransaction_ToReturn = NbreTrnscAnnulee;
+                            break;
+                    }
+            */
+
+                    listTransactionsStatus = (from trn in returnedTransactionsList
+                                                group trn by trn.EtatTransaction into transactionStatGroup
+                                                select new gw_TransactionStatusBindingModel
+                                                {
+                                                    EtatTransaction = transactionStatGroup.Key,
+                                                    NbreTransactionsParEtatTransaction = transactionStatGroup.Count()
+                                                }
+                                                ).ToList();
+                    /*
+                    listTransactionsStatus.Add(new gw_TransactionStatusBindingModel
+                    {
+                        EtatTransaction = StatusTransaction_ToReturn,
+                        NbreTransactionsParEtatTransaction = NbreStatusTransaction_ToReturn
+                    }
+                    );
+                    */
+
+                    listTransactionsStatus.GroupBy(trn => trn.EtatTransaction)
+                                          .Distinct();
+                }
+            }
+
+            return listTransactionsStatus;
+
+        }
+
+
         /*
 
         public List<gw_trnsct_ExtendedBindingModel> getExtendedTransactionsData()

@@ -235,6 +235,7 @@
     <Compile Include="Repositories\TransactionsRepository.cs" />
     <Compile Include="Repositories\UserVerificationCodeRepository.cs" />
     <Compile Include="SpecificModels\BindingModels\AspNetUserBindingModel.cs" />
+    <Compile Include="SpecificModels\BindingModels\gw_TransactionStatusBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\gw_trnsct_ExtendedBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\gw_trnsct_GeneralBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\ProfileUserBindingModel.cs" />

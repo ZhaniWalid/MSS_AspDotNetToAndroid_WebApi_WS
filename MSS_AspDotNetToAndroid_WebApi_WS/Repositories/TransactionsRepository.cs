@@ -67,6 +67,28 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
             return filtered_generalListTransactions;
         }
 
+        public List<gw_trnsct> getAllEtatTransactions()
+        {
+            var list_AllTransctionsData = getAllTransactionsData();
+
+            var filtered_ListEtatTransactions = new List<gw_trnsct>();
+
+            if (list_AllTransctionsData.Count != 0 && list_AllTransctionsData != null)
+            {
+                filtered_ListEtatTransactions = (from trnsc in list_AllTransctionsData
+                                                 select new gw_trnsct
+                                                 {
+                                                     EtatTransaction = trnsc.EtatTransaction
+                                                 }
+                                                )
+                                                .Distinct()
+                                                .ToList();
+            }
+
+            return filtered_ListEtatTransactions;
+
+       }
+
         public List<gw_bin> getAllBinCardsForPayements()
         {
             var list_BinCards = utwk.getRepository<gw_bin>().GetAll().ToList();
@@ -111,6 +133,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
 
             return BankId_ToReturn;
         }
+
 
         /*
 
