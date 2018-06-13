@@ -751,6 +751,78 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
             }
         }
 
+        // GET api/User/ReportingMerchantTypeTransactions
+        [System.Web.Http.HttpGet]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("ReportingMerchantTypeTransactions")]
+        public IHttpActionResult ReportingMerchantTypeTransactions()
+        {
+            var _transactionsManager = new TransactionsManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            var list_MerchantTypeTransactions = _transactionsManager.getOnlyMerchantTypes();
+
+            if (list_MerchantTypeTransactions.Count != 0 && list_MerchantTypeTransactions != null && currentUser != null)
+            {
+                return Ok(list_MerchantTypeTransactions);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        // GET api/User/ReportingCardBinLabels
+        [System.Web.Http.HttpGet]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("ReportingCardBinLabels")]
+        public IHttpActionResult ReportingCardBinLabels()
+        {
+            var _transactionsManager = new TransactionsManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            var list_CardBinLabels = _transactionsManager.getOnlyBinCardLabels();
+
+            if (list_CardBinLabels.Count != 0 && list_CardBinLabels != null && currentUser != null)
+            {
+                return Ok(list_CardBinLabels);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        // GET api/User/ReportingBankOfPayement
+        [System.Web.Http.HttpGet]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("ReportingBankOfPayement")]
+        public IHttpActionResult ReportingBankOfPayement()
+        {
+            var _transactionsManager = new TransactionsManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            var list_BankNamesOfPayement = _transactionsManager.getOnlyBankNamesOfPayement();
+
+            if (list_BankNamesOfPayement.Count != 0 && list_BankNamesOfPayement != null && currentUser != null)
+            {
+                return Ok(list_BankNamesOfPayement);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         // PATCH api/User/BlockUserMerchantByAdminMerchant/{idUserMerchantToBlock}
         [System.Web.Http.HttpPatch]  // added by me
         [UserSessionTokenAuthorize]  // added by me

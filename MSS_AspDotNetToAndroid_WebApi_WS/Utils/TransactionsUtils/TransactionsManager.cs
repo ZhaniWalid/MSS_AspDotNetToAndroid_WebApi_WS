@@ -236,7 +236,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                     }
             */
 
-                    listTransactionsStatus = (from trn in returnedTransactionsList
+                    listTransactionsStatus =    (from trn in returnedTransactionsList
                                                 group trn by trn.EtatTransaction into transactionStatGroup
                                                 select new gw_TransactionStatusBindingModel
                                                 {
@@ -262,6 +262,90 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
 
         }
 
+        public List<gw_MerchantTypeTransactionBindingModel> getOnlyMerchantTypes()
+        {
+            var returnedTransactionsList = _transactionsRepository.getAllMerchantTypeTransactions();
+            var listMerchantTypeTransactions = new List<gw_MerchantTypeTransactionBindingModel>();
+
+            if (returnedTransactionsList.Count != 0 && returnedTransactionsList != null)
+            {
+                foreach (gw_trnsct trnsc in returnedTransactionsList)
+                {
+
+                    listMerchantTypeTransactions = (from trn in returnedTransactionsList
+                                                    group trn by trn.MerchantType into merchantTypeTransactionsGroup
+                                                    select new gw_MerchantTypeTransactionBindingModel
+                                                    {
+                                                      MerchantType = merchantTypeTransactionsGroup.Key,
+                                                      NbreMerchantType = merchantTypeTransactionsGroup.Count()
+                                                     }
+                                                  ).ToList();
+
+                    listMerchantTypeTransactions.GroupBy(trn => trn.MerchantType)
+                                                .Distinct();
+                }
+            }
+
+            return listMerchantTypeTransactions;
+        }
+
+        public List<gw_BinCardBindingModel> getOnlyBinCardLabels()
+        {
+            //var returnedBinCardsLabelsList      = _transactionsRepository.getAllBinCardsLabels();
+            //var returnedBinCardsCodeList        = _transactionsRepository.getAllCardsBinCodes();
+            var returnedGeneralTransactionsData = getGeneralTransactionsData();
+
+            var listCardsBinLabels = new List<gw_BinCardBindingModel>();
+
+            if (returnedGeneralTransactionsData.Count != 0 && returnedGeneralTransactionsData != null)
+            {
+                foreach (gw_trnsct_GeneralBindingModel trnsc in returnedGeneralTransactionsData)
+                {
+     
+                    listCardsBinLabels = (from bin_card in returnedGeneralTransactionsData
+                                              group bin_card by bin_card.CardUsedForPayement into binCardsLabelGroup
+                                              select new gw_BinCardBindingModel
+                                               {
+                                                  BinCardLabel = binCardsLabelGroup.Key,
+                                                  NbreBinCards = binCardsLabelGroup.Count()
+                                               }
+                                         ).ToList();
+
+                    listCardsBinLabels.OrderBy(bin_card => bin_card.NbreBinCards)
+                                      .GroupBy(bin_card => bin_card.BinCardLabel)
+                                      .Distinct();
+                }
+            }
+
+            return listCardsBinLabels;
+        }
+
+        public List<gw_BankOfPayementBindingModel> getOnlyBankNamesOfPayement()
+        {
+            var returnedGeneralTransactionsData = getGeneralTransactionsData();
+            var listBankNamesOfPayement = new List<gw_BankOfPayementBindingModel>();
+            
+            if (returnedGeneralTransactionsData.Count != 0 && returnedGeneralTransactionsData != null)
+            {
+                foreach (gw_trnsct_GeneralBindingModel trnsc in returnedGeneralTransactionsData)
+                {
+                    listBankNamesOfPayement = (from bank in returnedGeneralTransactionsData
+                                               group bank by bank.BankName_GateWay into bankNamesGroup
+                                               select new gw_BankOfPayementBindingModel
+                                               {
+                                                   BankName = bankNamesGroup.Key,
+                                                   NbBankPerNameBank = bankNamesGroup.Count()
+                                               }
+                                             ).ToList();
+
+                    listBankNamesOfPayement.OrderBy(bank => bank.NbBankPerNameBank)
+                                           .GroupBy(bank => bank.BankName)
+                                           .Distinct();
+                }
+            }
+
+            return listBankNamesOfPayement;
+        }
 
         /*
 

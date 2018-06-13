@@ -235,6 +235,9 @@
     <Compile Include="Repositories\TransactionsRepository.cs" />
     <Compile Include="Repositories\UserVerificationCodeRepository.cs" />
     <Compile Include="SpecificModels\BindingModels\AspNetUserBindingModel.cs" />
+    <Compile Include="SpecificModels\BindingModels\gw_BankOfPayementBindingModel.cs" />
+    <Compile Include="SpecificModels\BindingModels\gw_BinCardBindingModel.cs" />
+    <Compile Include="SpecificModels\BindingModels\gw_MerchantTypeTransactionBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\gw_TransactionStatusBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\gw_trnsct_ExtendedBindingModel.cs" />
     <Compile Include="SpecificModels\BindingModels\gw_trnsct_GeneralBindingModel.cs" />

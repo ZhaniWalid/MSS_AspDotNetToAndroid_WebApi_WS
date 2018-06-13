@@ -89,6 +89,68 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
 
        }
 
+      public List<gw_trnsct> getAllMerchantTypeTransactions()
+        {
+            var list_AllTransctionsData = getAllTransactionsData();
+
+            var filtered_ListMerchantTypeTransactions = new List<gw_trnsct>();
+
+            if (list_AllTransctionsData.Count != 0 && list_AllTransctionsData != null)
+            {
+                filtered_ListMerchantTypeTransactions = (from trnsc in list_AllTransctionsData
+                                                         select new gw_trnsct
+                                                          {
+                                                          MerchantType = trnsc.MerchantType
+                                                         }
+                                                        ).Distinct()
+                                                        .ToList();
+            }
+
+            return filtered_ListMerchantTypeTransactions;
+        }
+
+        // I didn't use it , but it works fine
+        public List<gw_trnsct> getAllCardsBinCodes()
+        {
+            var list_AllTransctionsData = getAllTransactionsData();
+
+            var filtered_ListCardsBinCodes = new List<gw_trnsct>();
+
+            if (list_AllTransctionsData.Count != 0 && list_AllTransctionsData != null)
+            {
+                filtered_ListCardsBinCodes = (from trnsc in list_AllTransctionsData
+                                              select new gw_trnsct
+                                                {
+                                                 CardBin = trnsc.CardBin
+                                                }
+                                              ).Distinct()
+                                              .ToList();
+            }
+
+            return filtered_ListCardsBinCodes;
+        }
+
+        // I didn't use it , but it works fine
+        public List<gw_bin> getAllBinCardsLabels()
+        {
+            var list_AllBinCards = getAllBinCardsForPayements();
+
+            var filtered_ListBinCardLabels = new List<gw_bin>();
+
+            if (list_AllBinCards.Count != 0 && list_AllBinCards != null)
+            {
+                filtered_ListBinCardLabels = (from bin_card in list_AllBinCards
+                                              select new gw_bin
+                                              {
+                                                 gw_bin_label = bin_card.gw_bin_label
+                                              }
+                                              ).Distinct()
+                                               .ToList();
+            }
+
+            return filtered_ListBinCardLabels;
+        }
+
         public List<gw_bin> getAllBinCardsForPayements()
         {
             var list_BinCards = utwk.getRepository<gw_bin>().GetAll().ToList();
