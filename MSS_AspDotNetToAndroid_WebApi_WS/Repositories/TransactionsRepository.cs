@@ -58,7 +58,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
                                                         ApplicationCryptogram = trnsc.ApplicationCryptogram, // Sign
                                                         TerminalVerificationResults = trnsc.TerminalVerificationResults, // TVR
                                                         TransactionStatusInformation = trnsc.TransactionStatusInformation, // TSI
-                                                        CardBin = trnsc.CardBin
+                                                        CardBin = trnsc.CardBin,
+
+                                                        // Code Status pour chercher les transactions réfusé ( rejeté ) ,tq refus (rejet) code = 20
+                                                        CodeStatus = trnsc.CodeStatus
                                                     }
                                                     )
                                                     .Distinct()
@@ -108,94 +111,6 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Repositories
 
             return filtered_ListMerchantTypeTransactions;
         }
-
-        // I didn't use it , but it works fine
-        public List<gw_trnsct> getAllCardsBinCodes()
-        {
-            var list_AllTransctionsData = getAllTransactionsData();
-
-            var filtered_ListCardsBinCodes = new List<gw_trnsct>();
-
-            if (list_AllTransctionsData.Count != 0 && list_AllTransctionsData != null)
-            {
-                filtered_ListCardsBinCodes = (from trnsc in list_AllTransctionsData
-                                              select new gw_trnsct
-                                                {
-                                                 CardBin = trnsc.CardBin
-                                                }
-                                              ).Distinct()
-                                              .ToList();
-            }
-
-            return filtered_ListCardsBinCodes;
-        }
-
-        // I didn't use it , but it works fine
-        public List<gw_bin> getAllBinCardsLabels()
-        {
-            var list_AllBinCards = getAllBinCardsForPayements();
-
-            var filtered_ListBinCardLabels = new List<gw_bin>();
-
-            if (list_AllBinCards.Count != 0 && list_AllBinCards != null)
-            {
-                filtered_ListBinCardLabels = (from bin_card in list_AllBinCards
-                                              select new gw_bin
-                                              {
-                                                 gw_bin_label = bin_card.gw_bin_label
-                                              }
-                                              ).Distinct()
-                                               .ToList();
-            }
-
-            return filtered_ListBinCardLabels;
-        }
-
-        public List<gw_bin> getAllBinCardsForPayements()
-        {
-            var list_BinCards = utwk.getRepository<gw_bin>().GetAll().ToList();
-            return list_BinCards;
-        }
-
-        public string getCardUsedForPayement(List<gw_bin> list_BinCards,List<gw_trnsct> list_Transactions,string cardBin)
-        {
-            var cardUsedForPayement_ToReturn = (from c1 in list_BinCards
-                                                join c2 in list_Transactions
-                                                on c1.gw_bin_id equals cardBin
-                                                select c1.gw_bin_label
-                                                ).FirstOrDefault();
-
-            return cardUsedForPayement_ToReturn;
-        }
-
-        public List<gw_bank> getAllBank()
-        {
-            var list_Bank = utwk.getRepository<gw_bank>().GetAll().ToList();
-            return list_Bank;
-        }
-
-        public string getBankIdGateWay(List<gw_bin> list_BinCards, List<gw_trnsct> list_Transactions, string cardBin)
-        {
-            var BankId_ToReturn = (from c1 in list_BinCards
-                                   join c2 in list_Transactions
-                                   on c1.gw_bin_id equals cardBin
-                                   select c1.gw_bin_bank_id
-                                   ).FirstOrDefault();
-
-            return BankId_ToReturn;
-        }
-
-        public string getBankNameGateWay(List<gw_bank> list_bank,List<gw_bin> list_BinCards,string bankId)
-        {
-            var BankId_ToReturn = (from c1 in list_bank
-                                   join c2 in list_BinCards
-                                   on c1.gw_bank_id equals bankId
-                                   select c1.gw_bank_name
-                                   ).FirstOrDefault();
-
-            return BankId_ToReturn;
-        }
-
 
         /*
 

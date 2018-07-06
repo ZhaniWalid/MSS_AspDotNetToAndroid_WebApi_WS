@@ -15,17 +15,24 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
         private static IUnitOfWork uow = new UnitOfWork(dbf);
 
         private TransactionsRepository _transactionsRepository;
+        private StatusCodeRepository _statusCodeRepository;
+        private CardBinRepository _cardBinRepository;
+        private BankRepository _bankRepository;
 
         public TransactionsManager()
         {
             _transactionsRepository = new TransactionsRepository();
+            _statusCodeRepository = new StatusCodeRepository();
+            _cardBinRepository = new CardBinRepository();
+            _bankRepository = new BankRepository();
         }
 
         public List<gw_trnsct_GeneralBindingModel> getGeneralTransactionsData()
         {
-            var returnedTransactionsList = _transactionsRepository.filteredGeneralTransactionsData();
-            var returnedListBinCards = _transactionsRepository.getAllBinCardsForPayements();
-            var returnedListBank = _transactionsRepository.getAllBank();
+            var returnedTransactionsList  = _transactionsRepository.filteredGeneralTransactionsData();
+            var returnedListBinCards      = _cardBinRepository.getAllBinCardsForPayements();
+            var returnedListBank          = _bankRepository.getAllBank();
+            var returnedListStatusCode    = _statusCodeRepository.getAllStatusCodeData();
 
             var listGeneralTransactionsData = new List<gw_trnsct_GeneralBindingModel>();
 
@@ -43,6 +50,9 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
             string ApplicationIdentifierCard_ToReturn = " ", ApplicationCryptogram_ToReturn = " ", TerminalVerificationResults_ToReturn = " ";
             string TransactionStatusInformation_ToReturn = " ",  CardBin_ToReturn= " ";
             string CardUsedForPayement_ToReturn = " ", BankIdGateWay_ToReturn = " ", BankNameGateWay_ToReturn = " ";
+
+            // Code Status pour chercher les transactions réfusé ( rejeté ) ,tq refus (rejet) code = 20
+            string CodeStatus_ToReturn = " ", CodeStatusDescription_ToReturn = " ";
 
             if (returnedTransactionsList.Count != 0 && returnedTransactionsList != null)
             {
@@ -75,21 +85,31 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                      TransactionStatusInformation_ToReturn = trnsc.TransactionStatusInformation; // TSI
                      CardBin_ToReturn = trnsc.CardBin; // Carte : CardBin.gw_bin_label
 
+                    // Code Status pour chercher les transactions réfusé ( rejeté ) ,tq refus (rejet) code = 20
+                    CodeStatus_ToReturn = trnsc.CodeStatus;
+
+                    if (returnedListStatusCode != null && returnedListStatusCode.Count != 0)
+                    {
+                        CodeStatusDescription_ToReturn =
+                              _statusCodeRepository
+                              .getStatusCodeDescription(returnedListStatusCode,returnedTransactionsList,CodeStatus_ToReturn);
+                    }
+
                     if (returnedListBinCards != null && returnedListBinCards.Count != 0)
                     {
-                       CardUsedForPayement_ToReturn = 
-                                  _transactionsRepository
+                       CardUsedForPayement_ToReturn =
+                                  _cardBinRepository
                                   .getCardUsedForPayement(returnedListBinCards,returnedTransactionsList,CardBin_ToReturn);
                     // 
                        BankIdGateWay_ToReturn =
-                                  _transactionsRepository
+                                  _bankRepository
                                   .getBankIdGateWay(returnedListBinCards,returnedTransactionsList,CardBin_ToReturn); 
                     }
 
                     if (returnedListBank != null && returnedListBank.Count != 0)
                     {
                        BankNameGateWay_ToReturn =
-                                  _transactionsRepository
+                                  _bankRepository
                                   .getBankNameGateWay(returnedListBank,returnedListBinCards,BankIdGateWay_ToReturn);
                     }
                     //
@@ -184,7 +204,11 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils
                         ApplicationCryptogram = ApplicationCryptogram_ToReturn, // Sign
                         TerminalVerificationResults = TerminalVerificationResults_ToReturn, // TVR
                         TransactionStatusInformation = TransactionStatusInformation_ToReturn, // TSI
-                        CardUsedForPayement = CardUsedForPayement_ToReturn // Carte : CardBin.gw_bin_label
+                        CardUsedForPayement = CardUsedForPayement_ToReturn, // Carte : CardBin.gw_bin_label
+
+                        // Code Status pour chercher les transactions réfusé ( rejeté ) ,tq refus (rejet) code = 20
+                        CodeStatus = CodeStatus_ToReturn,
+                        CodeStatusDescription = CodeStatusDescription_ToReturn
 
                     }
                    );

@@ -77,6 +77,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Context
         public DbSet<UserVerificationCode> UserVerificationCodes { get; set; }
         // fin : added by me
 
+        // For Notification aded by me
+        public DbSet<RejectedTransactionsCounter> RejectedTransactionsCounters { get; set; }
+        // fin : added by me
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new AspNetRoleMap());
@@ -137,6 +141,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Context
             // début : added by me
             modelBuilder.Configurations.Add(new UserVerificationCodeMap());
             // fin : added by me
+            // For Notification aded by me
+            modelBuilder.Configurations.Add(new RejectedTransactionsCounterMap());
+            // fin : added by me
+
         }
     }
 }

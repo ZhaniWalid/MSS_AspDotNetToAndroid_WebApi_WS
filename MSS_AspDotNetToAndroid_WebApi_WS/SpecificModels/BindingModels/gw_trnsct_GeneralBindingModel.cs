@@ -41,6 +41,10 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.SpecificModels.BindingModels
         public string CardUsedForPayement { get; set; } // Carte 
         //public string BillingNumber { get; set; } // Num Facturation
 
+        // Code Status pour chercher les transactions réfusé ( rejeté ) ,tq refus (rejet) code = 20
+        public string CodeStatus { get; set; }
+        public string CodeStatusDescription { get; set; }
+
 
     }
 }

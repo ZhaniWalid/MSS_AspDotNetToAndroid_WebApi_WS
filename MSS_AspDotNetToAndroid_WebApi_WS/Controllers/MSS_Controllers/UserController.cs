@@ -23,6 +23,7 @@ using MSS_AspDotNetToAndroid_WebApi_WS.SpecificModels.PatchRequestsModels_ForUpd
 using MSS_AspDotNetToAndroid_WebApi_WS.Utils.TransactionsUtils;
 using System.Web.Mvc;
 using MSS_AspDotNetToAndroid_WebApi_WS.Utils.UserVerificationCodeUtils;
+using MSS_AspDotNetToAndroid_WebApi_WS.Utils.StatusCodeUtils;
 
 namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
 {
@@ -36,7 +37,7 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
         public static string id_userLoggedIn_static = "", authToken_userLoggedIn_static = "", userName_userLoggedIn_static = "";
         //public static int organization_id_static_toReturn = 0;
 
-        private string Encoded_code = " " , Decoded_code = " ";
+        //private string Encoded_code = " " , Decoded_code = " ";
         private static string userIdResetPasswd = " ";
 
         public UserController()
@@ -816,6 +817,194 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Controllers.MSS_Controllers
             if (list_BankNamesOfPayement.Count != 0 && list_BankNamesOfPayement != null && currentUser != null)
             {
                 return Ok(list_BankNamesOfPayement);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        // GET api/User/GetStatusCodeWithDesc
+        [System.Web.Http.HttpGet]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("GetStatusCodeWithDesc")]
+        public IHttpActionResult GetStatusCodeWithDesc()
+        {
+            var _statusCodeManager = new StatusCodeManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            var list_StatusCodeWithDesc = _statusCodeManager.getOnlyStatusCodeWithDesc();
+
+            if (list_StatusCodeWithDesc.Count != 0 && list_StatusCodeWithDesc != null && currentUser != null)
+            {
+                return Ok(list_StatusCodeWithDesc);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        // POST api/User/PostNotifRejectedTranscFromFireBaseCloud
+        [System.Web.Http.HttpPost]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("PostNotifRejectedTranscFromFireBaseCloud")]
+        public IHttpActionResult PostNotifRejectedTranscFromFireBaseCloud()
+        {
+            var _statusCodeManager = new StatusCodeManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            //var resultPushNotif = _statusCodeManager.sendNotificationOfRejectedTransactions();
+            //var resultPushNotif = _statusCodeManager.SendNotificationFromFirebaseCloud();
+            //var sent = await _statusCodeManager.sendPushNotifcationToFirebase();
+            var differenceCountedRejcTrns = _statusCodeManager.CalculateDifferenceOfCountedRejectedValue();
+
+         if (currentUser != null)
+              {
+                if (differenceCountedRejcTrns > 0)
+                {
+                    _statusCodeManager.PostCounterTrns();
+                    return Ok("Adding New Counter Transaction Record succeeded Who Have This Difference : " + differenceCountedRejcTrns);
+                }
+
+                // In Case " differenceCountedRejcTrns > 0 " , because when it's > 0 , auto a new record will be added
+                // And from it we will retreiv lastDiff to send it into notification
+                var lastDiffFromDb = _statusCodeManager.GetLastDifferenceFromDb();
+                //object resultPush = "";
+                if (lastDiffFromDb > 0)
+                {
+                    var resultPushNotif = _statusCodeManager.sendNotifcation(lastDiffFromDb);
+                    if (resultPushNotif != null)
+                    {
+                        //resultPush = resultPushNotif;
+                        return Ok(resultPushNotif);
+                    }
+                    else
+                    {
+                        //resultPush = "Error : When sending notification from c# webApi restful via firebase to android client";
+                        return BadRequest(resultPushNotif.ToString());
+                    }
+                }
+                //return Ok(resultPush);
+                else
+                {
+                    return BadRequest("Error : No Positive Difference Getted from db When Sending Notification via Firebase to Android Client");
+                }
+
+                /*if (differenceCountedRejcTrns < 0)
+                {
+                    //_statusCodeManager.PostCounterTrns();
+                    return BadRequest("Negative Range OF Difference : " + differenceCountedRejcTrns + " => There Is No New Data to Add in Db For Notification");
+                }
+                if (differenceCountedRejcTrns == 0)
+                {
+                    //_statusCodeManager.PostCounterTrns();
+                    return BadRequest("Equality Range OF Difference : " + differenceCountedRejcTrns + " => There Is No New Data to Add in Db For Notification");
+                }*/
+            }
+        else
+          {
+                return BadRequest();
+          }
+            
+      }
+
+        // GET api/User/PostManualNotifRejectedTranscByFireBaseCloud
+        [System.Web.Http.HttpPost]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("PostManualNotifRejectedTranscByFireBaseCloud")]
+        public IHttpActionResult PostManualNotifRejectedTranscByFireBaseCloud()
+        {
+            var _statusCodeManager = new StatusCodeManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            //var resultPushNotif = _statusCodeManager.sendNotificationOfRejectedTransactions();
+            //var resultPushNotif = _statusCodeManager.SendNotificationFromFirebaseCloud();
+            //var sent = await _statusCodeManager.sendPushNotifcationToFirebase();
+            _statusCodeManager.PostCounterTrns();
+            var differenceCountedRejcTrns = _statusCodeManager.GetLastDifferenceFromDb();
+
+            if (differenceCountedRejcTrns > 0)
+            {
+                var resultPushNotif = _statusCodeManager.sendManualNotifcation(differenceCountedRejcTrns);
+
+                if (currentUser != null && resultPushNotif != null)
+                {
+                    //var msg = "Notification Sent Success";           
+                    return Ok(resultPushNotif);
+                }
+                else
+                {
+                    return BadRequest(resultPushNotif.ToString());
+                }
+            }
+            else if (differenceCountedRejcTrns < 0)
+            {
+                _statusCodeManager.PostCounterTrns();
+                return BadRequest("Negative Range OF Difference : " + differenceCountedRejcTrns + " => There Is No New Data For Notification");
+            }
+            else
+            {
+                _statusCodeManager.PostCounterTrns();
+                return BadRequest("Equality Range OF Difference : " + differenceCountedRejcTrns + " => There Is No New Data For Notification");
+            }
+
+        }
+
+        // GET api/User/GetNotificationAboutRejectedTransactions
+        [System.Web.Http.HttpPost]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("GetNotificationAboutRejectedTransactions")]
+        public IHttpActionResult GetNotificationAboutRejectedTransactions()
+        {
+            var _statusCodeManager = new StatusCodeManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            //var resultPushNotif = _statusCodeManager.sendNotificationOfRejectedTransactions();
+            var resultJsonNotif = _statusCodeManager.getValuesSentNotificationFromFirebaseCloud();
+            //var sent = await _statusCodeManager.sendPushNotifcationToFirebase();
+
+            if (currentUser != null && resultJsonNotif != null)
+            {
+                //var msg = "Notification Sent Success";           
+                return Ok(resultJsonNotif);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
+        // GET api/User/GetRejectedStatusCodeWithDesc
+        [System.Web.Http.HttpGet]  // added by me
+        [UserSessionTokenAuthorize]  // added by me
+        [System.Web.Http.Authorize]  // added by me
+        [System.Web.Http.AllowAnonymous] // added by me
+        [System.Web.Http.Route("GetRejectedStatusCodeWithDesc")]
+        public IHttpActionResult GetRejectedStatusCodeWithDesc()
+        {
+            var _statusCodeManager = new StatusCodeManager();
+            var _aspNetUserManager = new AspNetUserManager();
+
+            var currentUser = _aspNetUserManager.GetCurrentUserById(id_userLoggedIn_static);
+            var list_RejectedStatusCodeWithDesc = _statusCodeManager.getOnlyRejectedStatusCodeWithDesc();
+
+            if (list_RejectedStatusCodeWithDesc.Count != 0 && list_RejectedStatusCodeWithDesc != null && currentUser != null)
+            {
+                return Ok(list_RejectedStatusCodeWithDesc);
             }
             else
             {
