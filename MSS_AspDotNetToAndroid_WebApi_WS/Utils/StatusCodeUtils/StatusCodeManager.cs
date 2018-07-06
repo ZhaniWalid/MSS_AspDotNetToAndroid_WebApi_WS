@@ -26,14 +26,14 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.StatusCodeUtils
         //private TransactionsRepository _transactionsRepository;
         private StatusCodeRepository _statusCodeRepository;
 
-        private string serverKey = "AAAAdtMITDI:APA91bEliRXCtk918DC8SZj8ei9_hYWnTMPDTy97Bph8AM9vS5NZWC-KJAMNhXdk5WgcN-yw--RJy1p4LGPOaRSDtOokgXL5hOb2VDer1wXuitk-vDRWIsi8FSZnyhPTvrg5qUqyS-gy4IdRljeb4K-Xx7Hm8ufYUw";
+        private string serverKey = "AAA######";
         // Use firebaseTokenId to push notifications to only the device installing the app who have this specific tokenId
-        private string firebaseTokenId = "e2L-3KJhbnc:APA91bEahR1whnuDSHWhojzr9XyN7-hFydukmHDEtIB8roI9NViqi03g78FkcHLopngWE1NiInDOKIc2zvOJf6qPUVDAl_qYPm7i5pptINg7dX9byqHZHneFToYkAyw4rb6aVwibL3IJEeGKBsmujktZxZtggElv1w";
-        private string WebApiServerKey = "AIzaSyC3CsAx62a6h1jFzk55HtbcLOSjA0tu4Zc";
-        private string LegacyServerKey = "AIzaSyDQCfsV5PGg_nF2__6IH4RwdwH2uLg56Tc";
-        private string applicationId = "1:510346677298:android:6ad22fdc69c347fc";
-        private string senderId = "510346677298";
-        private string deviceId = "f1c2ab5d8cc1295a"; // My Device Id , Got it From Android Studio from line code in the class LoginActivity.java
+        private string firebaseTokenId = "######";
+        private string WebApiServerKey = "AIza####";
+        private string LegacyServerKey = "AIza##";
+        private string applicationId = "####";
+        private string senderId = "####";
+        private string deviceId = "####"; // My Device Id , Got it From Android Studio from line code in the class LoginActivity.java
         private string mssTopics = "/topics/mss_topics"; // Use topics to push notifications to all the device installing the app
 
         public StatusCodeManager()
