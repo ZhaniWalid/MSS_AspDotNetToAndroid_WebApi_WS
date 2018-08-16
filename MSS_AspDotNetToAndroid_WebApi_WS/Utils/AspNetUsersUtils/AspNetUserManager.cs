@@ -311,8 +311,8 @@ namespace MSS_AspDotNetToAndroid_WebApi_WS.Utils.AspNetUsersUtils
             mailMessage.IsBodyHtml = true;
 
             // Specify the credentials of the Sender
-            var emailSender = "#######";
-            var passwordSender = "#######";
+            var emailSender = "validos11@gmail.com";
+            var passwordSender = "googleTech14isTheBest";
 
             SmtpServer.Port = 587; //25
             SmtpServer.Credentials = new System.Net.NetworkCredential(emailSender, passwordSender);
